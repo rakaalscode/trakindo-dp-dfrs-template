@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="../dist/css/app.css" />
+    <style>
+      .bg-login {
+        background-image: url("../dist/img/trakindo-login.jpg");
+        background-size: cover;
+        background-position: center center;
+      }
+    </style>
+  </head>
+  <body class="font-roboto">
+    <div class="h-full">
+      <nav
+        class="fixed top-0 z-50 flex items-center w-full px-4 py-3 bg-white border border-b-[#DEDEDE] md:px-8 md:py-6"
+      >
+        <img
+          src="../dist/img/trakindo-logo-2.png"
+          class="w-[165px] h-[42px]"
+          alt="trakindo-logo"
+        />
+      </nav>
+      <main class="flex w-full h-full overflow-hidden">
+        <!-- Image session -->
+        <div class="hidden md:block md:w-1/2 bg-login"></div>
+        <!-- Form session -->
+        <div
+          class="flex items-center justify-center w-full p-8 text-center md:w-1/2 bg-light md:p-12 lg:p-16"
+        >
+          <div class="w-[483px]">
+            <h3 class="mb-4 text-3xl font-bold">
+              Welcome to <br />
+              GP & DFRS Report
+            </h3>
+            <a href="./prime-product.html" class="px-20 py-0 h-[52px] rounded-lg btn btn-black">
+              <img
+                src="../dist/img/ms-icon.png"
+                class="w-5 h-5 mr-4"
+                alt="ms-icon"
+              />
+              Sign in with Microsoft
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

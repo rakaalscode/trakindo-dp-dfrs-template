@@ -1,0 +1,67 @@
+/* Checkbox  */
+
+.font-small-caps {
+  font-variant: all-small-caps;
+}
+.custom-label input:checked + svg, .custom-label input:checked + img{
+  display: block !important;
+}
+
+/* checkbox  */
+[type=checkbox], [type=radio] {
+  --tw-shadow: 0 0 #0000;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-origin: border-box;
+  border-color: #6b7280;
+  border-width: 1px;
+  color: #fff;
+  display: inline-block;
+  flex-shrink: 0;
+  height: 1rem;
+  padding: 0;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  width: 1rem;
+}
+
+[type=checkbox]:checked, [type=radio]:checked {
+  background-color: currentColor;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 0.55em 0.55em;
+  border-color: transparent;
+}
+
+[type=checkbox]:checked {
+  background-image: url('../icons/check.svg');
+  background-size: 70%;
+  background-position: 50%;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  border: 1px solid #E4A309;
+}
+
+[type=checkbox].custom-checkbox-green:checked {
+  background-image: url('../check-green.svg');
+  background-size: 70%;
+  background-position: 50%;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  border: 1px solid #008C4F;
+}
+
+[type=checkbox]:checked:disabled {
+  background-image: url('../check-disable.svg');
+  background-size: 70%;
+  background-position: 50%;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  border: 1px solid #BCBDC0;
+}

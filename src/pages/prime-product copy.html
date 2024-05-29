@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="../dist/css/app.css" />
+    <style></style>
+  </head>
+  <body class="font-roboto">
+    <div class="h-full">
+      <!-- Nav menu  -->
+      <nav
+        class="fixed top-0 z-50 flex items-center w-full px-4 py-3 bg-white border border-b-[#DEDEDE] gap-x-2 md:px-8 md:py-6"
+      >
+        <img
+          src="../dist/img/trakindo-logo-2.png"
+          class="w-[165px] h-[42px]"
+          alt="trakindo-logo"
+        />
+        <div class="flex-1 ml-8">
+          <ul class="flex gap-x-2">
+            <li>
+              <a href="#" class="nav-item active"> GP Report </a>
+            </li>
+            <li>
+              <a href="#" class="nav-item">DFRS Report</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- Menu Category  -->
+      <nav
+        class="flex items-center w-full border overflow-x-auto overflow-y-hidden bg-cloudy-20 mt-[67px] md:mt-[91px] border-b-cloudy-50 px-4 md:px-8"
+      >
+        <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
+          <li>
+            <a href="#" class="nav-cat active">Prime Porduct (PP)</a>
+          </li>
+          <li>
+            <a href="#" class="nav-cat">Product Support (PS)</a>
+          </li>
+          <li>
+            <a href="#" class="nav-cat">Rental & Used Equipment (RUE)</a>
+          </li>
+        </ul>
+        <div class="flex-shrink-0 ml-auto">Jan 2024</div>
+      </nav>
+      <main class="p-4 md:p-8">
+        <!-- GP Percentage  -->
+        <div class="flex flex-col w-full">
+          <h1 class="text-cloudy-110 text-[32px] leading-10 font-semibold mb-6">
+            GP Percentage
+          </h1>
+          <div>
+            <div class="flex items-center w-full mb-6">
+              <div class="flex flex-1 gap-x-3">
+                <button class="btn btn-secondary">By Model</button>
+                <button class="btn btn-white">By Profit Center</button>
+              </div>
+              <div class="ml-auto">
+                <p class="text-sm font-normal text-secondary-90/60">
+                  Last Update: 24 September 2023 | 13:00 WIB
+                </p>
+              </div>
+            </div>
+            <!-- Card  -->
+            <div
+              class="w-full border rounded-lg shadow-sm bg-card text-card-foreground"
+            >
+              <div
+                class="flex w-full px-4 border bg-cloudy-20 border-b-cloudy-50 md:px-6"
+              >
+                <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
+                  <li>
+                    <a href="#" class="nav-cat active">
+                      <img
+                        src="../dist/icons/engine.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="engine"
+                      />
+                      <span>Machine</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="nav-cat">Engine</a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Machine Content  -->
+              <div class="relative flex w-full overflow-y-auto">
+                <div class="w-1/2 p-6">Chart Content</div>
+                <div
+                  class="absolute w-[1px] top-0 left-1/2 h-full bg-cloudy-40"
+                ></div>
+                <div class="w-1/2 p-6">
+                  <!-- Table Machine  -->
+                  <div class="relative overflow-x-auto">
+                    <table
+                      class="w-full text-sm font-normal text-left text-secondary-90"
+                    >
+                      <thead
+                        class="text-base font-semibold uppercase text-secondary-90"
+                      >
+                        <tr>
+                          <th scope="col" class="pb-4 pr-4 whitespace-nowrap">
+                            Machine Model
+                          </th>
+                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                            YTD
+                          </th>
+                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                            MTD
+                          </th>
+                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                            GP Plan
+                          </th>
+                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                            GP Trans.
+                          </th>
+                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                            GP Actual
+                          </th>
+                          <th
+                            scope="col"
+                            class="px-[18px] pb-4 whitespace-nowrap"
+                          >
+                            &nbsp;
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody id="machine-body"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="../dist/js/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $.getJSON("../dist/data/machine-data.json", function (data) {
+          const machineTable = $("#machine-body");
+
+          data.forEach((v) => {
+            const row = $("<tr>").addClass("border-t border-t-[#DEDDDE] hover:bg-yellow-10");
+
+            const createCell = (text) =>
+              $("<td>")
+                .addClass(
+                  "bg-white px-2 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
+                )
+                .text(text);
+
+            const colMachine = createCell(v.machine_model).addClass("pr-4");
+            const colYtd = createCell(v.ytd);
+            const colMtd = createCell(v.mtd);
+            const colGpPlan = createCell(v.gp_plan);
+            const colGpTrans = createCell(v.gp_trans);
+            const colGpActual = createCell(v.gp_actual);
+
+            const colAction = $("<td>").addClass(
+              "bg-white px-2 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
+            );
+            const image = $("<img>")
+              .attr("src", "../dist/icons/arrowBackneclos.svg")
+              .addClass("h-4 w-4 rounded-full");
+            colAction.append(image);
+
+            row.append(
+              colMachine,
+              colYtd,
+              colMtd,
+              colGpPlan,
+              colGpTrans,
+              colGpActual,
+              colAction
+            );
+            machineTable.append(row);
+          });
+        }).fail(function () {
+          alert("Failed to load JSON machine data");
+        });
+      });
+    </script>
+  </body>
+</html>

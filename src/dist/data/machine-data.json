@@ -1,0 +1,11 @@
+[
+  { "id": 1, "machine_model": "All 320 + 323", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "01-01-2023" },
+  { "id": 2, "machine_model": "All 313", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "02-01-2023" },
+  { "id": 3, "machine_model": "30.5-307.5", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "03-01-2023" },
+  { "id": 4, "machine_model": "CS10GC", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "04-01-2023" },
+  { "id": 5, "machine_model": "All 120", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "05-01-2023" },
+  { "id": 6, "machine_model": "All D6", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "06-01-2023" },
+  { "id": 7, "machine_model": "745", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "01-2-2023" },
+  { "id": 8, "machine_model": "773", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "02-03-2023" },
+  { "id": 9, "machine_model": "777", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "03-03-2023" }
+]
