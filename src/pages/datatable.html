@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../dist/css/app.css" />
+    <!-- <link rel="stylesheet" href="//cdn.datatables.net/2.0.8/css/dataTables.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    <title>Document</title>
+  </head>
+  <body class="min-h-screen">
+    <div class="h-full">
+      <div class="max-w-4xl mx-auto">
+        <div class="w-full overflow-x-auto">
+          <table id="myTable" class="">
+            <thead>
+              <tr>
+                <th>Test ini column 1</th>
+                <th>Test ini column 1</th>
+                <th>Test ini column 1</th>
+                <th>Test ini column 1</th>
+                <th>Test ini column 1</th>
+                <th>Test ini column 1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>dsadaads</td>
+                <td>dsadaads</td>
+                <td>dsadaads</td>
+                <td>dsadaads</td>
+                <td>dsadaads</td>
+                <td>dsadaads</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="../dist/js/jquery.min.js"></script>
+    <!-- <script src="//cdn.datatables.net/2.0.8/js/dataTables.min.js"></script> -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+    <script>
+      $(document).ready(function() {
+        // let table = new DataTable('#myTable', {
+        //   responsive: true
+        // });
+        $('#myTable').DataTable({
+          responsive: true
+        });
+      })
+    </script>
+  </body>
+</html>

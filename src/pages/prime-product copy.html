@@ -15,9 +15,65 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../dist/css/styles.css" />
     <!-- Tailwind -->
     <link rel="stylesheet" href="../dist/css/app.css" />
-    <style></style>
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatable/css/dataTables.min.css" />
+
+    <style>
+      .highcharts-figure,
+      .highcharts-data-table table {
+        min-width: 310px;
+        max-width: 800px;
+        margin: 1em auto;
+      }
+
+      #container {
+        height: 400px;
+      }
+
+      .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+      }
+
+      .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+      }
+
+      .highcharts-data-table td,
+      .highcharts-data-table th,
+      .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+
+      .highcharts-data-table thead tr,
+      .highcharts-data-table tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
+      .popover {
+        display: none;
+      }
+    </style>
   </head>
   <body class="font-roboto">
     <div class="h-full">
@@ -31,7 +87,7 @@
           alt="trakindo-logo"
         />
         <div class="flex-1 ml-8">
-          <ul class="flex gap-x-2">
+          <ul class="hidden gap-x-2 md:flex">
             <li>
               <a href="#" class="nav-item active"> GP Report </a>
             </li>
@@ -40,10 +96,49 @@
             </li>
           </ul>
         </div>
+        <div class="flex items-center h-full ml-auto gap-x-4">
+          <ul class="items-center hidden gap-x-4 md:flex">
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/setting.svg"
+                  class="w-8 h-8"
+                  alt="setting"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/notification.svg"
+                  class="w-8 h-8"
+                  alt="notification"
+                />
+              </a>
+            </li>
+          </ul>
+          <div class="w-[1px] h-6 bg-cloudy-40 hidden md:block"></div>
+          <div class="flex items-center cursor-pointer gap-x-4">
+            <img src="../dist/img/profile.png" class="w-8 h-8" alt="profile" />
+            <div class="items-center hidden md:flex">
+              <div class="max-w-[70px] min-w-[70px]">
+                <p class="text-sm font-semibold truncate text-black-0">Aditi</p>
+                <p class="text-xs font-normal truncate text-cloudy-70">
+                  Statutory
+                </p>
+              </div>
+              <img
+                src="../dist/icons/fi_chevron-down.svg"
+                class="w-5 h-5"
+                alt="chevron"
+              />
+            </div>
+          </div>
+        </div>
       </nav>
       <!-- Menu Category  -->
       <nav
-        class="flex items-center w-full border overflow-x-auto overflow-y-hidden bg-cloudy-20 mt-[67px] md:mt-[91px] border-b-cloudy-50 px-4 md:px-8"
+        class="flex items-center w-full border overflow-x-auto overflow-y-hidden bg-cloudy-20 mt-[67px] md:mt-[91px] border-b-cloudy-50 gap-x-4 px-4 md:px-8"
       >
         <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
           <li>
@@ -65,10 +160,20 @@
             GP Percentage
           </h1>
           <div>
-            <div class="flex items-center w-full mb-6">
-              <div class="flex flex-1 gap-x-3">
-                <button class="btn btn-secondary">By Model</button>
-                <button class="btn btn-white">By Profit Center</button>
+            <div
+              class="flex flex-col-reverse items-center w-full gap-4 mb-6 md:flex-row"
+            >
+              <div class="flex w-full md:w-auto gap-x-3">
+                <button
+                  class="px-6 py-2 rounded-[32px] btn btn-secondary w-full md:w-auto"
+                >
+                  By Model
+                </button>
+                <button
+                  class="px-6 py-2 rounded-[32px] btn btn-white w-full md:w-auto"
+                >
+                  By Profit Center
+                </button>
               </div>
               <div class="ml-auto">
                 <p class="text-sm font-normal text-secondary-90/60">
@@ -77,9 +182,7 @@
               </div>
             </div>
             <!-- Card  -->
-            <div
-              class="w-full border rounded-lg shadow-sm bg-card text-card-foreground"
-            >
+            <div class="w-full border rounded-lg border-[#E4E7EC] shadow-sm">
               <div
                 class="flex w-full px-4 border bg-cloudy-20 border-b-cloudy-50 md:px-6"
               >
@@ -95,55 +198,436 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="nav-cat">Engine</a>
+                    <a href="#" class="nav-cat">
+                      <img
+                        src="../dist/icons/gears.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="gears"
+                      />
+                      <span>Engine</span>
+                    </a>
                   </li>
                 </ul>
               </div>
               <!-- Machine Content  -->
-              <div class="relative flex w-full overflow-y-auto">
-                <div class="w-1/2 p-6">Chart Content</div>
+              <div
+                class="relative z-20 flex flex-col w-full h-full overflow-y-auto md:flex-row"
+              >
+                <!-- Chart  -->
+                <div class="w-full md:w-1/2">
+                  <div
+                    class="relative z-20 flex flex-col h-full overflow-x-auto"
+                  >
+                    <div class="p-6 pb-0">
+                      <!-- Breadcrumbs  -->
+                      <div class="flex items-center mb-4">
+                        <ol
+                          class="inline-flex items-center space-x-1 md:space-x-2"
+                          id="machine-bread"
+                        >
+                          <li class="inline-flex items-center">
+                            <a
+                              href="#"
+                              class="inline-flex items-center text-[22px] font-semibold text-cloudy-110"
+                              >Machine GP %</a
+                            >
+                          </li>
+                          <!-- <li>
+                        <div class="flex items-center">
+                          <img src="../dist/icons/arrowBackneclosCloud.svg" class="w-4 h-4" alt="arrowBackneclos">
+                          <a
+                            href="#"
+                            class="ms-1 text-[22px] font-semibold text-cloudy-110"
+                            >All 320 + 323</a
+                          >
+                        </div>
+                      </li> -->
+                        </ol>
+                        <div class="ml-auto">
+                          <button
+                            class="btn btn-ghost trigger"
+                            data-popover="#popover1"
+                          >
+                            <img
+                              src="../dist/icons/download.svg"
+                              alt="download-icon"
+                            />
+                          </button>
+                          <div
+                            class="z-50 hidden w-[288px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+                            id="popover1"
+                          >
+                            <div class="p-6 space-y-4">
+                              <div class="pb-4 border-b border-b-cloudy-40">
+                                <h4 class="text-lg font-semibold text-gray-900">
+                                  Download Charts
+                                </h4>
+                              </div>
+                              <div class="flex flex-col space-y-2">
+                                <h4 class="text-lg font-semibold text-gray-900">
+                                  Data
+                                </h4>
+                                <div
+                                  class="w-full px-3 py-3 border rounded-lg border-cloudy-40"
+                                >
+                                  <label
+                                    class="flex items-center gap-3 cursor-pointer"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      name="data"
+                                      value="ci"
+                                      class="custom-checkbox"
+                                    />
+                                    <span
+                                      class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
+                                      >Constructions Industry (CI)</span
+                                    >
+                                  </label>
+                                </div>
+                                <div
+                                  class="w-full px-3 py-3 border rounded-lg border-cloudy-40"
+                                >
+                                  <label
+                                    class="flex items-center gap-3 cursor-pointer"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      name="data"
+                                      class="custom-checkbox"
+                                      value="et"
+                                    />
+                                    <span
+                                      class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
+                                      >Powers System (E&T)</span
+                                    >
+                                  </label>
+                                </div>
+                                <div
+                                  class="w-full px-3 py-3 border rounded-lg border-cloudy-40"
+                                >
+                                  <label
+                                    class="flex items-center gap-3 cursor-pointer"
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      name="data"
+                                      class="custom-checkbox"
+                                      value="ri"
+                                    />
+                                    <span
+                                      class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
+                                      >Mining (RI)</span
+                                    >
+                                  </label>
+                                </div>
+                              </div>
+                              <div class="space-y-2">
+                                <h4 class="text-lg font-semibold text-gray-900">
+                                  Document
+                                </h4>
+                                <div
+                                  class="w-full px-3 py-3 border rounded-lg border-cloudy-40"
+                                >
+                                  <label
+                                    class="flex items-center gap-3 cursor-pointer"
+                                  >
+                                    <input
+                                      name="document"
+                                      value="pptx"
+                                      type="radio"
+                                      class="w-5 h-5 border border-gray-300 rounded-full checked:bg-yellow-30 checked:border-[2.5px] checked:border-yellow-80"
+                                    />
+                                    <span
+                                      class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
+                                      >.pptx</span
+                                    >
+                                    <div class="ml-auto">
+                                      <img
+                                        src="../dist/icons/pptx.png"
+                                        class="w-[24px] h-[24px]"
+                                        alt="pptx"
+                                      />
+                                    </div>
+                                  </label>
+                                </div>
+                                <div
+                                  class="w-full px-3 py-3 border rounded-lg border-cloudy-40"
+                                >
+                                  <label
+                                    class="flex items-center gap-3 cursor-pointer"
+                                  >
+                                    <input
+                                      name="document"
+                                      value="xls"
+                                      type="radio"
+                                      class="w-5 h-5 border border-gray-300 rounded-full checked:bg-yellow-30 checked:border-[2.5px] checked:border-yellow-80"
+                                    />
+                                    <span
+                                      class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
+                                      >.xls</span
+                                    >
+                                    <div class="ml-auto">
+                                      <img
+                                        src="../dist/icons/xls.png"
+                                        class="w-[24px] h-[24px]"
+                                        alt="xls"
+                                      />
+                                    </div>
+                                  </label>
+                                </div>
+                              </div>
+                              <button
+                                class="w-full px-6 py-3 font-bold btn btn-yellow"
+                                id="download-chart"
+                              >
+                                Download
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Chart  -->
+                      <figure class="highcharts-figure">
+                        <div id="container"></div>
+                        <p class="highcharts-description">Chart description</p>
+                      </figure>
+                    </div>
+                    <div class="mt-auto">
+                      <div
+                        class="flex items-center text-base font-semibold capitalize text-secondary-90 border-t border-t-[#DEDDDE] border-b border-b-[#DEDDDE] bg-cloudy-0 px-6 py-4"
+                      >
+                        <div class="flex-1">1</div>
+                        <div class="ml-auto">2</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div
-                  class="absolute w-[1px] top-0 left-1/2 h-full bg-cloudy-40"
+                  class="absolute hidden md:block w-[1px] top-0 left-[49.9%] h-full bg-cloudy-40"
                 ></div>
-                <div class="w-1/2 p-6">
-                  <!-- Table Machine  -->
-                  <div class="relative overflow-x-auto">
+                <!-- Table  -->
+                <div class="w-full md:w-1/2">
+                  <div class="relative h-full overflow-x-auto">
                     <table
-                      class="w-full text-sm font-normal text-left text-secondary-90"
+                      class="w-full text-sm font-normal text-left bg-white text-secondary-90"
                     >
                       <thead
-                        class="text-base font-semibold uppercase text-secondary-90"
+                        class="text-base font-semibold capitalize text-secondary-90"
                       >
                         <tr>
-                          <th scope="col" class="pb-4 pr-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-6 py-4 pt-6 ml-6 whitespace-nowrap"
+                          >
                             Machine Model
                           </th>
-                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                          >
                             YTD
                           </th>
-                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                          >
                             MTD
                           </th>
-                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                          >
                             GP Plan
                           </th>
-                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                          >
                             GP Trans.
                           </th>
-                          <th scope="col" class="px-2 pb-4 whitespace-nowrap">
+                          <th
+                            scope="col"
+                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                          >
                             GP Actual
                           </th>
                           <th
                             scope="col"
-                            class="px-[18px] pb-4 whitespace-nowrap"
+                            class="px-8 py-4 pt-6 whitespace-nowrap"
                           >
                             &nbsp;
                           </th>
                         </tr>
                       </thead>
                       <tbody id="machine-body"></tbody>
+                      <tfoot id="machine-footer"></tfoot>
                     </table>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Machine GP Data List  -->
+        <div class="flex flex-col w-full pt-10">
+          <div
+            class="flex flex-col items-start gap-4 mb-4 md:mb-6 md:items-center md:flex-row"
+          >
+            <h1 class="text-cloudy-110 text-[32px] leading-10 font-semibold">
+              Machine GP Data List
+            </h1>
+            <div
+              class="flex flex-col-reverse items-end w-full gap-4 md:w-auto md:gap-6 md:ml-auto md:items-center md:flex-row"
+            >
+              <button
+                class="flex items-center btn btn-ghost h-[38px]"
+                id="searchBtn"
+              >
+                <img
+                  src="../dist/icons/search.svg"
+                  class="w-6 h-6"
+                  alt="search-icon"
+                />
+              </button>
+              <form class="hidden w-full" id="formSearch">
+                <label
+                  for="search"
+                  class="mb-2 text-sm font-medium text-gray-900 sr-only"
+                  >Search</label
+                >
+                <div class="relative">
+                  <input
+                    type="text"
+                    id="search"
+                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Search..."
+                    required
+                  />
+                  <button
+                    type="button"
+                    class="absolute text-white end-2 bottom-2"
+                  >
+                    <img
+                      src="../dist/icons/search.svg"
+                      class="w-6 h-6"
+                      alt="search-icon"
+                    />
+                  </button>
+                </div>
+              </form>
+              <div class="flex items-center w-full gap-4">
+                <div class="flex flex-shrink-0">
+                  <img
+                    src="../dist/icons/xls.png"
+                    class="flex-shrink-0 w-6 h-6"
+                    alt="xls"
+                  />
+                </div>
+                <button
+                  class="w-full px-4 py-2 font-bold btn btn-sm btn-outline-yellow"
+                  data-drawer-target="drawer-right-example"
+                  data-drawer-show="drawer-right-example"
+                  data-drawer-placement="right"
+                >
+                  <img
+                    src="../dist/icons/history-yellow.svg"
+                    class="w-5 h-5 mr-2"
+                    alt="history-yellow"
+                  />
+                  Log History
+                </button>
+                <button
+                  class="flex items-center w-full px-4 py-2 font-bold btn btn-sm btn-yellow trigger"
+                  data-popover="#editMachine"
+                >
+                  Edit Data
+                  <img
+                    src="../dist/icons/arrowDown.svg"
+                    class="w-5 h-5 ml-2"
+                    alt="arrow"
+                  />
+                </button>
+                <div
+                  class="z-50 hidden w-[288px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+                  id="editMachine"
+                >
+                  <div class="p-6 pb-0">
+                    <div class="space-y-4">
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <h4 class="text-lg font-semibold text-gray-900">
+                          Edit Data
+                        </h4>
+                      </div>
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                        >
+                          <img
+                            src="../dist/icons/download-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="download-yellow"
+                          />
+                          Download Table
+                        </div>
+                      </div>
+                      <div class="pb-4">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
+                          data-modal-target="submit-edit-modal"
+                          data-modal-toggle="submit-edit-modal"
+                        >
+                          <img
+                            src="../dist/icons/file-upload-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="file-upload-yellow"
+                          />
+                          Submit Edited Data
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="px-6 py-3 text-sm font-normal border-t rounded-bl-lg rounded-br-lg bg-cloudy-20 border-t-cloudy-40 text-cloudy-90"
+                  >
+                    Need tutorial?
+                    <span
+                      class="text-sm font-bold text-[#D79900]"
+                      role="button"
+                      data-modal-target="tutorial-modal"
+                      data-modal-toggle="tutorial-modal"
+                      >Click here</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <!-- Card  -->
+            <div
+              class="w-full border rounded-lg shadow-sm bg-card text-card-foreground"
+            >
+              <!-- Machine Table  -->
+              <div class="p-6">
+                <div class="relative overflow-x-auto">
+                  <table id="machineTable" class="display">
+                    <thead>
+                      <tr>
+                        <th>Company Code</th>
+                        <th>Customer No</th>
+                        <th>Customer Name</th>
+                        <th>Profit Center</th>
+                        <th>Profit Center Name</th>
+                        <th>Profit Center Class</th>
+                        <th>Payer No</th>
+                        <th>Payer NAMEBusiness Area</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
                 </div>
               </div>
             </div>
@@ -152,50 +636,822 @@
       </main>
     </div>
 
+    <!-- Dialog Modal  -->
+    <!-- Dialog Tutorial  -->
+    <div
+      id="tutorial-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-3xl max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 border-b rounded-t bg-cloudy-20 md:p-5"
+          >
+            <h3 class="text-lg font-semibold text-cloudy-110">
+              Edit Table Tutorial
+            </h3>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="tutorial-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 space-y-4 md:p-6">
+            <div class="flex items-center justify-between">
+              <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                <button
+                  class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                >
+                  STEP 1
+                </button>
+                <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                  Click download <br />
+                  data
+                </h3>
+                <div
+                  class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                >
+                  Image content !
+                </div>
+              </div>
+              <img
+                src="../dist/icons/dot-arrow.svg"
+                class="w-5"
+                alt="dot-arrow"
+              />
+              <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                <button
+                  class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                >
+                  STEP 2
+                </button>
+                <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                  Click download <br />
+                  data
+                </h3>
+                <div
+                  class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                >
+                  Image content !
+                </div>
+              </div>
+              <img
+                src="../dist/icons/dot-arrow.svg"
+                class="w-5"
+                alt="dot-arrow"
+              />
+              <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                <button
+                  class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                >
+                  STEP 3
+                </button>
+                <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                  Click download <br />
+                  data
+                </h3>
+                <div
+                  class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                >
+                  Image content !
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div
+            class="flex items-center px-4 py-3 border-t border-gray-200 rounded-b md:px-6 md:py-4"
+          >
+            <button
+              data-modal-hide="tutorial-modal"
+              type="button"
+              class="ml-auto font-bold btn btn-sm btn-yellow"
+            >
+              Ok, Undestand
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Submit Edit  -->
+    <div
+      id="submit-edit-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-3xl max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 rounded-t-xl bg-cloudy-20 md:p-5"
+          >
+            <h3 class="text-lg font-semibold text-cloudy-110">
+              Submit Edited Data
+            </h3>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="submit-edit-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <form id="uploadFormEditData" enctype="multipart/form-data">
+            <!-- Modal body -->
+            <div class="p-4 space-y-4 md:p-6">
+              <div
+                class="flex items-center justify-center w-full"
+                id="dropzone-area"
+              >
+                <!-- default  -->
+
+                <!-- warning  -->
+                <!-- <label
+                  for="dropzone-file"
+                  class="flex dropzone-warning dropzone"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <img
+                      src="../dist/icons/file-wrong.svg"
+                      class=""
+                      alt="file-wrong"
+                    />
+                    <div class="text-center">
+                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
+                        Format File Invalid
+                      </p>
+                      <p class="text-xs font-normal text-gray-500">
+                        Please check your file format. Make sure the format is .xlsx
+                      </p>
+                    </div>
+                    <div class="font-bold btn btn-sm btn-yellow">
+                      Browse file
+                    </div>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label> -->
+
+                <!-- error  -->
+                <!-- <label
+                  for="dropzone-file"
+                  class="flex dropzone-error dropzone"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <img
+                      src="../dist/icons/file-error.svg"
+                      class=""
+                      alt="file-wrong"
+                    />
+                    <div class="text-center">
+                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
+                        File Corrupt
+                      </p>
+                      <p class="text-xs font-normal text-gray-500">
+                        Something went wrong. Please re-upload your file
+                      </p>
+                    </div>
+                    <div class="font-bold btn btn-sm btn-yellow">
+                      Browse file
+                    </div>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label> -->
+
+                <!-- column error  -->
+                <!-- <label
+                  for="dropzone-file"
+                  class="flex dropzone-error dropzone"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <img
+                      src="../dist/icons/column-error.svg"
+                      class=""
+                      alt="file-wrong"
+                    />
+                    <div class="text-center">
+                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
+                        Missing Column
+                      </p>
+                      <p class="text-xs font-normal text-gray-500">
+                        Please check your file
+                      </p>
+                    </div>
+                    <div class="font-bold btn btn-sm btn-yellow">
+                      Browse file
+                    </div>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label> -->
+
+                <label
+                  for="dropzone-file"
+                  class="flex dropzone-default dropzone"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <img
+                      src="../dist/icons/upload-cloud.svg"
+                      class=""
+                      alt="upload-cloud"
+                    />
+                    <div class="text-center">
+                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
+                        Drag and Drop
+                      </p>
+                      <p class="text-xs font-normal text-gray-500">
+                        Only upload in .xlxs
+                      </p>
+                    </div>
+                    <div class="font-bold btn btn-sm btn-yellow">
+                      Browse file
+                    </div>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+
+                <!-- upload  -->
+                <label
+                  for="dropzone-file"
+                  class="hidden dropzone-upload dropzone-process"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <div
+                      class="px-6 py-4 space-y-6 text-center bg-cloudy-10 rounded-2xl"
+                    >
+                      <div class="flex items-center justify-center w-full">
+                        <img
+                          src="../dist/icons/xls.png"
+                          class="w-10 h-10"
+                          alt="xls"
+                        />
+                      </div>
+                      <p
+                        class="text-sm font-semibold text-cloudy-110 file-name"
+                      ></p>
+                      <span
+                        class="text-xs font-normal text-gray-500 file-size"
+                      ></span>
+                    </div>
+                    <p class="text-xs font-normal text-gray-500">
+                      Uploading <span class="file-process"></span>
+                      <span class="file-time"></span>
+                    </p>
+                    <div
+                      class="flex w-full h-2 overflow-hidden rounded-full bg-cloudy-20"
+                      role="progressbar"
+                    >
+                      <div
+                        class="flex flex-col justify-center overflow-hidden text-xs text-center text-white transition duration-500 rounded-full bg-yellow-80 whitespace-nowrap"
+                        id="progressBar"
+                      ></div>
+                    </div>
+                    <button
+                      type="button"
+                      class="font-bold btn btn-sm btn-outline-yellow"
+                      id="cancelUpload"
+                    >
+                      Cancel Upload
+                    </button>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+              </div>
+            </div>
+            <!-- Modal footer -->
+            <div
+              class="flex items-center px-4 py-3 border-t border-gray-200 rounded-b-xl md:px-6 md:py-4"
+            >
+              <div class="flex items-center">
+                <img
+                  src="../dist/icons/warning-orange.svg"
+                  class="w-3.5 h-3.5 mr-2"
+                  alt="warning-orange"
+                />
+                <span class="text-sm font-normal text-cloudy-90"
+                  >Please do not add or delete table column in the template form
+                  otherwise it'll be failed</span
+                >
+              </div>
+
+              <button
+                data-modal-hide="submit-edit-modal"
+                type="submit"
+                class="ml-auto font-bold btn btn-sm btn-yellow"
+                disabled
+                id="uploadBtnEditData"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drawer -->
+    <!-- Drawer Log History -->
+    <div
+      id="drawer-right-example"
+      class="fixed top-0 right-0 z-[99] h-screen overflow-y-auto transition-transform translate-x-full bg-white w-9/12"
+      tabindex="-1"
+      aria-labelledby="drawer-right-label"
+    >
+      <div class="flex items-center px-10 py-8 bg-cloudy-20">
+        <h3 class="text-2xl font-semibold text-cloudy-130">Log History</h3>
+        <button
+          type="button"
+          data-drawer-hide="drawer-right-example"
+          aria-controls="drawer-right-example"
+          class="flex items-center justify-center w-8 h-8 ml-auto text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
+        >
+          <img src="../dist/icons/close.svg" class="w-8 h-8" alt="close" />
+          <span class="sr-only">Close menu</span>
+        </button>
+      </div>
+
+      <div class="px-4 py-3 md:px-8 md:py-6">
+        <div class="relative overflow-x-auto">
+          <table
+            class="w-full overflow-hidden text-sm text-left rounded-lg text-secondary-90"
+          >
+            <thead
+              class="text-sm font-medium capitalize text-secondary-90 bg-cloudy-30"
+            >
+              <tr>
+                <th scope="col" class="px-4 py-3 border w-[20%]">
+                  Modification Date
+                </th>
+                <th scope="col" class="px-4 py-3 border w-[20%]">Changed By</th>
+                <th scope="col" class="px-4 py-3 border w-[60%]">Changes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b">
+                <td class="p-5 text-sm font-normal border text-secondary-90">
+                  24/1/2024, 1:59 PMs
+                </td>
+                <td class="p-5 border">
+                  <h5 class="text-black-0">Aditi</h5>
+                  <p class="text-xs font-normal text-cloudy-70">Statutory</p>
+                </td>
+                <td class="p-5 text-sm font-normal border text-black-0">
+                  Change ID 150
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backdrop  -->
+    <div id="backdrop"></div>
+
+    <!-- Jquery  -->
     <script src="../dist/js/jquery.min.js"></script>
+    <!-- Popper  -->
+    <script src="../plugins/popper.min.js"></script>
+    <!-- Highcharts  -->
+    <script src="../plugins/highcharts/js/highcharts.js"></script>
+    <script src="../plugins/highcharts/js/exporting.js"></script>
+    <script src="../plugins/highcharts/js/export-data.js"></script>
+    <script src="../plugins/highcharts/js/accessibility.js"></script>
+    <!-- Datatables  -->
+    <script src="../plugins/datatable/js/dataTables.min.js"></script>
     <script>
       $(function () {
-        $.getJSON("../dist/data/machine-data.json", function (data) {
-          const machineTable = $("#machine-body");
+        function handleRowClick(event) {
+          $(".machine-row").removeClass("bg-yellow-10");
+          $(this).addClass("bg-yellow-10");
 
-          data.forEach((v) => {
-            const row = $("<tr>").addClass("border-t border-t-[#DEDDDE] hover:bg-yellow-10");
+          const rowData = $(this)
+            .children("td")
+            .map(function () {
+              return $(this).text();
+            })
+            .get();
 
-            const createCell = (text) =>
-              $("<td>")
+          $("#selected-data").text(rowData.join(" | "));
+        }
+
+        function loadDataMachine() {
+          $.getJSON("../dist/data/machine-data.json", function (data) {
+            const machineBody = $("#machine-body");
+            const machineFooter = $("#machine-footer");
+
+            let totYtd = 0,
+              totMtd = 0,
+              totGpPlan = 0,
+              totGpTrans = 0,
+              totGpActual = 0;
+
+            data.forEach((v) => {
+              const row = $("<tr>").addClass(
+                "border-t border-t-[#DEDDDE] bg-white cursor-pointer hover:bg-yellow-10 machine-row"
+              );
+
+              const createCell = (text) =>
+                $("<td>")
+                  .addClass(
+                    "px-3 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
+                  )
+                  .text(text);
+
+              const colMachine = createCell(v.machine_model).addClass(
+                "pr-4 pl-6"
+              );
+              const colYtd = createCell(v.ytd);
+              const colMtd = createCell(v.mtd);
+              const colGpPlan = createCell(v.gp_plan);
+              const colGpTrans = createCell(v.gp_trans);
+              const colGpActual = createCell(v.gp_actual);
+
+              totYtd += parseFloat(v.ytd);
+              totMtd += parseFloat(v.mtd);
+              totGpPlan += parseFloat(v.gp_plan);
+              totGpTrans += parseFloat(v.gp_trans);
+              totGpActual += parseFloat(v.gp_actual);
+
+              const colAction = $("<td>").addClass(
+                "px-3 py-4 whitespace-nowrap text-secondary-90 font-sm"
+              );
+              const image = $("<img>")
+                .attr("src", "../dist/icons/arrowBackneclos.svg")
+                .addClass("h-4 w-4 rounded-full");
+              colAction.append(image);
+
+              row.append(
+                colMachine,
+                colYtd,
+                colMtd,
+                colGpPlan,
+                colGpTrans,
+                colGpActual,
+                colAction
+              );
+              row.click(handleRowClick);
+              machineBody.append(row);
+            });
+
+            const rowFot = $("<tr>").addClass(
+              "text-base font-semibold capitalize text-secondary-90 border-t border-t-[#DEDDDE] border-b border-b-[#DEDDDE] bg-cloudy-0"
+            );
+
+            const createCellFot = (text) =>
+              $("<th>")
                 .addClass(
-                  "bg-white px-2 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
+                  "px-4 py-4 font-semibold whitespace-nowrap text-secondary-90 font-sm"
                 )
                 .text(text);
 
-            const colMachine = createCell(v.machine_model).addClass("pr-4");
-            const colYtd = createCell(v.ytd);
-            const colMtd = createCell(v.mtd);
-            const colGpPlan = createCell(v.gp_plan);
-            const colGpTrans = createCell(v.gp_trans);
-            const colGpActual = createCell(v.gp_actual);
+            const colTotal = createCellFot("Total").addClass("pr-4 pl-6");
+            const colFYtd = createCellFot(totYtd.toFixed(1) + " M");
+            const colFMtd = createCellFot(totMtd.toFixed(1) + " M");
+            const colFGpPlan = createCellFot(totGpPlan.toFixed(1) + " %");
+            const colFGpTrans = createCellFot(totGpTrans.toFixed(1) + " %");
+            const colFGpActual = createCellFot(totGpActual.toFixed(1) + " %");
+            const colFAction = createCellFot("");
 
-            const colAction = $("<td>").addClass(
-              "bg-white px-2 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
+            rowFot.append(
+              colTotal,
+              colFYtd,
+              colFMtd,
+              colFGpPlan,
+              colFGpTrans,
+              colFGpActual,
+              colFAction
             );
-            const image = $("<img>")
-              .attr("src", "../dist/icons/arrowBackneclos.svg")
-              .addClass("h-4 w-4 rounded-full");
-            colAction.append(image);
 
-            row.append(
-              colMachine,
-              colYtd,
-              colMtd,
-              colGpPlan,
-              colGpTrans,
-              colGpActual,
-              colAction
-            );
-            machineTable.append(row);
+            machineFooter.append(rowFot);
+          }).fail(function () {
+            alert("Failed to load JSON machine data");
           });
+        }
+
+        loadDataMachine();
+
+        // ===== Start Machine Datatables =====
+        var MachineTable = $("#machineTable").DataTable({
+          columns: [
+            { data: "company_code" },
+            { data: "customer_no" },
+            { data: "customer_name" },
+            { data: "profit_center" },
+            { data: "profit_center_name" },
+            { data: "profit_center_class" },
+            { data: "player_no" },
+            { data: "player_business_area" },
+          ],
+          responsive: true,
+        });
+
+        $.getJSON("../dist/data/machine-data-list.json", function (data) {
+          MachineTable.clear().rows.add(data).draw();
         }).fail(function () {
-          alert("Failed to load JSON machine data");
+          console.error("Error loading JSON data.");
+        });
+        // ===== End Machine Datatables =====
+
+        // ===== Start Drawer =====
+        $("[data-drawer-show]").click(function () {
+          var drawerId = $(this).attr("data-drawer-show");
+          $("#" + drawerId).addClass("transform-none");
+          $("#" + drawerId).removeClass("translate-x-full");
+          $(
+            '<div drawer-backdrop="" class="fixed inset-0 z-[70] bg-gray-900/50"></div>'
+          )
+            .attr("id", drawerId + "-backdrop")
+            .appendTo("body");
+          $("body").toggleClass("overflow-hidden");
+        });
+
+        $("[data-drawer-hide]").click(function () {
+          var drawerId = $(this).attr("data-drawer-hide");
+          $("#" + drawerId).addClass("translate-x-full");
+          $("#" + drawerId).removeClass("transform-none");
+          $("#" + drawerId + "-backdrop").remove();
+          $("body").toggleClass("overflow-hidden");
+        });
+
+        $(document).on("click", "[drawer-backdrop]", function () {
+          var backdropId = $(this).attr("id");
+          const drawerId = backdropId.replace("-backdrop", "");
+          $("#" + drawerId).addClass("translate-x-full");
+          $("#" + drawerId).removeClass("transform-none");
+          $(this).remove();
+          $("body").toggleClass("overflow-hidden");
+        });
+        // ===== End Drawer =====
+
+        // ===== Start Dialog Modal =====
+        $("[data-modal-toggle]").on("click", function () {
+          var targetModal = $(this).data("modal-toggle");
+          $("#" + targetModal).toggleClass("hidden flex");
+          $(
+            '<div dialog-backdrop="" class="fixed inset-0 z-[70] bg-gray-900/50"></div>'
+          )
+            .attr("id", targetModal + "-backdrop")
+            .appendTo("body");
+          $("body").toggleClass("overflow-hidden");
+        });
+
+        // Hide modal when close button or other buttons are clicked
+        $("[data-modal-hide]").on("click", function () {
+          var targetModal = $(this).data("modal-hide");
+          $("#" + targetModal)
+            .addClass("hidden")
+            .removeClass("flex");
+          $("#" + targetModal + "-backdrop").remove();
+          $("body").toggleClass("overflow-hidden");
+        });
+
+        $(document).on("click", "[dialog-backdrop]", function () {
+          var backdropId = $(this).attr("id");
+          const targetModal = backdropId.replace("-backdrop", "");
+          $("#" + targetModal)
+            .addClass("hidden")
+            .removeClass("flex");
+          $(this).remove();
+          $("body").toggleClass("overflow-hidden");
+        });
+        // ===== End Dialog Modal =====
+
+        // ===== Start Popover =====
+        const $triggers = $(".trigger");
+        let popperInstance = null;
+        let $currentPopover = null;
+
+        $triggers.on("click", function (e) {
+          e.stopPropagation();
+          const $trigger = $(this);
+          const popoverSelector = $trigger.data("popover");
+          const $popover = $(popoverSelector);
+
+          if ($currentPopover && $currentPopover[0] !== $popover[0]) {
+            $currentPopover.hide();
+          }
+
+          $popover.toggle();
+          if ($popover.is(":visible")) {
+            if (popperInstance) {
+              popperInstance.destroy();
+            }
+            popperInstance = Popper.createPopper($trigger[0], $popover[0], {
+              placement: "bottom-end",
+            });
+            $currentPopover = $popover;
+          } else {
+            $popover.hide();
+            $currentPopover = null;
+          }
+        });
+
+        $(document).on("click", function () {
+          if ($currentPopover) {
+            $currentPopover.hide();
+            if (popperInstance) {
+              popperInstance.destroy();
+            }
+            $currentPopover = null;
+          }
+        });
+
+        $(".popover").on("click", function (e) {
+          e.stopPropagation();
+        });
+        // ===== End Popover =====
+
+        // ===== Start search =====
+        $("#searchBtn").on("click", function () {
+          $("#formSearch").toggleClass("hidden");
+          $("#searchBtn").toggleClass("hidden flex");
+          if (!$("#formSearch").hasClass("hidden")) {
+            $("#search").focus();
+          }
+        });
+
+        $("#search").on("blur", function () {
+          $("#formSearch").addClass("hidden");
+          $("#searchBtn").addClass("flex").removeClass("hidden");
+        });
+        // ===== End search =====
+
+        $("#download-chart").click(function () {
+          alert("Download");
+          $currentPopover.hide();
+        });
+
+        // ===== Start HighCharts =====
+        Highcharts.chart("container", {
+          chart: {
+            type: "column",
+          },
+
+          title: {
+            text: "Olympic Games all-time medal table, grouped by continent",
+            align: "left",
+          },
+
+          xAxis: {
+            categories: ["Gold", "Silver", "Bronze"],
+          },
+
+          yAxis: {
+            allowDecimals: false,
+            min: 0,
+            title: {
+              text: "Count medals",
+            },
+          },
+
+          tooltip: {
+            format:
+              "<b>{key}</b><br/>{series.name}: {y}<br/>" +
+              "Total: {point.stackTotal}",
+          },
+
+          plotOptions: {
+            column: {
+              stacking: "normal",
+            },
+          },
+
+          series: [
+            {
+              name: "Norway",
+              data: [148, 133, 124],
+              stack: "Europe",
+            },
+            {
+              name: "Germany",
+              data: [102, 98, 65],
+              stack: "Europe",
+            },
+            {
+              name: "United States",
+              data: [113, 122, 95],
+              stack: "North America",
+            },
+            {
+              name: "Canada",
+              data: [77, 72, 80],
+              stack: "North America",
+            },
+          ],
+        });
+
+        // ===== Dropzone =====
+        let $dropzoneLabel = $(".dropzone");
+        let $dropzoneLabelUpload = $(".dropzone-process");
+        let $fileInput = $("#dropzone-file");
+        let intervalUpload;
+
+        // Handle files
+        function handleFiles(files) {
+          if (files.length > 0) {
+            let file = files[0];
+            let fileName = file.name;
+            let fileSize = (file.size / (1024 * 1024)).toFixed(2) + " MB"; // size in MB
+            let fileExtension = fileName.split(".").pop().toLowerCase();
+
+            if (fileExtension !== "xls") {
+              alert("Invalid file format. Please upload an XLS file.");
+              return;
+            }
+
+            if (file) {
+              $dropzoneLabel.toggleClass("hidden");
+              $dropzoneLabelUpload.toggleClass("hidden flex");
+
+              let dropzoneUpload = $(".dropzone-upload");
+              dropzoneUpload.find(".file-name").text(fileName);
+              dropzoneUpload.find(".file-size").text(fileSize);
+
+              $("#progressBar").css("width", 0 + "%"); // loading process
+              $(".file-process").text(0 + "%"); // percent process
+              $(".file-time").text(``);
+              $("#cancelUpload").addClass("flex").removeClass("hidden");
+
+              let progress = 0;
+              let totalDuration = 5;
+              let intervalTime = 500;
+
+              intervalUpload = setInterval(function () {
+                progress += 10;
+                let remainingTime = ((100 - progress) / 100) * totalDuration; // remaining time in seconds
+
+                let timeString = "";
+                if (remainingTime >= 60) {
+                  let remainingMinutes = Math.floor(remainingTime / 60); // remaining minutes
+                  timeString += remainingMinutes + " min";
+                } else {
+                  let remainingSeconds = Math.ceil(remainingTime); // remaining seconds
+                  timeString += remainingSeconds + " sec";
+                }
+                $("#progressBar").css("width", progress + "%"); // loading process
+                $(".file-process").text(progress + "%"); // percent process
+                $(".file-time").text(`(${timeString})`);
+                if (progress >= 100) {
+                  clearInterval(intervalUpload);
+                  $("#uploadBtnEditData").removeAttr("disabled");
+                  $("#cancelUpload").addClass("hidden").removeClass("flex");
+                }
+              }, intervalTime);
+            }
+            // Trigger form submission
+            // $("#uploadFormEditData").submit();
+          }
+        }
+
+        $("#cancelUpload").click(function () {
+          clearInterval(intervalUpload);
+          $fileInput.val("");
+          $dropzoneLabel.addClass("flex").removeClass("hidden");
+          $dropzoneLabelUpload.addClass("hidden").removeClass("flex");
+          $("#uploadBtnEditData").attr("disabled");
+        });
+
+        $dropzoneLabel.on("drop", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          $(this).removeClass("dragover");
+
+          var files = e.originalEvent.dataTransfer.files;
+          handleFiles(files);
+        });
+
+        $fileInput.on("change", function () {
+          var files = this.files;
+          handleFiles(files);
         });
       });
     </script>

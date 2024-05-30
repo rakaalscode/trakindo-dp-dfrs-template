@@ -16,11 +16,17 @@ body,
   .btn-sm {
     @apply px-6 py-2 text-sm font-medium ;
   }
+  .btn-default {
+    @apply border text-secondary-90 border-cloudy-20 bg-cloudy-20 disabled:bg-cloudy-50 disabled:text-cloudy-70 disabled:border-transparent disabled:cursor-none;
+  }
   .btn-yellow {
-    @apply text-cloudy-120 bg-yellow-80 hover:bg-yellow-80/90;
+    @apply border text-cloudy-120 border-yellow-80 bg-yellow-80 hover:bg-yellow-80/90 disabled:bg-cloudy-50 disabled:text-cloudy-70 disabled:border-transparent disabled:cursor-none;
+  }
+  .btn-outline-yellow {
+    @apply bg-white border text-[#D79900] border-[#D79900] hover:bg-cloudy-10;
   }
   .btn-secondary {
-    @apply text-white bg-secondary-90 hover:bg-secondary-90/90;
+    @apply text-white border border-secondary-90 bg-secondary-90 hover:bg-secondary-90/90;
   }
   .btn-white {
     @apply bg-white border border-cloudy-50 text-cloudy-130 hover:bg-cloudy-10/90;
@@ -53,4 +59,17 @@ body,
 .label-checkbox {
   @apply w-full text-sm font-medium text-secondary-90;
 }
-/* Checkbox  */
+/* Dropzpne  */
+.dropzone-default {
+  @apply flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer border-yellow-50 bg-yellow-0 hover:bg-yellow-10;
+}
+.dropzone-upload {
+  @apply flex-col items-center justify-center w-full bg-white border-2 border-dashed rounded-lg cursor-pointer h-72 border-cloudy-50;
+}
+.dropzone-warning {
+  @apply flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer border-red-80 bg-red-0 hover:bg-red-10;
+}
+.dropzone-error {
+  @apply flex-col items-center justify-center w-full h-64 border-2 border-dashed rounded-lg cursor-pointer border-orange-80 bg-orange-0 hover:bg-orange-10;
+}
+

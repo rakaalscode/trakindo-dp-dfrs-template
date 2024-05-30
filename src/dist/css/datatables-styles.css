@@ -1,0 +1,96 @@
+/* TABLE  */
+div.dt-container div.dt-layout-row.dt-layout-table div.dt-layout-cell {
+  position: relative;
+  overflow-x: auto;
+}
+/* THEAD  */
+table.dataTable thead > tr > th {
+  text-wrap: nowrap;
+}
+/* FOOTER  */
+div.dt-container div.dt-layout-row {
+  padding: 12px 24px 16px;
+  border: 1px solid #deddde;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+div.dt-container div.dt-layout-row.dt-layout-table {
+  padding: 0;
+  border: none;
+}
+div.dt-container div.dt-layout-cell.dt-start {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+div.dt-container select.dt-input {
+  margin-right: 12px;
+}
+div.dt-container div.dt-layout-cell {
+  padding: 0px 0;
+  vertical-align: baseline;
+}
+
+table.dataTable thead {
+  background-color: #e8ecf4;
+}
+table.dataTable thead > tr > th:first-child {
+  border-top-left-radius: 8px;
+}
+table.dataTable thead > tr > th:last-child {
+  border-top-right-radius: 8px;
+}
+table.dataTable thead > tr > th {
+  color: #10181f;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  text-transform: capitalize;
+}
+table.dataTable tbody > tr > td {
+  color: var(--Secondary-90, #10181f);
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  padding: 16px 12px;
+}
+table.dataTable {
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  overflow: hidden;
+}
+table.dataTable thead th {
+  border: 1px solid #e4e7ec;
+  border-collapse: collapse;
+  padding: 16px 12px;
+  border-bottom: none;
+}
+table.dataTable tbody td {
+  border-collapse: collapse;
+  border: 1px solid #e4e7ec;
+}
+table.dataTable > thead > tr > th,
+table.dataTable > thead > tr > td {
+  border-bottom: none;
+  padding: 16px 12px;
+}
+div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+  border-bottom: none;
+}
+div.dt-container .dt-paging .dt-paging-button.first,
+div.dt-container .dt-paging .dt-paging-button.last {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  div.dt-container div.dt-layout-cell.dt-start {
+    flex-direction: column;
+    margin-bottom: 16px;
+  }
+}
