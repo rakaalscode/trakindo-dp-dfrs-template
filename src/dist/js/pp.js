@@ -1,5 +1,8 @@
 $(function () {
-  function handleRowClick(event) {
+  // ========== Start Machine ==========
+
+  // handleClick Machine Data
+  function handleRowClick(e) {
     $(".machine-row").removeClass("bg-yellow-10");
     $(this).addClass("bg-yellow-10");
 
@@ -13,6 +16,7 @@ $(function () {
     $("#selected-data").text(rowData.join(" | "));
   }
 
+  // Load data Machine
   function loadDataMachine() {
     $.getJSON("../dist/data/machine-data.json", function (data) {
       const machineBody = $("#machine-body");
@@ -105,6 +109,7 @@ $(function () {
     });
   }
 
+  // Load data Machine Detail
   function loadDataMachineDetail() {
     $.getJSON("../dist/data/machine-detail.json", function (data) {
       const machineDetailBody = $("#machine-detail-body");
@@ -175,11 +180,7 @@ $(function () {
     });
   }
 
-  // initiate table
-  loadDataMachine();
-  loadDataMachineDetail();
-
-  // ===== Start Machine Datatables =====
+  // Machine DataTables 
   var MachineTable = $("#machineTable").DataTable({
     columns: [
       { data: "id" },
@@ -244,8 +245,12 @@ $(function () {
     console.error("Error loading JSON data.");
   });
 
-  // ===== End Machine Datatables =====
+  // initiate table
+  loadDataMachine();
+  loadDataMachineDetail();
 
+  // ========== End Machine ==========
+  
   // ===== Start Drawer =====
   $("[data-drawer-show]").click(function () {
     var drawerId = $(this).attr("data-drawer-show");
@@ -278,35 +283,52 @@ $(function () {
   // ===== End Drawer =====
 
   // ===== Start Dialog Modal =====
+  function toggleOverflowHidden() {
+    if ($(".modal.flex").length) {
+      $("body").addClass("overflow-hidden");
+    } else {
+      $("body").removeClass("overflow-hidden");
+    }
+  }
+
   $("[data-modal-toggle]").on("click", function () {
     var targetModal = $(this).data("modal-toggle");
     $("#" + targetModal).toggleClass("hidden flex");
-    $(
-      '<div dialog-backdrop="" class="fixed inset-0 z-[70] bg-gray-900/50"></div>'
-    )
-      .attr("id", targetModal + "-backdrop")
-      .appendTo("body");
-    $("body").toggleClass("overflow-hidden");
+
+    if ($("#" + targetModal).hasClass("flex")) {
+      // Only add backdrop if modal is being opened
+      $('<div dialog-backdrop="" class="fixed inset-0 z-[70] bg-gray-900/50"></div>')
+        .attr("id", targetModal + "-backdrop")
+        .appendTo("body");
+
+        // Custom modal 
+        // if else {
+        //   // Remove backdrop if modal is being closed
+        //   $("#" + targetModal + "-backdrop").remove();
+        // }
+    } else {
+      // Remove backdrop if modal is being closed
+      $("#" + targetModal + "-backdrop").remove();
+    }
+
+    toggleOverflowHidden();
   });
 
-  // Hide modal when close button or other buttons are clicked
   $("[data-modal-hide]").on("click", function () {
-    var targetModal = $(this).data("modal-hide");
-    $("#" + targetModal)
-      .addClass("hidden")
-      .removeClass("flex");
+    let targetModal = $(this).data("modal-hide");
+    $("#" + targetModal).addClass("hidden").removeClass("flex");
     $("#" + targetModal + "-backdrop").remove();
-    $("body").toggleClass("overflow-hidden");
+
+    toggleOverflowHidden();
   });
 
   $(document).on("click", "[dialog-backdrop]", function () {
-    var backdropId = $(this).attr("id");
+    let backdropId = $(this).attr("id");
     const targetModal = backdropId.replace("-backdrop", "");
-    $("#" + targetModal)
-      .addClass("hidden")
-      .removeClass("flex");
+    $("#" + targetModal).addClass("hidden").removeClass("flex");
     $(this).remove();
-    $("body").toggleClass("overflow-hidden");
+
+    toggleOverflowHidden();
   });
   // ===== End Dialog Modal =====
 
@@ -315,38 +337,48 @@ $(function () {
   let popperInstance = null;
   let $currentPopover = null;
 
+  function createPopperInstance($trigger, $popover, placement) {
+    return Popper.createPopper($trigger[0], $popover[0], {
+      placement: placement || 'bottom-end', // Default to bottom-end if no placement is specified
+    });
+  }
+
+  function showPopover($trigger, $popover, placement) {
+    $popover.show();
+    popperInstance = createPopperInstance($trigger, $popover, placement);
+    $currentPopover = $popover;
+  }
+
+  function hidePopover($popover) {
+    $popover.hide();
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = null;
+    }
+    $currentPopover = null;
+  }
+
   $triggers.on("click", function (e) {
     e.stopPropagation();
     const $trigger = $(this);
     const popoverSelector = $trigger.data("popover");
+    const placement = $trigger.data("placement"); // Get the placement from data attribute
     const $popover = $(popoverSelector);
 
     if ($currentPopover && $currentPopover[0] !== $popover[0]) {
-      $currentPopover.hide();
+      hidePopover($currentPopover);
     }
 
-    $popover.toggle();
     if ($popover.is(":visible")) {
-      if (popperInstance) {
-        popperInstance.destroy();
-      }
-      popperInstance = Popper.createPopper($trigger[0], $popover[0], {
-        placement: "bottom-end",
-      });
-      $currentPopover = $popover;
+      hidePopover($popover);
     } else {
-      $popover.hide();
-      $currentPopover = null;
+      showPopover($trigger, $popover, placement);
     }
   });
 
   $(document).on("click", function () {
     if ($currentPopover) {
-      $currentPopover.hide();
-      if (popperInstance) {
-        popperInstance.destroy();
-      }
-      $currentPopover = null;
+      hidePopover($currentPopover);
     }
   });
 

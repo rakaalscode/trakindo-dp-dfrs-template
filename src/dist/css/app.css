@@ -1178,6 +1178,10 @@ video {
   max-width: 24rem;
 }
 
+.max-w-\[50rem\] {
+  max-width: 50rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -1365,10 +1369,6 @@ video {
 
 .rounded-lg {
   border-radius: 0.5rem;
-}
-
-.rounded {
-  border-radius: 0.25rem;
 }
 
 .rounded-b {
@@ -2149,12 +2149,12 @@ body,
     width: 11rem;
   }
 
-  .md\:w-auto {
-    width: auto;
-  }
-
   .md\:w-9\/12 {
     width: 75%;
+  }
+
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:flex-row {
@@ -2169,9 +2169,18 @@ body,
     gap: 1.5rem;
   }
 
+  .md\:gap-0 {
+    gap: 0px;
+  }
+
   .md\:gap-x-8 {
     -moz-column-gap: 2rem;
          column-gap: 2rem;
+  }
+
+  .md\:gap-x-1 {
+    -moz-column-gap: 0.25rem;
+         column-gap: 0.25rem;
   }
 
   .md\:space-x-2 > :not([hidden]) ~ :not([hidden]) {
