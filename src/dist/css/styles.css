@@ -3,12 +3,14 @@
 .font-small-caps {
   font-variant: all-small-caps;
 }
-.custom-label input:checked + svg, .custom-label input:checked + img{
+.custom-label input:checked + svg,
+.custom-label input:checked + img {
   display: block !important;
 }
 
 /* checkbox  */
-[type=checkbox], [type=radio] {
+[type="checkbox"],
+[type="radio"] {
   --tw-shadow: 0 0 #0000;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -31,7 +33,8 @@
   width: 1rem;
 }
 
-[type=checkbox]:checked, [type=radio]:checked {
+[type="checkbox"]:checked,
+[type="radio"]:checked {
   background-color: currentColor;
   background-position: 50%;
   background-repeat: no-repeat;
@@ -39,29 +42,78 @@
   border-color: transparent;
 }
 
-[type=checkbox]:checked {
-  background-image: url('../icons/check.svg');
+[type="checkbox"]:checked {
+  background-image: url("../icons/check.svg");
   background-size: 70%;
   background-position: 50%;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  border: 1px solid #E4A309;
+  border: 1px solid #e4a309;
 }
 
-[type=checkbox].custom-checkbox-green:checked {
-  background-image: url('../check-green.svg');
+[type="checkbox"].custom-checkbox-green:checked {
+  background-image: url("../check-green.svg");
   background-size: 70%;
   background-position: 50%;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  border: 1px solid #008C4F;
+  border: 1px solid #008c4f;
 }
 
-[type=checkbox]:checked:disabled {
-  background-image: url('../check-disable.svg');
+[type="checkbox"]:checked:disabled {
+  background-image: url("../check-disable.svg");
   background-size: 70%;
   background-position: 50%;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
-  border: 1px solid #BCBDC0;
+  border: 1px solid #bcbdc0;
+}
+
+.text-left-i {
+  text-align: left !important;
+}
+
+@media screen and (min-width: 768px) {
+  /* width */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Track */
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #bcbdc0;
+  }
+
+  /* Handle on hover */
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #bcbdc0;
+  }
+}
+
+/* width */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+/* Track */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #bcbdc0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #bcbdc0;
 }

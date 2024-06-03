@@ -69,6 +69,9 @@ table.dataTable thead > tr > th:last-child {
 }
 /* FOOTER  */
 div.dt-container div.dt-layout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 12px 24px 16px;
   border: 1px solid #deddde;
   border-bottom-left-radius: 8px;
@@ -102,10 +105,65 @@ div.dt-container .dt-info, div.dt-container .dt-length label {
   font-weight: 400;
   line-height: 20px;
 }
+/* PAGINATION  */
+div.dt-container .dt-paging {
+  display: flex;
+  align-items: center;
+}
+div.dt-container .dt-paging .dt-paging-button.disabled, div.dt-container .dt-paging .dt-paging-button.disabled:hover, div.dt-container .dt-paging .dt-paging-button.disabled:active {
+  cursor: default;
+  color: rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid #D0D5DD;
+  background: #fff;
+  box-shadow: none;
+}
+div.dt-container .dt-paging .dt-paging-button:active {
+  box-shadow: none;
+}
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover {
+  color: #fff !important;
+  border: 1px solid #D0D5DD;
+  background: #FDBA12
+}
+div.dt-container .dt-paging .dt-paging-button {
+  color: #344054;
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  border: 1px solid #D0D5DD;
+  margin-left: initial;
+  border-radius: initial;
+}
+div.dt-container .dt-paging .dt-paging-button.previous {
+  border-radius: 8px 0px 0px 8px;
+}
+div.dt-container .dt-paging .dt-paging-button.next {
+  border-radius: 0px 8px 8px 0px;
+}
+div.dt-container .dt-paging .dt-paging-button:hover {
+  color: #fff;
+  background: #FDBA12;
+  border: 1px solid #D0D5DD;
+}
+div.dt-container .dt-paging .ellipsis {
+  padding: 0.4rem 1em;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  color: #344054;
+  font-size: 14px;
+  font-style: normal;
+  border: 1px solid #D0D5DD;
+}
 
 @media screen and (max-width: 768px) {
   div.dt-container div.dt-layout-cell.dt-start {
     flex-direction: column;
     margin-bottom: 16px;
+  }
+  div.dt-container div.dt-layout-row {
+    flex-direction: column;
   }
 }

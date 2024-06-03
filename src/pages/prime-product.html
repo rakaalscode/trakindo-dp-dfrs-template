@@ -16,6 +16,15 @@
       rel="stylesheet"
     />
 
+    <!-- Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css"
+    />
     <!-- Styles -->
     <link rel="stylesheet" href="../dist/css/styles.css" />
     <!-- Tailwind -->
@@ -24,57 +33,7 @@
     <link rel="stylesheet" href="../plugins/datatable/css/dataTables.min.css" />
     <link rel="stylesheet" href="../dist/css/datatables-styles.css" />
 
-    <style>
-      .highcharts-figure,
-      .highcharts-data-table table {
-        min-width: 310px;
-        max-width: 800px;
-        margin: 1em auto;
-      }
-
-      #container {
-        height: 400px;
-      }
-
-      .highcharts-data-table table {
-        font-family: Verdana, sans-serif;
-        border-collapse: collapse;
-        border: 1px solid #ebebeb;
-        margin: 10px auto;
-        text-align: center;
-        width: 100%;
-        max-width: 500px;
-      }
-
-      .highcharts-data-table caption {
-        padding: 1em 0;
-        font-size: 1.2em;
-        color: #555;
-      }
-
-      .highcharts-data-table th {
-        font-weight: 600;
-        padding: 0.5em;
-      }
-
-      .highcharts-data-table td,
-      .highcharts-data-table th,
-      .highcharts-data-table caption {
-        padding: 0.5em;
-      }
-
-      .highcharts-data-table thead tr,
-      .highcharts-data-table tr:nth-child(even) {
-        background: #f8f8f8;
-      }
-
-      .highcharts-data-table tr:hover {
-        background: #f1f7ff;
-      }
-      .popover {
-        display: none;
-      }
-    </style>
+    <style></style>
   </head>
   <body class="font-roboto">
     <div class="h-full">
@@ -143,7 +102,7 @@
       >
         <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
           <li>
-            <a href="#" class="nav-cat active">Prime Porduct (PP)</a>
+            <a href="#" class="nav-cat active">Prime Product (PP)</a>
           </li>
           <li>
             <a href="#" class="nav-cat">Product Support (PS)</a>
@@ -152,9 +111,34 @@
             <a href="#" class="nav-cat">Rental & Used Equipment (RUE)</a>
           </li>
         </ul>
-        <div class="flex-shrink-0 ml-auto">Jan 2024</div>
+        <div class="flex-shrink-0 ml-auto">
+          <div class="relative">
+            <input
+              id="monthYearPicker"
+              type="text"
+              placeholder=""
+              class="text-base font-semibold text-black-100 w-[108px] bg-transparent focus:outline-none focus:ring-0"
+            />
+            <button type="button" class="absolute text-white end-2">
+              <img
+                src="../dist/icons/arrow-park-down.svg"
+                class="w-6 h-6"
+                alt="arrow-park-down"
+              />
+            </button>
+          </div>
+        </div>
       </nav>
-      <main class="p-4 md:p-8">
+      <main class="p-4 md:p-6">
+        
+        <div class="items-center hidden p-3 mb-3 rounded-lg bg-green-20 toast toast-green">
+          <div class="flex items-center gap-x-4">
+            <img src="../dist/icons/check-green-rounded.svg" class="toast-icon" alt="check-green">
+            <span class="text-base text-cloudy-110 toast-text">Your data is succesfully updated!</span>
+          </div>
+          <div class="ml-auto">Close in <span class="toast-time">3s</span></div>
+        </div>
+       
         <!-- GP Percentage  -->
         <div class="flex flex-col w-full">
           <h1 class="text-cloudy-110 text-[32px] leading-10 font-semibold mb-6">
@@ -166,12 +150,14 @@
             >
               <div class="flex w-full md:w-auto gap-x-3">
                 <button
-                  class="px-6 py-2 rounded-[32px] btn btn-secondary w-full md:w-auto"
+                  class="px-6 py-2 rounded-[32px] btn btn-secondary w-full md:w-auto cat-by"
+                  cat-by="model"
                 >
                   By Model
                 </button>
                 <button
-                  class="px-6 py-2 rounded-[32px] btn btn-white w-full md:w-auto"
+                  class="px-6 py-2 rounded-[32px] btn btn-white w-full md:w-auto cat-by"
+                  cat-by="pc"
                 >
                   By Profit Center
                 </button>
@@ -189,9 +175,15 @@
               <div
                 class="flex w-full px-4 border bg-cloudy-20 border-b-cloudy-50 md:px-6"
               >
-                <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
+                <ul
+                  class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center pp-model"
+                >
                   <li>
-                    <a href="#" class="nav-cat active">
+                    <a
+                      role="button"
+                      class="sub-cat nav-cat active"
+                      sub="machine"
+                    >
                       <img
                         src="../dist/icons/engine.svg"
                         class="w-5 h-5 mr-2"
@@ -201,13 +193,65 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#" class="nav-cat">
+                    <a role="button" class="sub-cat nav-cat" sub="engine">
                       <img
                         src="../dist/icons/gears.svg"
                         class="w-5 h-5 mr-2"
                         alt="gears"
                       />
                       <span>Engine</span>
+                    </a>
+                  </li>
+                </ul>
+                <ul
+                  class="flex-shrink-0 hidden gap-x-4 md:gap-x-8 item-center pp-pc"
+                >
+                  <li>
+                    <a
+                      role="button"
+                      class="sub-cat nav-cat active"
+                      sub="allMachine"
+                    >
+                      <img
+                        src="../dist/icons/engine.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="engine"
+                      />
+                      <span>All Machine</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="button" class="sub-cat nav-cat" sub="forklift">
+                      <img
+                        src="../dist/icons/forklift.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="forkflit"
+                      />
+                      <span>Forklift</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a role="button" class="sub-cat nav-cat" sub="allEngine">
+                      <img
+                        src="../dist/icons/gears.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="gears"
+                      />
+                      <span>All Engine</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      role="button"
+                      class="sub-cat nav-cat"
+                      sub="engineProject"
+                    >
+                      <img
+                        src="../dist/icons/project.svg"
+                        class="w-5 h-5 mr-2"
+                        alt="project"
+                      />
+                      <span>Engine Project</span>
                     </a>
                   </li>
                 </ul>
@@ -228,21 +272,26 @@
                           >
                             <li class="inline-flex items-center">
                               <a
-                                href="#"
+                                role="button"
+                                id="allMachineGp"
                                 class="inline-flex items-center text-[22px] font-semibold text-cloudy-110"
                                 >Machine GP %</a
                               >
                             </li>
-                            <!-- <li>
-                          <div class="flex items-center">
-                            <img src="../dist/icons/arrowBackneclosCloud.svg" class="w-4 h-4" alt="arrowBackneclos">
-                            <a
-                              href="#"
-                              class="ms-1 text-[22px] font-semibold text-cloudy-110"
-                              >All 320 + 323</a
-                            >
-                          </div>
-                        </li> -->
+                            <li class="hidden">
+                              <div class="flex items-center">
+                                <img
+                                  src="../dist/icons/arrowBackneclosCloud.svg"
+                                  class="w-4 h-4"
+                                  alt="arrowBackneclos"
+                                />
+                                <a
+                                  href="#"
+                                  id="selectMachineGp"
+                                  class="ms-1 text-[22px] font-semibold text-cloudy-110"
+                                ></a>
+                              </div>
+                            </li>
                           </ol>
                           <div class="ml-auto">
                             <button
@@ -394,12 +443,92 @@
                             </div>
                           </div>
                         </div>
+                        <div class="mb-3">
+                          <div class="inline-flex w-full gap-x-3">
+                            <div
+                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
+                            >
+                              <p class="text-sm font-normal text-secondary-90">
+                                YTD
+                              </p>
+                              <h3
+                                class="text-xl font-semibold text-cloudy-110"
+                                id="mYtd"
+                              >
+                                88.73M
+                              </h3>
+                            </div>
+                            <div
+                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
+                            >
+                              <p class="text-sm font-normal text-secondary-90">
+                                MTD
+                              </p>
+                              <h3
+                                class="text-xl font-semibold text-cloudy-110"
+                                id="mMtd"
+                              >
+                                10.95M
+                              </h3>
+                            </div>
+                            <div
+                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
+                            >
+                              <p class="text-sm font-normal text-secondary-90">
+                                GP Plan
+                              </p>
+                              <h3
+                                class="text-xl font-semibold text-cloudy-110"
+                                id="mGpPlan"
+                              >
+                                8.6%
+                              </h3>
+                            </div>
+                            <div
+                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
+                            >
+                              <p class="text-sm font-normal text-secondary-90">
+                                GP Trans.
+                              </p>
+                              <h3
+                                class="text-xl font-semibold text-cloudy-110"
+                                id="mGpTrans"
+                              >
+                                8.6%
+                              </h3>
+                            </div>
+                            <div
+                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
+                            >
+                              <div
+                                class="flex items-center text-sm font-normal text-secondary-90"
+                              >
+                                <span>Budget GP</span>
+                                <div
+                                  role="button"
+                                  class="flex items-center"
+                                  data-modal-target="budget-gp-modal"
+                                  data-modal-toggle="budget-gp-modal"
+                                >
+                                  <img
+                                    src="../dist/icons/edit-orange.svg"
+                                    class="w-3.5 h-3.5 ms-1"
+                                    alt="edit-orange"
+                                  />
+                                </div>
+                              </div>
+                              <h3
+                                class="text-xl font-semibold text-cloudy-110"
+                                id="mBudgetGp"
+                              >
+                                7%
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
                         <!-- Chart  -->
                         <figure class="highcharts-figure">
                           <div id="container"></div>
-                          <p class="highcharts-description">
-                            Chart description
-                          </p>
                         </figure>
                       </div>
                     </div>
@@ -430,14 +559,23 @@
                     <div class="hidden pb-4 mt-3 space-y-3" id="detailDataForm">
                       <div class="inline-flex w-full gap-3 overflow-x-auto">
                         <button
-                          class="px-6 py-2 rounded-[32px] btn btn-secondary"
+                          class="px-6 py-2 rounded-[32px] btn btn-secondary detail-filter-btn detail-total-btn"
                         >
                           Total
                         </button>
-                        <button class="px-6 py-2 rounded-[32px] btn btn-white">
+                        <button
+                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-revenue-lc-btn"
+                        >
                           Revenue LC
                         </button>
-                        <button class="px-6 py-2 rounded-[32px] btn btn-white">
+                        <button
+                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-impairment-btn hidden"
+                        >
+                          Exclude Impairment
+                        </button>
+                        <button
+                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-teco-btn"
+                        >
                           Exclude TECO
                         </button>
                       </div>
@@ -497,65 +635,84 @@
                 <!-- TABLE CONTENT  -->
                 <div class="flex flex-col w-full md:w-1/2">
                   <div
-                    class="min-h-[600px] max-h-[600px] overflow-y-auto border border-b-0 border-cloudy-40"
+                    class="relative z-20 min-h-[600px] max-h-[600px] overflow-y-auto border border-b-0 border-cloudy-40"
                   >
-                    <div class="w-full">
-                      <div class="relative h-full overflow-x-auto">
-                        <table
-                          class="w-full text-sm font-normal text-left bg-white text-secondary-90"
-                        >
-                          <thead
-                            class="text-base font-semibold capitalize text-secondary-90"
+                    <div id="machine-loading">
+                      <div
+                        class="absolute inset-0 z-30 flex items-center justify-center bg-opacity-40 bg-cloudy-50"
+                      >
+                        <div class="flex flex-col items-center">
+                          <div
+                            class="flex items-center justify-center w-16 h-16 mb-3 rounded-xl bg-black-0/50"
                           >
-                            <tr>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 pl-6 whitespace-nowrap"
-                              >
-                                Machine Model
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                YTD
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                MTD
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                GP Plan
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                GP Trans.
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                GP Actual
-                              </th>
-                              <th
-                                scope="col"
-                                class="px-3 py-4 pt-6 whitespace-nowrap"
-                              >
-                                &nbsp;
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody id="machine-body"></tbody>
-                          <tfoot id="machine-footer"></tfoot>
-                        </table>
+                            <img
+                              src="../dist/icons/loading.svg"
+                              class="spinner-border animate-spin"
+                              alt="loading"
+                            />
+                          </div>
+                          <span class="text-sm font-medium text-neutral-100"
+                            >Loading...</span
+                          >
+                        </div>
                       </div>
+                    </div>
+                    <div class="relative h-full overflow-x-auto">
+                      <table
+                        class="w-full text-sm font-normal text-left bg-white text-secondary-90"
+                      >
+                        <thead
+                          class="text-base font-semibold capitalize text-secondary-90"
+                        >
+                          <tr>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 pl-6 whitespace-nowrap"
+                              id="rowMName"
+                            >
+                              Machine Model
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              YTD
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              MTD
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              GP Plan
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              GP Trans.
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              GP Actual
+                            </th>
+                            <th
+                              scope="col"
+                              class="px-3 py-4 pt-6 whitespace-nowrap"
+                            >
+                              &nbsp;
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody id="machine-body"></tbody>
+                        <tfoot id="machine-footer"></tfoot>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -569,7 +726,10 @@
           <div
             class="flex flex-col items-start w-full gap-4 mb-4 md:mb-6 md:items-center md:flex-row"
           >
-            <h1 class="text-cloudy-110 text-[32px] leading-10 font-semibold">
+            <h1
+              class="text-cloudy-110 text-[32px] leading-10 font-semibold"
+              id="mDataListTitle"
+            >
               Machine GP Data List
             </h1>
             <div
@@ -594,7 +754,7 @@
                 <div class="relative">
                   <input
                     type="text"
-                    id="search"
+                    id="searchMachineData"
                     class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Search..."
                     required
@@ -657,6 +817,7 @@
                       <div class="pb-4 border-b border-b-cloudy-40">
                         <div
                           class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
                         >
                           <img
                             src="../dist/icons/download-yellow.svg"
@@ -705,24 +866,25 @@
               class="w-full border rounded-lg shadow-sm bg-card text-card-foreground"
             > -->
             <!-- Machine Table  -->
-            <!-- <div class="p-6"> -->
-            <table id="machineTable" class="md">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Company Code</th>
-                  <th>Customer No</th>
-                  <th>Customer Name</th>
-                  <th>Profit Center</th>
-                  <th>Profit Center Name</th>
-                  <th>Profit Center Class</th>
-                  <th>Payer No</th>
-                  <th>Payer NAMEBusiness Area</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-            <!-- </div> -->
+            <div class="relative w-full h-full">
+              <div id="machine-table-loading"></div>
+              <table id="machineTable" class="md">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Company Code</th>
+                    <th>Customer No</th>
+                    <th>Customer Name</th>
+                    <th>Profit Center</th>
+                    <th>Profit Center Name</th>
+                    <th>Profit Center Class</th>
+                    <th>Payer No</th>
+                    <th>Payer NAMEBusiness Area</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
             <!-- </div> -->
           </div>
         </div>
@@ -860,8 +1022,7 @@
             </h3>
             <button
               type="button"
-              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
-              data-modal-hide="submit-edit-modal"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto submit-edit-modal"
             >
               <img
                 src="../dist/icons/close-hero.svg"
@@ -878,92 +1039,6 @@
                 class="flex items-center justify-center w-full"
                 id="dropzone-area"
               >
-                <!-- default  -->
-
-                <!-- warning  -->
-                <!-- <label
-                  for="dropzone-file"
-                  class="flex dropzone-warning dropzone"
-                >
-                  <div
-                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
-                  >
-                    <img
-                      src="../dist/icons/file-wrong.svg"
-                      class=""
-                      alt="file-wrong"
-                    />
-                    <div class="text-center">
-                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
-                        Format File Invalid
-                      </p>
-                      <p class="text-xs font-normal text-gray-500">
-                        Please check your file format. Make sure the format is .xlsx
-                      </p>
-                    </div>
-                    <div class="font-bold btn btn-sm btn-yellow">
-                      Browse file
-                    </div>
-                  </div>
-                  <input id="dropzone-file" type="file" class="hidden" />
-                </label> -->
-
-                <!-- error  -->
-                <!-- <label
-                  for="dropzone-file"
-                  class="flex dropzone-error dropzone"
-                >
-                  <div
-                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
-                  >
-                    <img
-                      src="../dist/icons/file-error.svg"
-                      class=""
-                      alt="file-wrong"
-                    />
-                    <div class="text-center">
-                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
-                        File Corrupt
-                      </p>
-                      <p class="text-xs font-normal text-gray-500">
-                        Something went wrong. Please re-upload your file
-                      </p>
-                    </div>
-                    <div class="font-bold btn btn-sm btn-yellow">
-                      Browse file
-                    </div>
-                  </div>
-                  <input id="dropzone-file" type="file" class="hidden" />
-                </label> -->
-
-                <!-- column error  -->
-                <!-- <label
-                  for="dropzone-file"
-                  class="flex dropzone-error dropzone"
-                >
-                  <div
-                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
-                  >
-                    <img
-                      src="../dist/icons/column-error.svg"
-                      class=""
-                      alt="file-wrong"
-                    />
-                    <div class="text-center">
-                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
-                        Missing Column
-                      </p>
-                      <p class="text-xs font-normal text-gray-500">
-                        Please check your file
-                      </p>
-                    </div>
-                    <div class="font-bold btn btn-sm btn-yellow">
-                      Browse file
-                    </div>
-                  </div>
-                  <input id="dropzone-file" type="file" class="hidden" />
-                </label> -->
-
                 <label
                   for="dropzone-file"
                   class="flex dropzone-default dropzone"
@@ -977,14 +1052,20 @@
                       alt="upload-cloud"
                     />
                     <div class="text-center">
-                      <p class="mb-1 text-lg font-semibold text-cloudy-110">
+                      <p
+                        class="mb-1 text-lg font-semibold text-cloudy-110 upload-label-title"
+                      >
                         Drag and Drop
                       </p>
-                      <p class="text-xs font-normal text-gray-500">
+                      <p
+                        class="text-xs font-normal text-gray-500 upload-label-desc"
+                      >
                         Only upload in .xlxs
                       </p>
                     </div>
-                    <div class="font-bold btn btn-sm btn-yellow">
+                    <div
+                      class="font-bold btn btn-sm btn-yellow upload-label-btn"
+                    >
                       Browse file
                     </div>
                   </div>
@@ -1058,7 +1139,6 @@
               </div>
 
               <button
-                data-modal-hide="submit-edit-modal"
                 type="submit"
                 class="ml-auto font-bold btn btn-sm btn-yellow"
                 disabled
@@ -1068,6 +1148,67 @@
               </button>
             </div>
           </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Budget Gp  -->
+    <div
+      id="budget-gp-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 border-b rounded-t bg-cloudy-20 md:p-5"
+          >
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="budget-gp-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="w-full p-4 space-y-4 md:p-6">
+            <div>
+              <label
+                for="inputBudget"
+                class="block mb-6 text-xl font-semibold text-cloudy-110"
+              >
+                Input Budget GP
+              </label>
+              <input
+                type="text"
+                id="inputBudget"
+                class="bg-gray-50 border border-[#DEDDDE] text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3"
+                placeholder="Input budget GP"
+                required
+              />
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div
+            class="flex items-center px-4 py-3 border-t border-gray-200 rounded-b md:px-6 md:py-4"
+          >
+            <button
+              type="button"
+              class="ml-auto font-bold btn btn-sm btn-yellow"
+              id="btnBudgetGp"
+            >
+              Save
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -1115,7 +1256,7 @@
                   24/1/2024, 1:59 PMs
                 </td>
                 <td class="p-5 border">
-                  <h5 class="text-black-0">Aditi</h5>
+                  <h5 class="font-medium text-black-0">Aditi</h5>
                   <p class="text-xs font-normal text-cloudy-70">Statutory</p>
                 </td>
                 <td class="p-5 text-sm font-normal border text-black-0">
@@ -1133,6 +1274,9 @@
 
     <!-- Jquery  -->
     <script src="../plugins/jquery.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
     <!-- Popper  -->
     <script src="../plugins/popper.min.js"></script>
     <!-- Highcharts  -->
