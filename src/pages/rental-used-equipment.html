@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GP Report - PP</title>
+    <title>GP Report - RUE</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,7 +102,7 @@
       >
         <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
           <li>
-            <a href="../pages/prime-product.html" class="nav-cat active"
+            <a href="../pages/prime-product.html" class="nav-cat"
               >Prime Product (PP)</a
             >
           </li>
@@ -112,7 +112,7 @@
             >
           </li>
           <li>
-            <a href="../pages/rental-used-equipment.html" class="nav-cat"
+            <a href="../pages/rental-used-equipment.html" class="nav-cat active"
               >Rental & Used Equipment (RUE)</a
             >
           </li>
@@ -164,12 +164,6 @@
               <div class="flex w-full md:w-auto gap-x-3">
                 <button
                   class="px-6 py-2 rounded-[32px] btn btn-secondary w-full md:w-auto cat-by"
-                  cat-by="model"
-                >
-                  By Model
-                </button>
-                <button
-                  class="px-6 py-2 rounded-[32px] btn btn-white w-full md:w-auto cat-by"
                   cat-by="pc"
                 >
                   By Profit Center
@@ -192,79 +186,37 @@
                   class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center pp-model"
                 >
                   <li>
-                    <a
-                      role="button"
-                      class="sub-cat nav-cat active"
-                      sub="machine"
-                    >
+                    <a role="button" class="sub-cat nav-cat active" sub="rue">
                       <img
-                        src="../dist/icons/engine.svg"
+                        src="../dist/icons/box.svg"
                         class="w-5 h-5 mr-2"
-                        alt="engine"
+                        alt="box"
                       />
-                      <span>Machine</span>
+                      <span>Rue</span>
                     </a>
                   </li>
                   <li>
-                    <a role="button" class="sub-cat nav-cat" sub="engine">
+                    <a role="button" class="sub-cat nav-cat" sub="rental">
                       <img
-                        src="../dist/icons/gears.svg"
+                        src="../dist/icons/stopwatch.svg"
                         class="w-5 h-5 mr-2"
-                        alt="gears"
+                        alt="stopwatch"
                       />
-                      <span>Engine</span>
-                    </a>
-                  </li>
-                </ul>
-                <ul
-                  class="flex-shrink-0 hidden gap-x-4 md:gap-x-8 item-center pp-pc"
-                >
-                  <li>
-                    <a
-                      role="button"
-                      class="sub-cat nav-cat active"
-                      sub="allMachine"
-                    >
-                      <img
-                        src="../dist/icons/engine.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="engine"
-                      />
-                      <span>All Machine</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a role="button" class="sub-cat nav-cat" sub="forklift">
-                      <img
-                        src="../dist/icons/forklift.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="forkflit"
-                      />
-                      <span>Forklift</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a role="button" class="sub-cat nav-cat" sub="allEngine">
-                      <img
-                        src="../dist/icons/gears.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="gears"
-                      />
-                      <span>All Engine</span>
+                      <span>Rental</span>
                     </a>
                   </li>
                   <li>
                     <a
                       role="button"
                       class="sub-cat nav-cat"
-                      sub="engineProject"
+                      sub="usedEquipment"
                     >
                       <img
-                        src="../dist/icons/project.svg"
+                        src="../dist/icons/repair.svg"
                         class="w-5 h-5 mr-2"
-                        alt="project"
+                        alt="repair"
                       />
-                      <span>Engine Project</span>
+                      <span>Used Equipment</span>
                     </a>
                   </li>
                 </ul>
@@ -288,7 +240,7 @@
                                 role="button"
                                 id="allMachineGp"
                                 class="inline-flex items-center text-[22px] font-semibold text-cloudy-110"
-                                >Machine GP %</a
+                                >RUE GP %</a
                               >
                             </li>
                             <li class="hidden">
@@ -468,7 +420,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mYtd"
                               >
-                                88.73M
+                                29.56M
                               </h3>
                             </div>
                             <div
@@ -481,33 +433,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mMtd"
                               >
-                                10.95M
-                              </h3>
-                            </div>
-                            <div
-                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
-                            >
-                              <p class="text-sm font-normal text-secondary-90">
-                                GP Plan
-                              </p>
-                              <h3
-                                class="text-xl font-semibold text-cloudy-110"
-                                id="mGpPlan"
-                              >
-                                8.6%
-                              </h3>
-                            </div>
-                            <div
-                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
-                            >
-                              <p class="text-sm font-normal text-secondary-90">
-                                GP Trans.
-                              </p>
-                              <h3
-                                class="text-xl font-semibold text-cloudy-110"
-                                id="mGpTrans"
-                              >
-                                8.6%
+                                3.04M
                               </h3>
                             </div>
                             <div
@@ -534,7 +460,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mBudgetGp"
                               >
-                                7%
+                                24.5%
                               </h3>
                             </div>
                           </div>
@@ -577,19 +503,9 @@
                           Total
                         </button>
                         <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-revenue-lc-btn"
-                        >
-                          Revenue LC
-                        </button>
-                        <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-impairment-btn hidden"
+                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-impairment-btn"
                         >
                           Exclude Impairment
-                        </button>
-                        <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-teco-btn"
-                        >
-                          Exclude TECO
                         </button>
                       </div>
                       <!-- TABLE DETAIL  -->
@@ -683,7 +599,7 @@
                               class="px-3 py-4 pt-6 pl-6 whitespace-nowrap"
                               id="rowMName"
                             >
-                              Machine Model
+                              Profit Center
                             </th>
                             <th
                               scope="col"
@@ -696,18 +612,6 @@
                               class="px-3 py-4 pt-6 whitespace-nowrap"
                             >
                               MTD
-                            </th>
-                            <th
-                              scope="col"
-                              class="px-3 py-4 pt-6 whitespace-nowrap"
-                            >
-                              GP Plan
-                            </th>
-                            <th
-                              scope="col"
-                              class="px-3 py-4 pt-6 whitespace-nowrap"
-                            >
-                              GP Trans.
                             </th>
                             <th
                               scope="col"
@@ -743,7 +647,7 @@
               class="text-cloudy-110 text-[32px] leading-10 font-semibold"
               id="mDataListTitle"
             >
-              Machine GP Data List
+              RUE GP Data List
             </h1>
             <div
               class="flex flex-col-reverse items-end w-full gap-4 md:w-auto md:gap-6 md:ml-auto md:items-center md:flex-row"
@@ -892,7 +796,23 @@
                     <th>Profit Center Name</th>
                     <th>Profit Center Class</th>
                     <th>Payer No</th>
-                    <th>Payer NAMEBusiness Area</th>
+                    <th>Payer Name</th>
+                    <th>Customer Type</th>
+                    <th>Business Area</th>
+                    <th>Business Area Name</th>
+                    <th>Period</th>
+                    <th>Area Trakindo Name</th>
+                    <th>Model Group</th>
+                    <th>Product</th>
+                    <th>Industry Name</th>
+                    <th>Total Rev (Amt LC)</th>
+                    <th>Total Cost (Amt LC)</th>
+                    <th>Gross Profit</th>
+                    <th>FI Acc Doc</th>
+                    <th>SO No.</th>
+                    <th>SO Item</th>
+                    <th>Batch ID</th>
+                    <th>G/L</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -1302,7 +1222,7 @@
 
     <!-- Main js  -->
     <script src="../dist/js/main.js"></script>
-    <!-- PP js  -->
-    <script src="../dist/js/pp.js"></script>
+    <!-- RUE js  -->
+    <script src="../dist/js/rue.js"></script>
   </body>
 </html>

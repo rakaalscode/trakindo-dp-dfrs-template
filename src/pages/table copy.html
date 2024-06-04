@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table with Breadcrumbs</title>
+    <link rel="stylesheet" href="../../dist/css/app.css" />
+  </head>
+  <body class="p-6">
+    <div class="mx-auto max-w-7xl">
+      <div id="breadcrumb" class="mb-4">
+        <span
+          class="inline-block mr-2 cursor-pointer breadcrumb-item"
+          data-level="0"
+          >All Data</span
+        >
+      </div>
+
+      <div class="space-y-3">
+        <!-- table  -->
+        <div>
+          <table
+            id="data-table"
+            class="min-w-full border border-collapse border-gray-300"
+          >
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="px-4 py-2 border border-gray-300">Industry</th>
+                <th class="px-4 py-2 border border-gray-300">YTD</th>
+                <th class="px-4 py-2 border border-gray-300">MTD</th>
+                <th class="px-4 py-2 border border-gray-300">Actual GP</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-industry="Industry 1" class="cursor-pointer">
+                <td class="px-4 py-2 border border-gray-300">Industry 1</td>
+                <td class="px-4 py-2 border border-gray-300">100</td>
+                <td class="px-4 py-2 border border-gray-300">50</td>
+                <td class="px-4 py-2 border border-gray-300">30</td>
+              </tr>
+              <tr data-industry="Industry 2" class="cursor-pointer">
+                <td class="px-4 py-2 border border-gray-300">Industry 2</td>
+                <td class="px-4 py-2 border border-gray-300">200</td>
+                <td class="px-4 py-2 border border-gray-300">75</td>
+                <td class="px-4 py-2 border border-gray-300">45</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <!-- Chart  -->
+          Chart content here !!!
+        </div>
+        <div>
+          <!-- Datatable content  -->
+          Data table content here !!!
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Dummy data
+        var dataIndustry = 
+        // Dummy child data for each industry and sub-industry
+        var childData = {
+          "Industry 1": [
+            {
+              name: "Sub 1 of Industry 1",
+              ytd: 10,
+              mtd: 5,
+              actual_gp: 3,
+              children: [
+                { name: "Detail 1 of Sub 1", ytd: 1, mtd: 0.5, actual_gp: 0.3 },
+                { name: "Detail 2 of Sub 1", ytd: 2, mtd: 1.5, actual_gp: 0.6 },
+              ],
+            },
+            {
+              name: "Sub 2 of Industry 1",
+              ytd: 20,
+              mtd: 15,
+              actual_gp: 6,
+              children: [],
+            },
+          ],
+          "Industry 2": [
+            {
+              name: "Sub 1 of Industry 2",
+              ytd: 30,
+              mtd: 20,
+              actual_gp: 10,
+              children: [],
+            },
+            {
+              name: "Sub 2 of Industry 2",
+              ytd: 40,
+              mtd: 25,
+              actual_gp: 12,
+              children: [],
+            },
+          ],
+        };
+
+        function updateTable(data) {
+          var newRows = "";
+          $.each(data, function (index, item) {
+            newRows +=
+              '<tr class="cursor-pointer" data-children=\'' +
+              JSON.stringify(item.children) +
+              '\'><td class="px-4 py-2 border border-gray-300">' +
+              item.name +
+              '</td><td class="px-4 py-2 border border-gray-300">' +
+              item.ytd +
+              '</td><td class="px-4 py-2 border border-gray-300">' +
+              item.mtd +
+              '</td><td class="px-4 py-2 border border-gray-300">' +
+              item.actual_gp +
+              "</td></tr>";
+          });
+          $("#data-table tbody").html(newRows);
+        }
+
+        function addBreadcrumb(level, text) {
+          $("#breadcrumb").append(
+            '<span class="inline-block mr-2 cursor-pointer breadcrumb-item" data-level="' +
+              level +
+              '">' +
+              text +
+              "</span>"
+          );
+        }
+
+        function resetToInitialState() {
+          $("#breadcrumb").html(
+            '<span class="inline-block mr-2 cursor-pointer breadcrumb-item" data-level="0">All Data</span>'
+          );
+          var initialRows = [
+            {
+              name: "Industry 1",
+              ytd: 100,
+              mtd: 50,
+              actual_gp: 30,
+              children: childData["Industry 1"],
+            },
+            {
+              name: "Industry 2",
+              ytd: 200,
+              mtd: 75,
+              actual_gp: 45,
+              children: childData["Industry 2"],
+            },
+          ];
+          updateTable(initialRows);
+        }
+
+        $("#data-table").on("click", "tbody tr", function () {
+          var children = $(this).data("children");
+          var name = $(this).find("td:first").text();
+          var level = $("#breadcrumb .breadcrumb-item").length;
+
+          // Add breadcrumb
+          addBreadcrumb(level, name);
+
+          // Update table data if there are children
+          if (children.length) {
+            updateTable(children);
+          }
+        });
+
+        $("#breadcrumb").on("click", ".breadcrumb-item", function () {
+          var level = $(this).data("level");
+          var breadcrumbItems = $("#breadcrumb .breadcrumb-item");
+
+          // Remove all breadcrumb items after the clicked one
+          breadcrumbItems.slice(level + 1).remove();
+
+          if (level === 0) {
+            resetToInitialState();
+          } else {
+            var parentBreadcrumb = breadcrumbItems.eq(level - 1).text();
+            var data =
+              level === 1
+                ? childData[parentBreadcrumb]
+                : JSON.parse(breadcrumbItems.eq(level).next().data("children"));
+
+            updateTable(data);
+          }
+        });
+
+        // Initialize with initial state
+        resetToInitialState();
+      });
+    </script>
+  </body>
+</html>

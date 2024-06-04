@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "company_code": "10100001",
+    "customer_no": "1009428",
+    "customer_name": "PT. PRIMA TRANSPORTASI SERVIS INDON",
+    "profit_center": "1070",
+    "profit_center_name": "MARC",
+    "profit_center_class": "MARC",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 2,
+    "company_code": "10100001",
+    "customer_no": "1003171",
+    "customer_name": "PT. VALE INDONESIA TBK",
+    "profit_center": "1070",
+    "profit_center_name": "MARC",
+    "profit_center_class": "MARC",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 3,
+    "company_code": "10100001",
+    "customer_no": "1021176",
+    "customer_name": "PT. TAMBANG SEMEN SUKABUMI",
+    "profit_center": "1070",
+    "profit_center_name": "MARC",
+    "profit_center_class": "MARC",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 4,
+    "company_code": "10100001",
+    "customer_no": "1003982",
+    "customer_name": "PT. SIMS JAYA KALTIM",
+    "profit_center": "1070",
+    "profit_center_name": "MARC",
+    "profit_center_class": "MARC",
+    "payer_no": "Not Assigned"
+  }
+]

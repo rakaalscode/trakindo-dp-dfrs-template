@@ -1,0 +1,5 @@
+[
+  { "id": 1, "industry": "Construction Industry (CI)", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "01-01-2023" },
+  { "id": 2, "industry": "Power System (E&T)", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "02-01-2023" },
+  { "id": 3, "industry": "Mining (RI)", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "03-01-2023" }
+]

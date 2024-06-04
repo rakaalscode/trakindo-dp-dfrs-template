@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "profit_center": "1090 (Rental)",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "01-01-2023"
+  },
+  {
+    "id": 2,
+    "profit_center": "1050 (Used Equipment)",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "02-01-2023"
+  }
+]

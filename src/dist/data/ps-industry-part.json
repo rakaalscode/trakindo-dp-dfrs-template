@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "industry": "Construction Industry (CI)",
+    "ytd": 88.4,
+    "mtd": 10.8,
+    "gp_actual": 8.0,
+    "industries": [
+      {
+        "id": 1,
+        "industry": "Construction",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 2,
+        "industry": "Forestry",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 3,
+        "industry": "Agriculture",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "industry": "Power System (E&T)",
+    "ytd": 88.4,
+    "mtd": 10.8,
+    "gp_actual": 8.0,
+    "industries": [
+      {
+        "id": 1,
+        "industry": "Electric Power",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 2,
+        "industry": "Marine",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 3,
+        "industry": "Oli & Gas",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 4,
+        "industry": "Power Generation",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      },
+      {
+        "id": 5,
+        "industry": "Industrial",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "industry": "Mining (RI)",
+    "ytd": 88.4,
+    "mtd": 10.8,
+    "gp_actual": 8.0,
+    "industries": [
+      {
+        "id": 1,
+        "industry": "Mining",
+        "ytd": 88.4,
+        "mtd": 10.8,
+        "gp_actual": 8.0
+      }
+    ]
+  }
+]

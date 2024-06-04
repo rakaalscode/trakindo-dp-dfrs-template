@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table with Breadcrumbs</title>
+    <link rel="stylesheet" href="../dist/css/app.css" />
+  </head>
+  <body class="p-6">
+    <div class="mx-auto max-w-7xl">
+      <ol
+        class="inline-flex items-center space-x-1 md:space-x-2"
+        id="navBread"
+      >
+        <li class="inline-flex items-center">
+          <a
+            role="button"
+            id="allData"
+            class="inline-flex items-center text-[22px] font-semibold text-cloudy-110"
+            >Parts GP %</a
+          >
+        </li>
+        <li>
+          <div class="flex items-center">
+            <img
+              src="../dist/icons/arrowBackneclosCloud.svg"
+              class="w-4 h-4"
+              alt="arrowBackneclos"
+            />
+            <a
+              href="#"
+              class="ms-1 text-[22px] font-semibold text-cloudy-110"
+            >Here</a>
+          </div>
+        </li>
+      </ol>
+
+      <div class="space-y-3">
+        <!-- table  -->
+        <div>
+          <div class="relative min-h-[300px] overflow-x-auto border rounded-lg">
+            <div id="psIndustryPartLoading"></div>
+            <table
+              id="data-table"
+              class="w-full text-sm font-normal text-left bg-white text-secondary-90"
+            >
+              <thead
+                class="text-base font-semibold capitalize text-secondary-90 bg-cloudy-20"
+              >
+                <tr class="bg-gray-100">
+                  <th class="px-3 py-3 whitespace-nowrap">Industry</th>
+                  <th class="px-3 py-3 whitespace-nowrap">YTD</th>
+                  <th class="px-3 py-3 whitespace-nowrap">MTD</th>
+                  <th class="px-3 py-3 whitespace-nowrap">Actual GP</th>
+                  <th class="px-3 py-3 whitespace-nowrap"></th>
+                </tr>
+              </thead>
+              <tbody id="psIndustryPartBody">
+                <!-- <tr data-industry="Industry 1" class="cursor-pointer">
+                <td class="px-4 py-2 border border-gray-300">Industry 1</td>
+                <td class="px-4 py-2 border border-gray-300">100</td>
+                <td class="px-4 py-2 border border-gray-300">50</td>
+                <td class="px-4 py-2 border border-gray-300">30</td>
+              </tr>
+              <tr data-industry="Industry 2" class="cursor-pointer">
+                <td class="px-4 py-2 border border-gray-300">Industry 2</td>
+                <td class="px-4 py-2 border border-gray-300">200</td>
+                <td class="px-4 py-2 border border-gray-300">75</td>
+                <td class="px-4 py-2 border border-gray-300">45</td>
+              </tr> -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <!-- Chart  -->
+          Chart content here !!!
+        </div>
+        <div>
+          <!-- Datatable content  -->
+          Data table content here !!!
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../dist/js/table.js"></script>
+    <script>
+      $(document).ready(function () {});
+    </script>
+  </body>
+</html>

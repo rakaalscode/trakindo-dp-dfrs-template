@@ -1,14 +1,9 @@
 $(function () {
-  var machineDataJson = "../dist/data/machine-data.json",
-    machineDetailDataJson = "../dist/data/machine-detail.json",
-    machineDatatableJson = "../dist/data/machine-data-list.json",
-    pcMachineJson = "../dist/data/pc-machine-data.json",
-    pcMachineDatatableJson = "../dist/data/pc-machine-data-list.json",
-    pcEngineJson = "../dist/data/pc-engine-data.json",
-    pcForkliftJson = "../dist/data/pc-forklift-data.json",
-    pcProjectJson = "../dist/data/pc-project-data.json",
-    ppEngineJson = "../dist/data/pp-engine.json",
-    ppEngineDatatableJson = "../dist/data/pp-engine-data-list.json";
+  var machineDetailDataJson = "../dist/data/machine-detail.json",
+  psPartsJson = "../dist/data/ps-part-data.json",
+  psPartsDatatableJson = "../dist/data/ps-part-data-list.json"
+  psServicesJson = "../dist/data/ps-service-data.json",
+  psServicesDatatableJson = "../dist/data/ps-service-data-list.json";
 
   var loadingHtml = `
   <div
@@ -58,6 +53,7 @@ $(function () {
     yAxis: {
       allowDecimals: true,
       min: 0,
+      max: 4,
       title: {
         text: "",
       },
@@ -69,11 +65,11 @@ $(function () {
           color: "#5E677B",
           fontSize: "14px",
         },
-        format: '{value} %',
+        // format: '{value} %',
       },
       plotLines: [
         {
-          value: 7.0,
+          value: 0.2,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -91,6 +87,9 @@ $(function () {
       borderWidth: 1,
       borderRadius: 16,
       shadow: false,
+      itemHiddenStyle: {
+        color: 'transparent' // Hide Data 2 in the legend
+      },
       itemStyle: {
         color: "#4B5262",
         fontSize: "14px",
@@ -108,27 +107,21 @@ $(function () {
     series: [
       {
         name: "Total YTD",
-        data: [12.0, 13.0, 8.0, 12.5, 13.5],
+        data: [0.2, 0.3, 0.1, 0.5, 0.4],
         stack: "ytd",
         color: "#FDBA12",
       },
       {
         name: "Total MTD",
-        data: [2.0, 1.0, 2.0, 3.0, 1.0],
+        data: [0.2, 0.3, 0.6, 0.1, 0.3],
         stack: "mtd",
         color: "#1480D8",
       },
       {
-        name: "Exclude Impairment",
-        data: [3.0, 4.0, 5.0, 16.0, 0],
+        name: "Exclude PEX",
+        data: [0.3, 0.5, 0.2, 0.3, 0.1],
         stack: "mtd",
         color: "#F26D0F",
-      },
-      {
-        name: "Exclude TECO",
-        data: [8.0, 11.0, 9.0, 12.0, 9.0],
-        stack: "mtd",
-        color: "#2C313A",
       },
       {
         name: "Budget GP",
@@ -143,7 +136,7 @@ $(function () {
   var machineTableLoading = $("#machine-table-loading");
   var MachineTable = $("#machineTable").DataTable({
     ajax: {
-      url: "../dist/data/machine-data-list.json", // Replace with the path to your JSON file
+      url: "../dist/data/ps-part-data-list.json", // Replace with the path to your JSON file
       dataSrc: "",
       beforeSend: function () {
         machineTableLoading.append(loadingHtml); // Show spinner before sending AJAX request
@@ -163,7 +156,6 @@ $(function () {
       { data: "profit_center_name" },
       { data: "profit_center_class" },
       { data: "payer_no" },
-      { data: "player_business_area" },
     ],
     columnDefs: [
       {
@@ -214,19 +206,17 @@ $(function () {
     MachineTable.search($(this).val()).draw();
   });
 
-  function defaultModelMachine() {
+  function defaultIndustryPart() {
     $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("88.73M");
-    $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
-    $("#mBudgetGp").text("7%");
-    $("#mDataListTitle").text("Machine GP Data List");
-    $("#rowMName").text("Machine Model");
+    $("#mYtd").text("323.48M");
+    $("#mMtd").text("23.7M");
+    $("#mBudgetGp").text("0.2%");
+    $("#mDataListTitle").text("Parts GP Data List");
+    $("#rowMName").text("Industry");
     chartGen.yAxis[0].update({
       plotLines: [
         {
-          value: 7,
+          value: 0.2,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -236,16 +226,11 @@ $(function () {
     let mbread1 = $("#machine-bread li").eq(0);
     let mbread2 = $("#machine-bread li").eq(1);
     mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("Machine GP %");
+    mbread1.find("a").text("Parts GP %");
     mbread2.find("a").text("");
     mbread2.hide();
 
     // chart
-    // let excludeTecoSeries = chartGen.series.find(function(series) {
-    //   return series.name === "Exclude TECO";
-    // });
-    // excludeTecoSeries.setVisible(true);
-
     chartGen.xAxis[0].setCategories([
       "Jan 24",
       "Feb 24",
@@ -253,40 +238,35 @@ $(function () {
       "Apr 24",
       "Mei 24",
     ]);
-    chartGen.series[0].setData([12.0, 13.0, 8.0, 12.5, 13.5]);
-    chartGen.series[1].setData([2.0, 1.0, 2.0, 3.0, 1.0]);
-    chartGen.series[2].setData([3.0, 4.0, 5.0, 16.0, 0]);
-    chartGen.series[3].setData([8.0, 11.0, 9.0, 12.0, 9.0]);
-    chartGen.series[3].setVisible(true);
-    chartGen.series[3].update({ showInLegend: true });
+    chartGen.series[0].setData([0.2, 0.3, 0.1, 0.5, 0.4]);
+    chartGen.series[1].setData([0.2, 0.3, 0.6, 0.1, 0.3]);
+    chartGen.series[2].setData([0.3, 0.5, 0.2, 0.3, 0.1]);
+    chartGen.series[2].setVisible(true);
+    chartGen.series[2].update({ showInLegend: true });
 
     // detail table
     let filterDetail = $(".detail-filter-btn"),
       total = $(".detail-total-btn"),
-      revenue = $(".detail-revenue-lc-btn"),
-      eTeco = $(".detail-exclude-teco-btn");
+      ePex = $(".detail-exclude-pex-btn");
 
     filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
     total.removeClass("hidden btn-white").addClass("btn-secondary");
-    revenue.removeClass("hidden");
-    eTeco.removeClass("hidden");
+    ePex.removeClass("hidden");
 
-    loadDataMachine(machineDataJson);
-    MachineTable.ajax.url(machineDatatableJson).load();
+    loadDataMachine(psPartsJson);
+    MachineTable.ajax.url(psPartsDatatableJson).load();
   }
 
-  function defaultModelEngine() {
+  function defaultIndustryServices() {
     $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("0.27M");
-    $("#mMtd").text("8.45M");
-    $("#mGpPlan").text("6.4%");
-    $("#mGpTrans").text("6.6%");
-    $("#mBudgetGp").text("9%");
-    $("#rowMName").text("Machine Model");
+    $("#mYtd").text("38.58M");
+    $("#mMtd").text("3.28M");
+    $("#mBudgetGp").text("0.2%");
+    $("#rowMName").text("Industry");
     chartGen.yAxis[0].update({
       plotLines: [
         {
-          value: 9,
+          value: 0.2,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -297,16 +277,11 @@ $(function () {
     let mbread1 = $("#machine-bread li").eq(0);
     let mbread2 = $("#machine-bread li").eq(1);
     mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("Engine GP %");
+    mbread1.find("a").text("Services GP %");
     mbread2.find("a").text("");
     mbread2.hide();
 
     // chart
-    // let excludeTecoSeries = chartGen.series.find(function(series) {
-    //   return series.name === "Exclude TECO";
-    // });
-    // excludeTecoSeries.setVisible(false);
-
     chartGen.xAxis[0].setCategories([
       "Jun 24",
       "Jul 24",
@@ -314,237 +289,25 @@ $(function () {
       "Sep 24",
       "Okt 24",
     ]);
-    chartGen.series[0].setData([14.0, 13.0, 10.0, 14.5, 14.0]);
-    chartGen.series[1].setData([13.0, 11.0, 3, 4.0, 0]);
-    chartGen.series[2].setData([6.0, 1.0, 4, 17.0, 0]);
-    // chartGen.series[3].setData([7.0, 16.0, 5, 13.0, 30.0]);
-    chartGen.series[3].setVisible(false);
-    chartGen.series[3].update({ showInLegend: false });
+    chartGen.series[0].setData([0.2, 0.3, 0.1, 0.5, 0.4]);
+    chartGen.series[1].setData([0.2, 0.3, 0.6, 0.1, 0.3]);
+    chartGen.series[2].setData([0.3, 0.5, 0.2, 0.3, 0.1]);
+    chartGen.series[2].setVisible(false);
+    chartGen.series[2].update({ showInLegend: false });
 
     // detail table
     let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
+      total = $(".detail-total-btn");
 
     filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
     total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eImpairment.removeClass("hidden");
+    total.addClass("hidden");
 
-    loadDataMachine(ppEngineJson);
-    MachineTable.ajax.url(ppEngineDatatableJson).load();
-  }
+    // loadDataMachine(psServicesJson);
+    // MachineTable.ajax.url(psServicesDatatableJson).load();
 
-  function defaultPcMachine() {
-    $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("88.73M");
-    $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
-    $("#mBudgetGp").text("7%");
-    $("#mDataListTitle").text("All Machine GP Data List");
-    $("#rowMName").text("Profit Center");
-    chartGen.yAxis[0].update({
-      plotLines: [
-        {
-          value: 7,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-
-    let mbread1 = $("#machine-bread li").eq(0);
-    let mbread2 = $("#machine-bread li").eq(1);
-    mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("All Machine GP %");
-    mbread2.find("a").text("");
-    mbread2.hide();
-
-    // chart
-    chartGen.xAxis[0].setCategories([
-      "Jan 24",
-      "Feb 24",
-      "Mar 24",
-      "Apr 24",
-      "Mei 24",
-    ]);
-    chartGen.series[0].setData([12.0, 13.0, 8.0, 12.5, 13.5]);
-    chartGen.series[1].setData([2.0, 1.0, 2.0, 3.0, 1.0]);
-    chartGen.series[2].setData([3.0, 4.0, 5.0, 16.0, 0]);
-    chartGen.series[3].setData([8.0, 11.0, 9.0, 12.0, 9.0]);
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      revenue = $(".detail-revenue-lc-btn"),
-      eTeco = $(".detail-exclude-teco-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    revenue.removeClass("hidden");
-    eTeco.removeClass("hidden");
-
-    loadDataMachine(pcMachineJson);
-    MachineTable.ajax.url(pcMachineDatatableJson).load();
-  }
-
-  function defaultPcForklift() {
-    $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("88.73M");
-    $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
-    $("#mBudgetGp").text("7%");
-    $("#mDataListTitle").text("Forklift GP Data List");
-    $("#rowMName").text("Profit Center");
-    chartGen.yAxis[0].update({
-      plotLines: [
-        {
-          value: 7,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-    let mbread1 = $("#machine-bread li").eq(0);
-    let mbread2 = $("#machine-bread li").eq(1);
-    mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("Forklift GP %");
-    mbread2.find("a").text("");
-    mbread2.hide();
-
-    // chart
-    chartGen.xAxis[0].setCategories([
-      "Jan 24",
-      "Feb 24",
-      "Mar 24",
-      "Apr 24",
-      "Mei 24",
-    ]);
-    chartGen.series[0].setData([12.0, 13.0, 8.0, 12.5, 13.5]);
-    chartGen.series[1].setData([2.0, 1.0, 2.0, 3.0, 1.0]);
-    chartGen.series[2].setData([3.0, 4.0, 5.0, 16.0, 0]);
-    chartGen.series[3].setData([8.0, 11.0, 9.0, 12.0, 9.0]);
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eTeco = $(".detail-exclude-teco-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eTeco.removeClass("hidden");
-    eImpairment.removeClass("hidden");
-
-    loadDataMachine(pcForkliftJson);
-    MachineTable.ajax.url(pcMachineDatatableJson).load();
-  }
-
-  function defaultPcEngine() {
-    $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("88.73M");
-    $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
-    $("#mBudgetGp").text("7%");
-    $("#mDataListTitle").text("All Engine GP Data List");
-    $("#rowMName").text("Profit Center");
-    chartGen.yAxis[0].update({
-      plotLines: [
-        {
-          value: 7,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-    let mbread1 = $("#machine-bread li").eq(0);
-    let mbread2 = $("#machine-bread li").eq(1);
-    mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("All Engine GP %");
-    mbread2.find("a").text("");
-    mbread2.hide();
-
-    // chart
-    chartGen.xAxis[0].setCategories([
-      "Jan 24",
-      "Feb 24",
-      "Mar 24",
-      "Apr 24",
-      "Mei 24",
-    ]);
-    chartGen.series[0].setData([12.0, 13.0, 8.0, 12.5, 13.5]);
-    chartGen.series[1].setData([2.0, 1.0, 2.0, 3.0, 1.0]);
-    chartGen.series[2].setData([3.0, 4.0, 5.0, 16.0, 0]);
-    chartGen.series[3].setData([8.0, 11.0, 9.0, 12.0, 9.0]);
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eImpairment.removeClass("hidden");
-
-    loadDataMachine(pcEngineJson);
-    MachineTable.ajax.url(pcMachineDatatableJson).load();
-  }
-
-  function defaultPcProject() {
-    $(".machine-row").removeClass("bg-yellow-10");
-    $("#mYtd").text("88.73M");
-    $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
-    $("#mBudgetGp").text("7%");
-    $("#mDataListTitle").text("Engine Project GP Data List");
-    $("#rowMName").text("Profit Center");
-    chartGen.yAxis[0].update({
-      plotLines: [
-        {
-          value: 7,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-    let mbread1 = $("#machine-bread li").eq(0);
-    let mbread2 = $("#machine-bread li").eq(1);
-    mbread1.find("a").css("color", "initial");
-    mbread1.find("a").text("Engine Project GP %");
-    mbread2.find("a").text("");
-    mbread2.hide();
-
-    // chart
-    chartGen.xAxis[0].setCategories([
-      "Jan 24",
-      "Feb 24",
-      "Mar 24",
-      "Apr 24",
-      "Mei 24",
-    ]);
-    chartGen.series[0].setData([12.0, 13.0, 8.0, 12.5, 13.5]);
-    chartGen.series[1].setData([2.0, 1.0, 2.0, 3.0, 1.0]);
-    chartGen.series[2].setData([3.0, 4.0, 5.0, 16.0, 0]);
-    chartGen.series[3].setData([8.0, 11.0, 9.0, 12.0, 9.0]);
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eImpairment.removeClass("hidden");
-
-    loadDataMachine(pcProjectJson);
-    MachineTable.ajax.url(pcMachineDatatableJson).load();
+    loadDataMachine(psPartsJson);
+    MachineTable.ajax.url(psPartsDatatableJson).load();
   }
 
   // handle detail filter
@@ -553,72 +316,17 @@ $(function () {
     $(this).addClass("btn-secondary").removeClass("btn-white");
   });
 
-  // handle catBy
-  $(".cat-by").click(function () {
-    $(".cat-by").removeClass("btn-secondary").addClass("btn-white");
-    $(this).addClass("btn-secondary").removeClass("btn-white");
-
-    let catBy = $(this).attr("cat-by");
-    $(".sub-cat").removeClass("active");
-    if (catBy == "model") {
-      $(".pp-model").toggleClass("hidden flex");
-      $(".pp-pc").toggleClass("hidden flex");
-      $(".pp-model").find(".sub-cat").first().addClass("active");
-
-      defaultModelMachine();
-      // detail table
-      let filterDetail = $(".detail-filter-btn"),
-        total = $(".detail-total-btn"),
-        revenue = $(".detail-revenue-lc-btn"),
-        eTeco = $(".detail-exclude-teco-btn");
-
-      filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-      total.removeClass("hidden btn-white").addClass("btn-secondary");
-      revenue.removeClass("hidden");
-      eTeco.removeClass("hidden");
-    }
-    if (catBy == "pc") {
-      $(".pp-model").toggleClass("hidden flex");
-      $(".pp-pc").toggleClass("hidden flex");
-      $(".pp-pc").find(".sub-cat").first().addClass("active");
-
-      defaultPcMachine();
-      // detail table
-      let filterDetail = $(".detail-filter-btn"),
-        total = $(".detail-total-btn"),
-        eImpairment = $(".detail-exclude-impairment-btn"),
-        eTeco = $(".detail-exclude-teco-btn");
-
-      filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-      total.removeClass("hidden btn-white").addClass("btn-secondary");
-      eImpairment.removeClass("hidden");
-      eTeco.removeClass("hidden");
-    }
-  });
-
   // handle subcat
   $(".sub-cat").click(function () {
     $(".sub-cat").removeClass("active");
     $(this).addClass("active");
 
     let sub = $(this).attr("sub");
-    if (sub == "machine") {
-      defaultModelMachine();
+    if (sub == "parts") {
+      defaultIndustryPart();
     }
-    if (sub == "engine") {
-      defaultModelEngine();
-    }
-    if (sub == "allMachine") {
-      defaultPcMachine();
-    }
-    if (sub == "allEngine") {
-      defaultPcEngine();
-    }
-    if (sub == "forklift") {
-      defaultPcForklift();
-    }
-    if (sub == "engineProject") {
-      defaultPcProject();
+    if (sub == "services") {
+      defaultIndustryServices();
     }
   });
 
@@ -636,8 +344,6 @@ $(function () {
 
     $("#mYtd").text(rowData[1]);
     $("#mMtd").text(rowData[2]);
-    $("#mGpPlan").text(rowData[3]);
-    $("#mGpTrans").text(rowData[4]);
     $("#mDataListTitle").text(`${rowData[0]} GP Data List`);
 
     if ($(this).hasClass("bg-yellow-10")) {
@@ -653,8 +359,6 @@ $(function () {
     $(".machine-row").removeClass("bg-yellow-10");
     $("#mYtd").text("88.73M");
     $("#mMtd").text("10.95M");
-    $("#mGpPlan").text("8.6%");
-    $("#mGpTrans").text("8.6%");
     $("#mDataListTitle").text("Machine GP Data List");
     let mbread1 = $("#machine-bread li").eq(0);
     let mbread2 = $("#machine-bread li").eq(1);
@@ -681,10 +385,7 @@ $(function () {
       success: function (data) {
         setTimeout(function () {
           let totYtd = 0,
-            totMtd = 0,
-            totGpPlan = 0,
-            totGpTrans = 0,
-            totGpActual = 0;
+            totMtd = 0;
 
           data.forEach((v) => {
             const row = $("<tr>").addClass(
@@ -698,20 +399,14 @@ $(function () {
                 )
                 .text(text);
 
-            const colMachine = createCell(v.machine_model).addClass(
+            const colMachine = createCell(v.industry).addClass(
               "pr-4 pl-6"
             );
             const colYtd = createCell(v.ytd);
             const colMtd = createCell(v.mtd);
-            const colGpPlan = createCell(v.gp_plan);
-            const colGpTrans = createCell(v.gp_trans);
-            const colGpActual = createCell(v.gp_actual);
 
             totYtd += parseFloat(v.ytd);
             totMtd += parseFloat(v.mtd);
-            totGpPlan += parseFloat(v.gp_plan);
-            totGpTrans += parseFloat(v.gp_trans);
-            totGpActual += parseFloat(v.gp_actual);
 
             const colAction = $("<td>").addClass(
               "px-3 py-4 whitespace-nowrap text-secondary-90 font-sm"
@@ -725,9 +420,6 @@ $(function () {
               colMachine,
               colYtd,
               colMtd,
-              colGpPlan,
-              colGpTrans,
-              colGpActual,
               colAction
             );
             row.click(handleRowClick);
@@ -748,18 +440,12 @@ $(function () {
           const colTotal = createCellFot("Total").addClass("pr-4 pl-6");
           const colFYtd = createCellFot(totYtd.toFixed(1) + " M");
           const colFMtd = createCellFot(totMtd.toFixed(1) + " M");
-          const colFGpPlan = createCellFot(totGpPlan.toFixed(1) + " %");
-          const colFGpTrans = createCellFot(totGpTrans.toFixed(1) + " %");
-          const colFGpActual = createCellFot(totGpActual.toFixed(1) + " %");
           const colFAction = createCellFot("");
 
           rowFot.append(
             colTotal,
             colFYtd,
             colFMtd,
-            colFGpPlan,
-            colFGpTrans,
-            colFGpActual,
             colFAction
           );
 
@@ -855,7 +541,7 @@ $(function () {
   }
 
   // Initiate table
-  loadDataMachine(machineDataJson);
+  loadDataMachine(psPartsJson);
   loadDataMachineDetail(machineDetailDataJson);
 
   // ========== End Machine ==========
@@ -911,17 +597,10 @@ $(function () {
       )
         .attr("id", targetModal + "-backdrop")
         .appendTo("body");
-
-      // Custom modal
-      // if else {
-      //   // Remove backdrop if modal is being closed
-      //   $("#" + targetModal + "-backdrop").remove();
-      // }
     } else {
       // Remove backdrop if modal is being closed
       $("#" + targetModal + "-backdrop").remove();
     }
-
     toggleOverflowHidden();
   });
 
@@ -1249,7 +928,7 @@ $(function () {
     dropzoneCondition();
     showToast();
     MachineTable.ajax.reload();
-    loadDataMachine(machineDataJson);
+    loadDataMachine(psPartsJson);
 
     let targetModal = "submit-edit-modal";
     $("#" + targetModal)

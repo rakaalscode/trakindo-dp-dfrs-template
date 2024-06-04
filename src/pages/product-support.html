@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GP Report - PP</title>
+    <title>GP Report - PS</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -102,12 +102,12 @@
       >
         <ul class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center">
           <li>
-            <a href="../pages/prime-product.html" class="nav-cat active"
+            <a href="../pages/prime-product.html" class="nav-cat"
               >Prime Product (PP)</a
             >
           </li>
           <li>
-            <a href="../pages/product-support.html" class="nav-cat"
+            <a href="../pages/product-support.html" class="nav-cat active"
               >Product Support (PS)</a
             >
           </li>
@@ -164,15 +164,9 @@
               <div class="flex w-full md:w-auto gap-x-3">
                 <button
                   class="px-6 py-2 rounded-[32px] btn btn-secondary w-full md:w-auto cat-by"
-                  cat-by="model"
+                  cat-by="industry"
                 >
-                  By Model
-                </button>
-                <button
-                  class="px-6 py-2 rounded-[32px] btn btn-white w-full md:w-auto cat-by"
-                  cat-by="pc"
-                >
-                  By Profit Center
+                  By Industry
                 </button>
               </div>
               <div class="ml-auto">
@@ -192,79 +186,23 @@
                   class="flex flex-shrink-0 gap-x-4 md:gap-x-8 item-center pp-model"
                 >
                   <li>
-                    <a
-                      role="button"
-                      class="sub-cat nav-cat active"
-                      sub="machine"
-                    >
+                    <a role="button" class="sub-cat nav-cat active" sub="parts">
                       <img
                         src="../dist/icons/engine.svg"
                         class="w-5 h-5 mr-2"
                         alt="engine"
                       />
-                      <span>Machine</span>
+                      <span>Parts</span>
                     </a>
                   </li>
                   <li>
-                    <a role="button" class="sub-cat nav-cat" sub="engine">
-                      <img
-                        src="../dist/icons/gears.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="gears"
-                      />
-                      <span>Engine</span>
-                    </a>
-                  </li>
-                </ul>
-                <ul
-                  class="flex-shrink-0 hidden gap-x-4 md:gap-x-8 item-center pp-pc"
-                >
-                  <li>
-                    <a
-                      role="button"
-                      class="sub-cat nav-cat active"
-                      sub="allMachine"
-                    >
-                      <img
-                        src="../dist/icons/engine.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="engine"
-                      />
-                      <span>All Machine</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a role="button" class="sub-cat nav-cat" sub="forklift">
-                      <img
-                        src="../dist/icons/forklift.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="forkflit"
-                      />
-                      <span>Forklift</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a role="button" class="sub-cat nav-cat" sub="allEngine">
-                      <img
-                        src="../dist/icons/gears.svg"
-                        class="w-5 h-5 mr-2"
-                        alt="gears"
-                      />
-                      <span>All Engine</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      role="button"
-                      class="sub-cat nav-cat"
-                      sub="engineProject"
-                    >
+                    <a role="button" class="sub-cat nav-cat" sub="services">
                       <img
                         src="../dist/icons/project.svg"
                         class="w-5 h-5 mr-2"
                         alt="project"
                       />
-                      <span>Engine Project</span>
+                      <span>Services</span>
                     </a>
                   </li>
                 </ul>
@@ -288,7 +226,7 @@
                                 role="button"
                                 id="allMachineGp"
                                 class="inline-flex items-center text-[22px] font-semibold text-cloudy-110"
-                                >Machine GP %</a
+                                >Parts GP %</a
                               >
                             </li>
                             <li class="hidden">
@@ -348,7 +286,7 @@
                                       />
                                       <span
                                         class="font-normal select-none whitespace-nowrap text-neutral-100 font-base"
-                                        >Constructions Industry (CI)</span
+                                        >Parts GP Data List</span
                                       >
                                     </label>
                                   </div>
@@ -468,7 +406,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mYtd"
                               >
-                                88.73M
+                                323.48M
                               </h3>
                             </div>
                             <div
@@ -481,33 +419,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mMtd"
                               >
-                                10.95M
-                              </h3>
-                            </div>
-                            <div
-                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
-                            >
-                              <p class="text-sm font-normal text-secondary-90">
-                                GP Plan
-                              </p>
-                              <h3
-                                class="text-xl font-semibold text-cloudy-110"
-                                id="mGpPlan"
-                              >
-                                8.6%
-                              </h3>
-                            </div>
-                            <div
-                              class="w-full p-3 border rounded-lg border-cloudy-50 gap-y-3"
-                            >
-                              <p class="text-sm font-normal text-secondary-90">
-                                GP Trans.
-                              </p>
-                              <h3
-                                class="text-xl font-semibold text-cloudy-110"
-                                id="mGpTrans"
-                              >
-                                8.6%
+                                23.7M
                               </h3>
                             </div>
                             <div
@@ -534,7 +446,7 @@
                                 class="text-xl font-semibold text-cloudy-110"
                                 id="mBudgetGp"
                               >
-                                7%
+                                0.2%
                               </h3>
                             </div>
                           </div>
@@ -553,7 +465,7 @@
                       <p
                         class="text-base font-semibold capitalize text-secondary-90"
                       >
-                        Detail Data
+                        <!-- Detail Data -->
                       </p>
                       <div class="ml-auto">
                         <button
@@ -577,19 +489,9 @@
                           Total
                         </button>
                         <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-revenue-lc-btn"
+                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-pex-btn"
                         >
-                          Revenue LC
-                        </button>
-                        <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-impairment-btn hidden"
-                        >
-                          Exclude Impairment
-                        </button>
-                        <button
-                          class="px-6 py-2 rounded-[32px] btn btn-white detail-filter-btn detail-exclude-teco-btn"
-                        >
-                          Exclude TECO
+                          Exclude PEX
                         </button>
                       </div>
                       <!-- TABLE DETAIL  -->
@@ -683,7 +585,7 @@
                               class="px-3 py-4 pt-6 pl-6 whitespace-nowrap"
                               id="rowMName"
                             >
-                              Machine Model
+                              Industry
                             </th>
                             <th
                               scope="col"
@@ -696,24 +598,6 @@
                               class="px-3 py-4 pt-6 whitespace-nowrap"
                             >
                               MTD
-                            </th>
-                            <th
-                              scope="col"
-                              class="px-3 py-4 pt-6 whitespace-nowrap"
-                            >
-                              GP Plan
-                            </th>
-                            <th
-                              scope="col"
-                              class="px-3 py-4 pt-6 whitespace-nowrap"
-                            >
-                              GP Trans.
-                            </th>
-                            <th
-                              scope="col"
-                              class="px-3 py-4 pt-6 whitespace-nowrap"
-                            >
-                              GP Actual
                             </th>
                             <th
                               scope="col"
@@ -743,7 +627,7 @@
               class="text-cloudy-110 text-[32px] leading-10 font-semibold"
               id="mDataListTitle"
             >
-              Machine GP Data List
+              Parts GP Data List
             </h1>
             <div
               class="flex flex-col-reverse items-end w-full gap-4 md:w-auto md:gap-6 md:ml-auto md:items-center md:flex-row"
@@ -875,9 +759,6 @@
           </div>
           <div>
             <!-- Card  -->
-            <!-- <div
-              class="w-full border rounded-lg shadow-sm bg-card text-card-foreground"
-            > -->
             <!-- Machine Table  -->
             <div class="relative w-full h-full">
               <div id="machine-table-loading"></div>
@@ -892,13 +773,11 @@
                     <th>Profit Center Name</th>
                     <th>Profit Center Class</th>
                     <th>Payer No</th>
-                    <th>Payer NAMEBusiness Area</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
               </table>
             </div>
-            <!-- </div> -->
           </div>
         </div>
       </main>
@@ -1302,7 +1181,7 @@
 
     <!-- Main js  -->
     <script src="../dist/js/main.js"></script>
-    <!-- PP js  -->
-    <script src="../dist/js/pp.js"></script>
+    <!-- PS js  -->
+    <script src="../dist/js/ps.js"></script>
   </body>
 </html>
