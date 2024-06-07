@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "billing_document": "5310775107",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "69.02"
+  },
+  {
+    "id": 2,
+    "billing_document": "5310775112",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "49.41"
+  },
+  {
+    "id": 3,
+    "billing_document": "5310775113",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "22.72"
+  },
+  {
+    "id": 4,
+    "billing_document": "5310775119",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "45.18"
+  },
+  {
+    "id": 5,
+    "billing_document": "5310775175",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "1333.41"
+  },
+  {
+    "id": 6,
+    "billing_document": "5310775184",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "546.57"
+  },
+  {
+    "id": 7,
+    "billing_document": "5310775427",
+    "gl_account_cost": "5020100101",
+    "amount_in_jc": "391.2"
+  }
+]

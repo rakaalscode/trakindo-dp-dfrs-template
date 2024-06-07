@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "template": "Other Expt",
+    "field": "Misc. Other Expense",
+    "status": "failed"
+  },
+  {
+    "id": 2,
+    "template": "Avg Assets",
+    "field": "Less LIFO Reservce",
+    "status": "failed"
+  },
+  {
+    "id": 3,
+    "template": "Avg Assets",
+    "field": "Other Current Asset",
+    "status": "failed"
+  },
+  {
+    "id": 4,
+    "template": "Avg Assets",
+    "field": "Land, Building, Equipment",
+    "status": "failed"
+  },
+  {
+    "id": 5,
+    "template": "Avg Assets",
+    "field": "Dealer Owned Rental F...",
+    "status": "failed"
+  },
+  {
+    "id": 6,
+    "template": "Avg Assets",
+    "field": "Other Capital Assets",
+    "status": "failed"
+  },
+  {
+    "id": 7,
+    "template": "Avg Assets",
+    "field": "Other Non-Current Ass...",
+    "status": "failed"
+  }
+]

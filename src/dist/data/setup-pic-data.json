@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "request_data": "Service Hour",
+    "pic": "Ichsan",
+    "email": "ichan@trakindo.com"
+  },
+  {
+    "id": 2,
+    "request_data": "Data Marc",
+    "pic": "Ivan",
+    "email": "ivan@trakindo.com"
+  },
+  {
+    "id": 3,
+    "request_data": "Cost Center Report",
+    "pic": "Ivan",
+    "email": "ivan@trakindo.com"
+  },
+  {
+    "id": 4,
+    "request_data": "SEM TSU Dealer",
+    "pic": "ABC",
+    "email": "abc@trakindo.com"
+  },
+  {
+    "id": 5,
+    "request_data": "Annual Average Fleamer",
+    "pic": "DEF",
+    "email": "def@trakindo.com"
+  },
+  {
+    "id": 6 ,
+    "request_data": "Annual Average Universitas",
+    "pic": "GHI",
+    "email": "ghi@trakindo.com"
+  },
+  {
+    "id": 7 ,
+    "request_data": "Time Utilization",
+    "pic": "JKL",
+    "email": "jkl@trakindo.com"
+  }
+]

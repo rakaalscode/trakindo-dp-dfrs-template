@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "request_data": "Service Hour",
+    "pic": "Ichsan",
+    "status": "Waiting PIC Fill Out",
+    "submission": "Auto Update"
+  },
+  {
+    "id": 2,
+    "request_data": "Data Marc",
+    "pic": "Ivan",
+    "status": "Waiting PIC Fill Out",
+    "submission": "Auto Update"
+  },
+  {
+    "id": 1,
+    "request_data": "Online Parts Sales",
+    "pic": "Dewi",
+    "status": "Waiting PIC Fill Out",
+    "submission": "Auto Update"
+  },
+  {
+    "id": 1,
+    "request_data": "Cost Parts",
+    "pic": "Sri",
+    "status": "Waiting Other Data",
+    "submission": "Auto Update"
+  },
+  {
+    "id": 1,
+    "request_data": "Total Dealer",
+    "pic": "Tri",
+    "status": "Data Missing",
+    "submission": "Manual Update"
+  },
+  {
+    "id": 1,
+    "request_data": "Annual Average Fleant",
+    "pic": "Dipta",
+    "status": "Submitted",
+    "submission": "Edit Data"
+  }
+]

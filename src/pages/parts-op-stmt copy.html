@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DFRS Report - Overview</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css"
+    />
+    <!-- Styles -->
+    <link rel="stylesheet" href="../dist/css/styles.css" />
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="../dist/css/app.css" />
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatable/css/dataTables.min.css" />
+    <link rel="stylesheet" href="../dist/css/datatables-styles.css" />
+
+    <style></style>
+  </head>
+  <body class="font-roboto">
+    <div class="h-full">
+      <!-- HEADER  -->
+      <nav
+        class="fixed top-0 z-50 flex items-center w-full px-4 py-3 bg-white border border-b-[#DEDEDE] gap-x-2 md:px-8 md:py-6"
+      >
+        <img
+          src="../dist/img/trakindo-logo-2.png"
+          class="w-[122px] h-[30px] md:w-[165px] md:h-[42px]"
+          alt="trakindo-logo"
+        />
+        <div class="flex-1 ml-8">
+          <ul class="hidden gap-x-2 md:flex">
+            <li>
+              <a href="../pages/prime-product.html" class="nav-item">
+                GP Report
+              </a>
+            </li>
+            <li>
+              <a href="../pages/dfrs.html" class="nav-item active"
+                >DFRS Report</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center h-full ml-auto gap-x-4">
+          <ul class="items-center hidden gap-x-4 md:flex">
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/setting.svg"
+                  class="w-8 h-8"
+                  alt="setting"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/notification.svg"
+                  class="w-8 h-8"
+                  alt="notification"
+                />
+              </a>
+            </li>
+          </ul>
+          <div class="w-[1px] h-6 bg-cloudy-40 hidden md:block"></div>
+          <div
+            class="flex items-center cursor-pointer gap-x-4 trigger"
+            data-popover="#menuProfile"
+          >
+            <img src="../dist/img/profile.png" class="w-8 h-8" alt="profile" />
+            <div class="items-center hidden md:flex">
+              <div class="max-w-[70px] min-w-[70px]">
+                <p class="text-sm font-semibold truncate text-black-0">Aditi</p>
+                <p class="text-xs font-normal truncate text-cloudy-70">
+                  Statutory
+                </p>
+              </div>
+              <img
+                src="../dist/icons/fi_chevron-down.svg"
+                class="w-5 h-5"
+                alt="chevron"
+              />
+            </div>
+          </div>
+          <div
+            class="z-50 hidden w-[180px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+            id="menuProfile"
+          >
+            <div class="px-3 py-4 space-y-4">
+              <div class="flex flex-col space-y-2">
+                <div class="flex items-center gap-3 cursor-pointer group">
+                  <img
+                    src="../dist/icons/round-exit.svg"
+                    class="flex-shrink-0 whitespace-nowrap"
+                    alt="round-exit"
+                  />
+                  <span
+                    class="text-sm font-semibold text-black-0 group-hover:underline"
+                    >Log off</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- ASIDE NAVIGATION  -->
+      <aside
+        id="sidebar-menu"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-[122px] transition-transform -translate-x-full border-r border-cloudy-50 bg-cloudy-10 md:-translate-x-0"
+        aria-label="Sidebar"
+      >
+        <div class="h-full pb-4 overflow-y-auto bg-cloudy-10">
+          <div class="mb-8 space-y-2">
+            <div
+              class="flex items-center text-cloudy-60 text-xs font-medium tracking-[1px] px-6 mb-2"
+            >
+              <span class="flex-1 whitespace-nowrap">DASHBOARD</span>
+              <button id="sidebarMenu">
+                <img
+                  src="../dist/icons/menu-open.svg"
+                  class="w-6 h-6 md:rotate-180"
+                  alt="menu-open"
+                />
+              </button>
+            </div>
+            <ul class="px-4 space-y-2 font-medium capitalize">
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <img
+                      src="../dist/icons/database-table.svg"
+                      class="w-4 h-4 me-3"
+                      alt="database-table"
+                    />
+                    <span>Overview</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mb-8 space-y-2">
+            <div
+              class="flex items-center text-cloudy-60 text-xs font-medium tracking-[1px] px-6 mb-2"
+            >
+              <span class="flex-1 whitespace-nowrap">Template List</span>
+            </div>
+            <ul class="px-4 font-medium capitalize">
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="../pages/machine-op-stmt.html"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Machine Op. Stmt</span>
+                    <span class="label-rounded-orange"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">E&T Op. Stmt</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="../pages/parts-op-stmt.html"
+                    class="flex items-center px-4 py-2 text-sm bg-white rounded text-cloudy-110"
+                  >
+                    <span class="flex-1">Parts Op. Stmt</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                  <div
+                    class="absolute top-0 w-1 h-full rounded-l-lg -right-4 bg-yellow-80"
+                  ></div>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Service Hrs</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Service Op. Stmt</span>
+                    <span class="label-rounded-orange"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Indirect Exp</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Other Exp</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Avg Assets</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <!-- NAV MENU  -->
+      <nav
+        class="fixed top-[57px] md:top-[91px] z-30 flex items-center w-full px-4 bg-cloudy-10 border border-b-[#DEDEDE] gap-x-2 md:px-8 py-3"
+      >
+        <div class="md:ml-[15.5rem] flex items-center gap-x-6">
+          <button
+            class="hidden px-3 font-bold btn btn-sm btn-outline-yellow"
+            id="cancelEdit"
+          >
+            Cancel
+          </button>
+          <button
+            class="px-3 font-bold btn btn-sm btn-outline-yellow"
+            id="editAllBtn"
+          >
+            Edit Mode
+          </button>
+        </div>
+        <div
+          class="relative flex items-center overflow-x-auto md:mr-6 md:ml-auto gap-x-6"
+        >
+          <button
+            class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto select-month"
+          >
+            <span class="selected-quater-data"></span>
+            <img
+              src="../dist/icons/warning-filled-orange.svg"
+              class="w-3 h-3 ms-2"
+              alt="warning-filled-orange"
+            />
+          </button>
+          <div class="h-4 w-[1px] flex-shrink-0 bg-cloudy-40"></div>
+          <div class="flex items-center gap-x-2 selected-month-q"></div>
+          <div class="h-4 w-[1px] flex-shrink-0 bg-cloudy-40"></div>
+        </div>
+        <div class="flex items-center">
+          <button
+            class="flex items-center text-base font-semibold text-black-100 whitespace-nowrap gap-x-2 trigger"
+            data-quarter=""
+            data-popover="#quaterSelect"
+          >
+            <span class="selected-quater">Q1 2022</span>
+            <img
+              src="../dist/icons/arrow-park-down.svg"
+              class="flex-shrink-0 w-4 h-4"
+              alt="arrow-park-down"
+            />
+          </button>
+          <div
+            class="z-50 hidden w-[200px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+            id="quaterSelect"
+          >
+            <div class="px-3 py-4 space-y-4">
+              <div class="flex flex-col space-y-2">
+                <div class="space-y-3">
+                  <label
+                    class="text-base font-medium capitalize text-secondary-90"
+                    >Select Quater</label
+                  >
+                  <div
+                    class="flex items-center p-2 py-1 border rounded-lg gap-x-4"
+                  >
+                    <select
+                      class="w-full p-2 pl-0 text-sm font-medium focus:outline-none"
+                      id="quarter"
+                    >
+                      <option value="Q1">Q1</option>
+                      <option value="Q2">Q2</option>
+                      <option value="Q3">Q3</option>
+                      <option value="Q4">Q4</option>
+                    </select>
+                    <div class="w-[1px] h-4 border border-cloudy-40"></div>
+
+                    <select
+                      class="p-2 text-sm font-medium ml focus:outline-none custom-arrow-select"
+                      id="yearQuater"
+                    ></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="main-content" class="pt-[140px] md:ml-64 md:pt-[155px]">
+        <div class="relative h-full p-4 md:p-6">
+          <div id="loadingData"></div>
+          <!-- TITLE  -->
+          <h1 class="text-cloudy-110 text-[32px] font-semibold mb-4">
+            P - Parts Operating
+          </h1>
+          <!-- TABLE CONTENT -->
+          <div class="relative overflow-x-auto">
+            <table
+              class="w-full overflow-hidden text-sm text-left border-separate rounded-lg border-spacing-0 text-secondary-90"
+            >
+              <thead class="text-sm font-medium bg-cloudy-30">
+                <tr>
+                  <th
+                    class="px-4 py-3 border rounded-tl-lg whitespace-nowrap w-[20px]"
+                  >
+                    #
+                  </th>
+                  <th class="px-4 py-3 border whitespace-nowrap">New Parts</th>
+                  <th class="px-4 py-3 border whitespace-nowrap">Sales</th>
+                  <th class="px-4 py-3 border whitespace-nowrap">
+                    Cost of Sales
+                  </th>
+                  <th class="px-4 py-3 border whitespace-nowrap">
+                    Gross Profit
+                  </th>
+                  <th class="px-4 py-3 border whitespace-nowrap">GP%</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">1</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                    Total Part Sales Direct
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    914,595,303.39
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    686,081,077.99
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    228,514,225.40
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    25.0%
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">2</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    E-Business
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    147,151,978.77
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    109,087,421.85
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    38,064,556.92
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    25.9%
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">3</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    Over-The-Counter
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    767,443,324.62
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    576,993,656.14
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    190,449,668.48
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    24.8%
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">4</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                    Total Part Sales Through Service
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    163,150,055.02
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    114,428,513.80
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    48,721,541.22
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    29.9%
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">5</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    Time and Material
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">6</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    Flat Rate
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">6</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    CVA Contracts
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">6</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    CVA Contracts
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">9</td>
+                  <td class="p-4 text-left border whitespace-nowrap">
+                    Machine
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-warning"
+                  >
+                    <div class="inline-flex items-center">
+                      <div class="text-editable">-</div>
+                      <img
+                        role="button"
+                        src="../dist/icons/warning-filled-orange.svg"
+                        class="w-3 h-3 ms-3 trigger"
+                        alt="warning-filled-orange"
+                        data-popover="#partMachine"
+                        data-placement="top-end"
+                      />
+                      <div
+                        class="z-[110] max-w-8 min-w-[218px] hidden mb-3 text-sm font-normal pt-[-40px] leading-normal text-left no-underline break-words text-wrap bg-cloudy-120 rounded-lg shadow-xl popover"
+                        id="partMachine"
+                      >
+                        <div class="px-4 py-3">
+                          <div class="flex items-start gap-x-2">
+                            <img
+                              src="../dist/icons/warning-filled-orange.svg"
+                              class="flex-shrink-0 w-4 h-4 whitespace-nowrap"
+                            />
+                            <div
+                              class="flex flex-col gap-2 text-sm text-cloudy-10"
+                            >
+                              <p>
+                                Data is missing. Unable to detect machine data
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-warning"
+                  >
+                    <div class="inline-flex items-center">
+                      <div class="text-editable">-</div>
+                      <img
+                        role="button"
+                        src="../dist/icons/warning-filled-orange.svg"
+                        class="w-3 h-3 ms-3 trigger"
+                        alt="warning-filled-orange"
+                        data-popover="#partMachine"
+                        data-placement="top-end"
+                      />
+                      <div
+                        class="z-[110] max-w-8 min-w-[218px] hidden mb-3 text-sm font-normal pt-[-40px] leading-normal text-left no-underline break-words text-wrap bg-cloudy-120 rounded-lg shadow-xl popover"
+                        id="partMachine"
+                      >
+                        <div class="px-4 py-3">
+                          <div class="flex items-start gap-x-2">
+                            <img
+                              src="../dist/icons/warning-filled-orange.svg"
+                              class="flex-shrink-0 w-4 h-4 whitespace-nowrap"
+                            />
+                            <div
+                              class="flex flex-col gap-2 text-sm text-cloudy-10"
+                            >
+                              <p>
+                                Data is missing. Unable to detect machine data
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable">
+                    0,0%
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- MODAL  -->
+    <!-- Dialog Alert Confirmation Cancel  -->
+    <div
+      id="confirmation-cancel-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[400px] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white shadow rounded-2xl">
+          <!-- Modal body -->
+          <div class="w-full p-4 space-y-6 md:p-8">
+            <div class="flex items-center justify-center">
+              <img src="../dist/icons/file-wrong.svg" alt="file-wrong" />
+            </div>
+            <div class="text-center">
+              <h2 class="text-2xl font-semibold text-cloudy-110">
+                Are you sure to leave without save the data?
+              </h2>
+            </div>
+            <div class="flex items-center w-full gap-4">
+              <button
+                class="w-full font-bold btn btn-sm btn-outline-yellow"
+                id="modalEditCancel"
+              >
+                Yes, Don't Save
+              </button>
+              <button
+                class="w-full font-bold btn btn-sm btn-yellow"
+                id="modalEditSave"
+              >
+                Save the Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast  -->
+    <div
+      id="myToast"
+      class="fixed hidden bottom-0 w-full md:px-8 my-4 px-2 md:mx-4 z-[99999] text-white toast"
+    >
+      <div
+        class="flex items-center w-full px-4 py-4 rounded-lg item-center bg-green-20 gap-x-3 toast-variant"
+      >
+        <div class="flex items-center gap-x-3">
+          <img
+            src="../dist/icons/check-green-rounded.svg"
+            class="toast-icon"
+            alt="check-green"
+          />
+          <span class="text-base text-cloudy-110 toast-text"
+            >Your data is succesfully updated!</span
+          >
+        </div>
+        <div class="ml-auto text-base text-cloudy-110 whitespace-nowrap">
+          Close in <span class="toast-time">3s</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jquery  -->
+    <script src="../plugins/jquery.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <!-- Popper  -->
+    <script src="../plugins/popper.min.js"></script>
+    <!-- Moment  -->
+    <script src="../plugins/moment/js/moment.js"></script>
+    <!-- Highcharts  -->
+    <script src="../plugins/highcharts/js/highcharts.js"></script>
+    <script src="../plugins/highcharts/js/exporting.js"></script>
+    <script src="../plugins/highcharts/js/export-data.js"></script>
+    <script src="../plugins/highcharts/js/accessibility.js"></script>
+    <!-- Datatables  -->
+    <script src="../plugins/datatable/js/dataTables.min.js"></script>
+    <!-- Main js  -->
+    <script src="../dist/js/main.js"></script>
+    <!-- DFRS js  -->
+    <script src="../dist/js/dfrs.js"></script>
+  </body>
+</html>

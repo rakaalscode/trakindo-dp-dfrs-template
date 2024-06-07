@@ -1016,7 +1016,6 @@ $(function () {
       toastTime.text(seconds + "s");
       if (seconds <= 0) {
         clearInterval(countdown); // Stop the countdown
-        // toast.hide(); // Hide the toast
         toast.toggleClass("hidden flex"); // Show the toast
       }
     }, 1000);

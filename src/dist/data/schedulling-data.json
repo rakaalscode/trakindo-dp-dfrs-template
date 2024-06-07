@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "reminder": "Initial Reminder",
+    "repeat_on": "Monthly on day",
+    "month": "Feb - Des",
+    "time": "09:00"
+  },
+  {
+    "id": 2,
+    "reminder": "Initial Reminder",
+    "repeat_on": "Annualy on 15 Jan",
+    "month": "Jan",
+    "time": "09:00"
+  },
+  {
+    "id": 3,
+    "reminder": "2nd Reminder",
+    "repeat_on": "Monthly on day 10",
+    "month": "Feb - Des",
+    "time": "09:00"
+  },
+  {
+    "id": 4,
+    "reminder": "2nd Reminder",
+    "repeat_on": "Annualy on 20 Jan",
+    "month": "Jan",
+    "time": "09:00"
+  }
+]

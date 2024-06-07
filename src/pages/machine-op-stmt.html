@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DFRS Report - Machine OP</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Open+Sans:wght@400;500;600;700;800&family=Roboto+Condensed:wght@400;500;600;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Flatpickr -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css"
+    />
+    <!-- Styles -->
+    <link rel="stylesheet" href="../dist/css/styles.css" />
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="../dist/css/app.css" />
+    <!-- Datatables -->
+    <link rel="stylesheet" href="../plugins/datatable/css/dataTables.min.css" />
+    <link rel="stylesheet" href="../dist/css/datatables-styles.css" />
+
+    <style></style>
+  </head>
+  <body class="font-roboto">
+    <div class="h-full">
+      <!-- HEADER  -->
+      <nav
+        class="fixed top-0 z-50 flex items-center w-full px-4 py-3 bg-white border border-b-[#DEDEDE] gap-x-2 md:px-8 md:py-6"
+      >
+        <img
+          src="../dist/img/trakindo-logo-2.png"
+          class="w-[122px] h-[30px] md:w-[165px] md:h-[42px]"
+          alt="trakindo-logo"
+        />
+        <div class="flex-1 ml-8">
+          <ul class="hidden gap-x-2 md:flex">
+            <li>
+              <a href="../pages/prime-product.html" class="nav-item">
+                GP Report
+              </a>
+            </li>
+            <li>
+              <a href="../pages/dfrs.html" class="nav-item active"
+                >DFRS Report</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="flex items-center h-full ml-auto gap-x-4">
+          <ul class="items-center hidden gap-x-4 md:flex">
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/setting.svg"
+                  class="w-8 h-8"
+                  alt="setting"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img
+                  src="../dist/icons/notification.svg"
+                  class="w-8 h-8"
+                  alt="notification"
+                />
+              </a>
+            </li>
+          </ul>
+          <div class="w-[1px] h-6 bg-cloudy-40 hidden md:block"></div>
+          <div
+            class="flex items-center cursor-pointer gap-x-4 trigger"
+            data-popover="#menuProfile"
+          >
+            <img src="../dist/img/profile.png" class="w-8 h-8" alt="profile" />
+            <div class="items-center hidden md:flex">
+              <div class="max-w-[70px] min-w-[70px]">
+                <p class="text-sm font-semibold truncate text-black-0">Aditi</p>
+                <p class="text-xs font-normal truncate text-cloudy-70">
+                  Statutory
+                </p>
+              </div>
+              <img
+                src="../dist/icons/fi_chevron-down.svg"
+                class="w-5 h-5"
+                alt="chevron"
+              />
+            </div>
+          </div>
+          <div
+            class="z-50 hidden w-[180px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+            id="menuProfile"
+          >
+            <div class="px-3 py-4 space-y-4">
+              <div class="flex flex-col space-y-2">
+                <div class="flex items-center gap-3 cursor-pointer group">
+                  <img
+                    src="../dist/icons/round-exit.svg"
+                    class="flex-shrink-0 whitespace-nowrap"
+                    alt="round-exit"
+                  />
+                  <span
+                    class="text-sm font-semibold text-black-0 group-hover:underline"
+                    >Log off</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!-- ASIDE NAVIGATION  -->
+      <aside
+        id="sidebar-menu"
+        class="fixed top-0 left-0 z-40 w-64 h-screen pt-[122px] transition-transform -translate-x-full border-r border-cloudy-50 bg-cloudy-10 md:-translate-x-0"
+        aria-label="Sidebar"
+      >
+        <div class="h-full pb-4 overflow-y-auto bg-cloudy-10">
+          <div class="mb-8 space-y-2">
+            <div
+              class="flex items-center text-cloudy-60 text-xs font-medium tracking-[1px] px-6 mb-2"
+            >
+              <span class="flex-1 whitespace-nowrap">DASHBOARD</span>
+              <button id="sidebarMenu">
+                <img
+                  src="../dist/icons/menu-open.svg"
+                  class="w-6 h-6 md:rotate-180"
+                  alt="menu-open"
+                />
+              </button>
+            </div>
+            <ul class="px-4 space-y-2 font-medium capitalize">
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="../pages/dfrs.html"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <img
+                      src="../dist/icons/database-table.svg"
+                      class="w-4 h-4 me-3"
+                      alt="database-table"
+                    />
+                    <span>Overview</span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="mb-8 space-y-2">
+            <div
+              class="flex items-center text-cloudy-60 text-xs font-medium tracking-[1px] px-6 mb-2"
+            >
+              <span class="flex-1 whitespace-nowrap">Template List</span>
+            </div>
+            <ul class="px-4 font-medium capitalize">
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="../pages/machine-op-stmt.html"
+                    class="flex items-center px-4 py-2 text-sm bg-white rounded text-cloudy-110"
+                  >
+                    <span class="flex-1">Machine Op. Stmt</span>
+                    <span class="label-rounded-orange"></span>
+                  </a>
+                  <div
+                    class="absolute top-0 w-1 h-full rounded-l-lg -right-4 bg-yellow-80"
+                  ></div>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">E&T Op. Stmt</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="../pages/parts-op-stmt.html"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Parts Op. Stmt</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Service Hrs</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Service Op. Stmt</span>
+                    <span class="label-rounded-orange"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Indirect Exp</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Other Exp</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+              <li>
+                <div class="relative w-full">
+                  <a
+                    href="#"
+                    class="flex items-center px-4 py-2 text-sm bg-transparent rounded text-cloudy-80"
+                  >
+                    <span class="flex-1">Avg Assets</span>
+                    <span class="label-rounded-green"></span>
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </aside>
+      <!-- NAV MENU  -->
+      <nav
+        class="fixed top-[57px] md:top-[91px] z-30 flex items-center w-full px-4 bg-cloudy-10 border border-b-[#DEDEDE] gap-x-2 md:px-8 py-3"
+      >
+        <div class="md:ml-[15.5rem] flex items-center gap-x-6">
+          <button
+            class="hidden px-3 font-bold btn btn-sm btn-outline-yellow"
+            id="cancelEdit"
+          >
+            Cancel
+          </button>
+          <button
+            class="px-3 font-bold btn btn-sm btn-outline-yellow"
+            id="editAllBtn"
+          >
+            Edit Mode
+          </button>
+        </div>
+        <div
+          class="relative flex items-center overflow-x-auto md:mr-6 md:ml-auto gap-x-6"
+        >
+          <button
+            class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto select-month"
+          >
+            <span class="selected-quater-data"></span>
+            <img
+              src="../dist/icons/warning-filled-orange.svg"
+              class="w-3 h-3 ms-2"
+              alt="warning-filled-orange"
+            />
+          </button>
+          <div class="h-4 w-[1px] flex-shrink-0 bg-cloudy-40"></div>
+          <div class="flex items-center gap-x-2 selected-month-q"></div>
+          <div class="h-4 w-[1px] flex-shrink-0 bg-cloudy-40"></div>
+        </div>
+        <div class="flex items-center">
+          <button
+            class="flex items-center text-base font-semibold text-black-100 whitespace-nowrap gap-x-2 trigger"
+            data-quarter=""
+            data-popover="#quaterSelect"
+          >
+            <span class="selected-quater">Q1 2022</span>
+            <img
+              src="../dist/icons/arrow-park-down.svg"
+              class="flex-shrink-0 w-4 h-4"
+              alt="arrow-park-down"
+            />
+          </button>
+          <div
+            class="z-50 hidden w-[200px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+            id="quaterSelect"
+          >
+            <div class="px-3 py-4 space-y-4">
+              <div class="flex flex-col space-y-2">
+                <div class="space-y-3">
+                  <label
+                    class="text-base font-medium capitalize text-secondary-90"
+                    >Select Quater</label
+                  >
+                  <div
+                    class="flex items-center p-2 py-1 border rounded-lg gap-x-4"
+                  >
+                    <select
+                      class="w-full p-2 pl-0 text-sm font-medium focus:outline-none"
+                      id="quarter"
+                    >
+                      <option value="Q1">Q1</option>
+                      <option value="Q2">Q2</option>
+                      <option value="Q3">Q3</option>
+                      <option value="Q4">Q4</option>
+                    </select>
+                    <div class="w-[1px] h-4 border border-cloudy-40"></div>
+
+                    <select
+                      class="p-2 text-sm font-medium ml focus:outline-none custom-arrow-select"
+                      id="yearQuater"
+                    ></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main id="main-content" class="pt-[140px] md:ml-64 md:pt-[155px]">
+        <div class="relative h-full p-4 md:p-6">
+          <div id="loadingData"></div>
+          <!-- SUBMIT ALERT  -->
+          <!-- <div
+            class="flex items-center w-full p-4 mb-8 rounded-lg item-center bg-orange-10 gap-x-6 md:gap-x-3"
+          >
+            <div class="flex items-center gap-x-3">
+              <img
+                src="../dist/icons/warning-filled-orange.svg"
+                class="w-6 h-6"
+                alt="warning-filled-orange"
+              />
+              <span class="text-sm md:text-base text-cloudy-110"
+                >Waiting for you to submit MARC and Part Online</span
+              >
+            </div>
+            <div class="ml-auto">
+              <button
+                class="flex items-center text-base font-semibold text-orange-80 whitespace-nowrap gap-x-4"
+                data-modal-target="submit-data-collection-modal"
+                data-modal-toggle="submit-data-collection-modal"
+              >
+                Submit Now
+                <img
+                  src="../dist/icons/arrow-right-orange.svg"
+                  class="hidden md:block"
+                  alt="arrow-right-orange"
+                />
+              </button>
+            </div>
+          </div> -->
+          <!-- TITLE  -->
+          <h1
+            class="text-cloudy-110 text-2xl md:text-[32px] font-semibold mb-8"
+          >
+            M - Machine Operating Statement
+          </h1>
+          <!-- TABLE CONTENT -->
+          <div class="relative overflow-x-auto">
+            <table
+              class="w-full overflow-hidden text-sm text-left border-separate rounded-lg border-spacing-0 text-secondary-90"
+            >
+              <thead class="text-sm font-medium bg-cloudy-30">
+                <tr>
+                  <th
+                    class="px-4 py-3 border rounded-tl-lg whitespace-nowrap w-[20px]"
+                  >
+                    #
+                  </th>
+                  <th class="px-4 py-3 border whitespace-nowrap">New Parts</th>
+                  <th class="px-4 py-3 border whitespace-nowrap">Sales</th>
+                  <th class="px-4 py-3 border whitespace-nowrap">
+                    Total Cost of Sales
+                  </th>
+                  <th class="px-4 py-3 border whitespace-nowrap">Core</th>
+                  <th class="px-4 py-3 border whitespace-nowrap">
+                    Outbound Transportation
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">1</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                    Total New Cat Machines
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    945,659,163.47
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    869,035,847.10
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    837,975,059.20
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    11
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">2</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    BCP
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">3</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    Excavation & Earthmoving
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">3</td>
+                  <td class="p-4 pl-8 text-left border whitespace-nowrap">
+                    Mining
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-right border whitespace-nowrap editable "
+                  >
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                  <td class="p-4 text-right border whitespace-nowrap editable body-yellow">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">5</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                    New Cat Sales to SLD Dealers
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">6</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                  New Non-Cat Machines
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">7</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                  New Cat Machines RPO
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">8</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                  New Non-Cat Machines RPO
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">9</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap"
+                  >
+                  Other
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-yellow"
+                  >
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td class="p-4 border whitespace-nowrap">10</td>
+                  <td
+                    class="p-4 text-base font-semibold text-left border whitespace-nowrap body-cloudy"
+                  >
+                  Total New Machines
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-cloudy"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-cloudy"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-cloudy"
+                  >
+                    -
+                  </td>
+                  <td
+                    class="p-4 text-base font-semibold text-right border whitespace-nowrap editable body-cloudy"
+                  >
+                    -
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- MODAL  -->
+    <!-- Dialog Alert Confirmation Cancel  -->
+    <div
+      id="confirmation-cancel-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[400px] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white shadow rounded-2xl">
+          <!-- Modal body -->
+          <div class="w-full p-4 space-y-6 md:p-8">
+            <div class="flex items-center justify-center">
+              <img src="../dist/icons/file-wrong.svg" alt="file-wrong" />
+            </div>
+            <div class="text-center">
+              <h2 class="text-2xl font-semibold text-cloudy-110">
+                Are you sure to leave without save the data?
+              </h2>
+            </div>
+            <div class="flex items-center w-full gap-4">
+              <button
+                class="w-full font-bold btn btn-sm btn-outline-yellow"
+                id="modalEditCancel"
+              >
+                Yes, Don't Save
+              </button>
+              <button
+                class="w-full font-bold btn btn-sm btn-yellow"
+                id="modalEditSave"
+              >
+                Save the Data
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Submit Data Collection  -->
+    <div
+      id="submit-data-collection-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between px-4 py-3 border-b rounded-t bg-cloudy-20 md:px-6"
+          >
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="submit-data-collection-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div
+            class="w-full h-full p-4 md:p-6 relative space-y-4 overflow-x-auto min-h-[530px]"
+          >
+            <div
+              class="flex flex-col items-start gap-3 md:items-center md:flex-row"
+            >
+              <h3 class="text-xl font-semibold text-cloudy-110">
+                Submit Data Collection
+              </h3>
+              <div
+                class="flex items-center w-full md:w-auto md:ml-auto gap-x-4"
+              >
+                <button
+                  class="w-full px-4 py-2 font-bold btn btn-sm btn-outline-yellow"
+                  data-modal-hide="submit-data-collection-modal"
+                  data-modal-target="submit-log-history-modal"
+                  data-modal-toggle="submit-log-history-modal"
+                >
+                  Log History
+                  <img
+                    src="../dist/icons/history-yellow.svg"
+                    class="w-5 h-5 ms-2"
+                    alt="history-yellow"
+                  />
+                </button>
+                <button
+                  class="flex items-center flex-shrink-0 px-4 py-2 font-bold btn btn-sm btn-outline-yellow"
+                >
+                  <img
+                    src="../dist/icons/setting-orange.svg"
+                    class="flex w-5 h-5"
+                    alt="history-yellow"
+                  />
+                </button>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative flex items-center mb-4 overflow-x-auto gap-x-3 filter"
+              >
+                <select
+                  name="monthSubmit"
+                  id="monthSubmit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 disabled:text-cloudy-70 custom-select"
+                >
+                  <option value="">Select month</option>
+                  <option value="jan" selected>January</option>
+                  <option value="feb">February</option>
+                  <option value="may">May</option>
+                </select>
+                <select
+                  name="yearSubmit"
+                  id="yearSubmit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 disabled:text-cloudy-70 custom-select"
+                  disabled
+                >
+                  <option value="">Select year</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+              <div class="mb-6">
+                <div
+                  class="inline-flex items-center w-full overflow-x-auto gap-x-2"
+                >
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-secondary w-full md:w-auto filter-submit-data"
+                    data-value=""
+                  >
+                    All
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="machine"
+                  >
+                    Machine Op. Stmt
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="e&t"
+                  >
+                    E&T Op. Stmt
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="service"
+                  >
+                    Service Op. Stmt
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="parts"
+                  >
+                    Parts Op. Stmt
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="service hour"
+                  >
+                    Service Hrs
+                  </button>
+                  <button
+                    class="px-4 py-2 rounded-[32px] btn btn-sm btn-transparent w-full md:w-auto filter-submit-data"
+                    data-value="indirect exp"
+                  >
+                    Indirect Exp
+                  </button>
+                </div>
+              </div>
+              <table id="submitCollectionTable" class="table-custom">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">Requested Data</th>
+                    <th class="whitespace-nowrap">PIC</th>
+                    <th class="whitespace-nowrap">Status</th>
+                    <th class="whitespace-nowrap">Submission</th>
+                    <th class="whitespace-nowrap"></th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Submit Log History  -->
+    <div
+      id="submit-log-history-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between px-6 py-2 border-b rounded-t bg-cloudy-20"
+          >
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
+              data-modal-hide="submit-log-history-modal"
+              data-modal-target="submit-data-collection-modal"
+              data-modal-toggle="submit-data-collection-modal"
+            >
+              <img
+                src="../dist/icons/arrowBackneclos.svg"
+                class="w-5 h-5 rotate-180"
+                alt="back"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="submit-log-history-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div
+            class="w-full h-full p-4 md:p-6 relative space-y-4 overflow-x-auto min-h-[530px]"
+          >
+            <div class="flex items-center">
+              <h3 class="text-xl font-semibold text-cloudy-110">Log History</h3>
+            </div>
+            <div>
+              <div
+                class="relative flex items-center mb-4 overflow-x-auto gap-x-3 filter"
+              >
+                <select
+                  name="monthSubmitLog"
+                  id="monthSubmitLog"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                >
+                  <option value="">Select month</option>
+                  <option value="jan" selected>January</option>
+                  <option value="feb">February</option>
+                  <option value="may">May</option>
+                </select>
+                <select
+                  name="yearSubmitLog"
+                  id="yearSubmitLog"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                >
+                  <option value="">Select year</option>
+                  <option value="2022" selected>2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+              <table id="submitLogHistoryTable" class="table-custom">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">Date & Time</th>
+                    <th class="whitespace-nowrap">Action</th>
+                    <th class="whitespace-nowrap">Statutory</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Submit Edit Data  -->
+    <div
+      id="submit-edit-data-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between px-4 py-3 border-b rounded-t bg-cloudy-20 md:px-6"
+          >
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
+              data-modal-hide="submit-edit-data-modal"
+              data-modal-target="submit-data-collection-modal"
+              data-modal-toggle="submit-data-collection-modal"
+            >
+              <img
+                src="../dist/icons/arrowBackneclos.svg"
+                class="w-5 h-5 rotate-180"
+                alt="back"
+              />
+              <span class="sr-only">Back modal</span>
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="submit-edit-data-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div
+            class="w-full h-full p-4 md:p-6 relative space-y-4 overflow-x-auto min-h-[530px]"
+          >
+            <div
+              class="flex flex-col items-start gap-3 md:flex-row md:items-center"
+            >
+              <h3 class="text-xl font-semibold text-cloudy-110">Edit Data</h3>
+              <div
+                class="flex items-center w-full md:w-auto md:ml-auto gap-x-4"
+              >
+                <button
+                  class="w-full px-4 py-2 font-bold btn btn-sm btn-outline-yellow trigger"
+                  data-popover="#quickEditSubmission"
+                >
+                  Quick Edit
+                  <img
+                    src="../dist/icons/history-yellow.svg"
+                    class="w-5 h-5 ms-2"
+                    alt="history-yellow"
+                  />
+                </button>
+                <div
+                  class="z-[110] hidden w-[288px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+                  id="quickEditSubmission"
+                >
+                  <div class="p-6 pb-0">
+                    <div class="space-y-4">
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <h4 class="text-lg font-semibold text-gray-900">
+                          Edit Data
+                        </h4>
+                      </div>
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
+                        >
+                          <img
+                            src="../dist/icons/download-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="download-yellow"
+                          />
+                          Download Table
+                        </div>
+                      </div>
+                      <div class="pb-4">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
+                          id="uploadMainEdit"
+                        >
+                          <img
+                            src="../dist/icons/file-upload-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="file-upload-yellow"
+                          />
+                          Submit Edited Data
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="px-6 py-3 text-sm font-normal border-t rounded-bl-lg rounded-br-lg bg-cloudy-20 border-t-cloudy-40 text-cloudy-90"
+                  >
+                    Need tutorial?
+                    <span
+                      class="text-sm font-bold text-[#D79900]"
+                      role="button"
+                      id="tutorialEditMain"
+                      >Click here</span
+                    >
+                  </div>
+                </div>
+                <button
+                  class="font-bold btn btn-sm btn-yellow"
+                  data-modal-hide="submit-edit-data-modal"
+                  data-modal-target="submit-data-collection-modal"
+                  data-modal-toggle="submit-data-collection-modal"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative flex items-center mb-4 overflow-x-auto gap-x-3 filter"
+              >
+                <select
+                  name="partSubmitEdit"
+                  id="partSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                  disabled
+                >
+                  <option value="cost_part">Costs Parts</option>
+                </select>
+                <select
+                  name="monthSubmitEdit"
+                  id="monthSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                  disabled
+                >
+                  <option value="jan">January</option>
+                  <option value="feb">February</option>
+                  <option value="may">May</option>
+                </select>
+                <select
+                  name="yearSubmitEdit"
+                  id="yearSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                  disabled
+                >
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+              <table id="submitEditDataTable" class="table-custom">
+                <thead>
+                  <tr>
+                    <th class="whitespace-nowrap">Billing Document</th>
+                    <th class="whitespace-nowrap">GL Account Cost</th>
+                    <th class="whitespace-nowrap">Amount in JC</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Submit Manual Edit Data  -->
+    <div
+      id="submit-manual-edit-data-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between px-4 py-3 border-b rounded-t bg-cloudy-20 md:px-6"
+          >
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900"
+              data-modal-hide="submit-manual-edit-data-modal"
+              data-modal-target="submit-data-collection-modal"
+              data-modal-toggle="submit-data-collection-modal"
+            >
+              <img
+                src="../dist/icons/arrowBackneclos.svg"
+                class="w-5 h-5 rotate-180"
+                alt="back"
+              />
+              <span class="sr-only">Back modal</span>
+            </button>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto"
+              data-modal-hide="submit-manual-edit-data-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div
+            class="w-full h-full p-4 md:p-6 relative space-y-4 overflow-x-auto min-h-[530px]"
+          >
+            <div
+              class="flex flex-col items-start gap-3 md:items-center md:flex-row"
+            >
+              <h3 class="text-xl font-semibold text-cloudy-110">
+                Manual Submission
+              </h3>
+              <div
+                class="flex items-center w-full md:w-auto md:ml-auto gap-x-4"
+              >
+                <button
+                  class="w-full px-4 py-2 font-bold btn btn-sm btn-outline-yellow trigger"
+                  data-popover="#quickSubmission"
+                >
+                  Quick Submission
+                  <img
+                    src="../dist/icons/history-yellow.svg"
+                    class="w-5 h-5 ms-2"
+                    alt="history-yellow"
+                  />
+                </button>
+                <div
+                  class="z-[110] hidden w-[288px] mb-3 text-sm font-normal -pt-10 leading-normal text-left no-underline break-words bg-white border rounded-lg shadow-xl border-cloudy-30 popover"
+                  id="quickSubmission"
+                >
+                  <div class="p-6 pb-0">
+                    <div class="space-y-4">
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <h4 class="text-lg font-semibold text-gray-900">
+                          Quick Submission
+                        </h4>
+                      </div>
+                      <div class="pb-4 border-b border-b-cloudy-40">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
+                        >
+                          <img
+                            src="../dist/icons/download-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="download-yellow"
+                          />
+                          Download Table
+                        </div>
+                      </div>
+                      <div class="pb-4">
+                        <div
+                          class="flex items-center text-base font-semibold text-black-0"
+                          role="button"
+                          id="uploadMainManualEdit"
+                        >
+                          <img
+                            src="../dist/icons/file-upload-yellow.svg"
+                            class="w-6 h-6 mr-3"
+                            alt="file-upload-yellow"
+                          />
+                          Submit Edited Data
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="px-6 py-3 text-sm font-normal border-t rounded-bl-lg rounded-br-lg bg-cloudy-20 border-t-cloudy-40 text-cloudy-90"
+                  >
+                    Need tutorial?
+                    <span
+                      class="text-sm font-bold text-[#D79900]"
+                      role="button"
+                      id="tutorialManualMain"
+                      >Click here</span
+                    >
+                  </div>
+                </div>
+                <button
+                  class="font-bold btn btn-sm btn-yellow"
+                  data-modal-hide="submit-manual-edit-data-modal"
+                  data-modal-target="submit-data-collection-modal"
+                  data-modal-toggle="submit-data-collection-modal"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+            <div>
+              <div
+                class="relative flex items-center mb-4 overflow-x-auto gap-x-3 filter"
+              >
+                <select
+                  name="partSubmitEdit"
+                  id="partSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                >
+                  <option value="cost_part">Total Marc</option>
+                </select>
+                <select
+                  name="monthSubmitEdit"
+                  id="monthSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                  disabled
+                >
+                  <option value="jan">January</option>
+                  <option value="feb">February</option>
+                  <option value="may">May</option>
+                </select>
+                <select
+                  name="yearSubmitEdit"
+                  id="yearSubmitEdit"
+                  class="block px-4 py-2 text-sm font-normal bg-white border rounded-lg border-cloudy-40 text-cloudy-110 disabled:bg-cloudy-20 custom-select"
+                  disabled
+                >
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <div
+                  class="flex items-center w-full p-3 rounded-lg bg-blue-20 gap-x-4"
+                >
+                  <img
+                    src="../dist/icons/information-filled-blue.svg"
+                    alt="information-filled-blue"
+                  />
+                  Please fill out yellow box
+                </div>
+              </div>
+              <div class="relative overflow-x-auto">
+                <table
+                  id="submitManualEditDataTable"
+                  class="w-full overflow-hidden text-sm text-left border-separate rounded-lg border-spacing-0 text-secondary-90"
+                >
+                  <thead class="text-sm font-medium bg-cloudy-30">
+                    <tr>
+                      <th
+                        class="px-4 py-3 border rounded-tl-lg whitespace-nowrap"
+                      >
+                        Summary of MARC Contracts
+                      </th>
+                      <th class="px-4 py-3 border whitespace-nowrap">Sales</th>
+                      <th class="px-4 py-3 border whitespace-nowrap">
+                        Cost of Sales
+                      </th>
+                      <th class="px-4 py-3 border whitespace-nowrap">
+                        Gross Profil
+                      </th>
+                      <th class="px-4 py-3 border whitespace-nowrap">
+                        % Profit
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="p-4 border">Part</td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-4 border">Labo</td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-4 border">Variant</td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="p-4 border rounded-bl-lg bg-cloudy-10">
+                        Total MARC
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 text-right border bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full text-right bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                      <td class="p-4 border rounded-br-lg bg-yellow-0">
+                        <input
+                          type="text"
+                          class="w-full bg-transparent"
+                          placeholder="-"
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Tutorial  -->
+    <div
+      id="tutorial-modal"
+      tabindex="-1"
+      aria-hidden="true"
+      class="modal hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-[50rem] max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 border-b rounded-t bg-cloudy-20 md:p-5"
+          >
+            <h3 class="text-lg font-semibold text-cloudy-110">
+              Quick Submission Tutorial
+            </h3>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto close-tutorial-modal-2"
+              data-modal-hide="tutorial-modal"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <!-- Modal body -->
+          <div class="w-full p-4 space-y-4 md:p-6">
+            <div class="relative overflow-x-auto">
+              <div class="flex items-center justify-between gap-x-3">
+                <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                  <button
+                    class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                  >
+                    STEP 1
+                  </button>
+                  <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                    Click download <br />
+                    data
+                  </h3>
+                  <div
+                    class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                  >
+                    Image content !
+                  </div>
+                </div>
+                <img
+                  src="../dist/icons/dot-arrow.svg"
+                  class="w-5"
+                  alt="dot-arrow"
+                />
+                <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                  <button
+                    class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                  >
+                    STEP 2
+                  </button>
+                  <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                    Click download <br />
+                    data
+                  </h3>
+                  <div
+                    class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                  >
+                    Image content !
+                  </div>
+                </div>
+                <img
+                  src="../dist/icons/dot-arrow.svg"
+                  class="w-5"
+                  alt="dot-arrow"
+                />
+                <div class="p-4 space-y-5 text-white bg-[#262E3E] rounded-2xl">
+                  <button
+                    class="text-blue-0 bg-blue-80 rounded-[32px] px-3 py-1.5 text-xs font-bold inline-flex"
+                  >
+                    STEP 3
+                  </button>
+                  <h3 class="text-cloudy-10 text-[22px] font-semibold">
+                    Click download <br />
+                    data
+                  </h3>
+                  <div
+                    class="w-[176px] h-[228px] bg-black-0 flex items-center justify-center rounded-2xl"
+                  >
+                    Image content !
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal footer -->
+          <div
+            class="flex items-center px-4 py-3 border-t border-gray-200 rounded-b md:px-6 md:py-4"
+          >
+            <button
+              data-modal-hide="tutorial-modal"
+              type="button"
+              class="ml-auto font-bold btn btn-sm btn-yellow close-tutorial-modal-2"
+            >
+              Ok, Undestand
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dialog Dropzone  -->
+    <div
+      id="dropzone-submit-modal-2"
+      tabindex="-1"
+      aria-hidden="true"
+      class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[99] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+    >
+      <div class="relative w-full max-w-3xl max-h-full p-4">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+          <!-- Modal header -->
+          <div
+            class="flex items-center justify-between p-4 rounded-t-xl bg-cloudy-20 md:p-5"
+          >
+            <h3 class="text-lg font-semibold text-cloudy-110">
+              Submit Edited Data
+            </h3>
+            <button
+              type="button"
+              class="inline-flex items-center justify-center w-8 h-8 text-sm text-gray-400 bg-transparent rounded-lg hover:bg-gray-200 hover:text-gray-900 ms-auto dropzone-submit-modal-2"
+              data-modal-hide="dropzone-submit-modal-2"
+            >
+              <img
+                src="../dist/icons/close-hero.svg"
+                class="w-5 h-5"
+                alt="close-hero"
+              />
+              <span class="sr-only">Close modal</span>
+            </button>
+          </div>
+          <form id="uploadFormEditData" enctype="multipart/form-data">
+            <!-- Modal body -->
+            <div class="p-4 space-y-4 md:p-6">
+              <div
+                class="flex items-center justify-center w-full"
+                id="dropzone-area"
+              >
+                <label
+                  for="dropzone-file"
+                  class="flex dropzone-default dropzone"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <img
+                      src="../dist/icons/upload-cloud.svg"
+                      class="upload-label-img"
+                      alt="upload-cloud"
+                    />
+                    <div class="text-center">
+                      <p
+                        class="mb-1 text-lg font-semibold text-cloudy-110 upload-label-title"
+                      >
+                        Drag and Drop
+                      </p>
+                      <p
+                        class="text-xs font-normal text-gray-500 upload-label-desc"
+                      >
+                        Only upload in .xlxs
+                      </p>
+                    </div>
+                    <div
+                      class="font-bold btn btn-sm btn-yellow upload-label-btn"
+                    >
+                      Browse file
+                    </div>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+
+                <!-- upload  -->
+                <label
+                  for="dropzone-file"
+                  class="hidden dropzone-upload dropzone-process"
+                >
+                  <div
+                    class="flex flex-col items-center justify-center pt-5 pb-6 space-y-3"
+                  >
+                    <div
+                      class="px-6 py-4 space-y-6 text-center bg-cloudy-10 rounded-2xl"
+                    >
+                      <div class="flex items-center justify-center w-full">
+                        <img
+                          src="../dist/icons/xls.png"
+                          class="w-10 h-10"
+                          alt="xls"
+                        />
+                      </div>
+                      <p
+                        class="text-sm font-semibold text-cloudy-110 file-name"
+                      ></p>
+                      <span
+                        class="text-xs font-normal text-gray-500 file-size"
+                      ></span>
+                    </div>
+                    <p class="text-xs font-normal text-gray-500">
+                      Uploading <span class="file-process"></span>
+                      <span class="file-time"></span>
+                    </p>
+                    <div
+                      class="flex w-full h-2 overflow-hidden rounded-full bg-cloudy-20"
+                      role="progressbar"
+                    >
+                      <div
+                        class="flex flex-col justify-center overflow-hidden text-xs text-center text-white transition duration-500 rounded-full bg-yellow-80 whitespace-nowrap"
+                        id="progressBar"
+                      ></div>
+                    </div>
+                    <button
+                      type="button"
+                      class="font-bold btn btn-sm btn-outline-yellow"
+                      id="cancelUpload"
+                    >
+                      Cancel Upload
+                    </button>
+                  </div>
+                  <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+              </div>
+            </div>
+            <!-- Modal footer -->
+            <div
+              class="flex items-center px-4 py-3 border-t border-gray-200 rounded-b-xl md:px-6 md:py-4"
+            >
+              <div class="flex items-center">
+                <img
+                  src="../dist/icons/warning-orange.svg"
+                  class="w-3.5 h-3.5 mr-2"
+                  alt="warning-orange"
+                />
+                <span class="text-sm font-normal text-cloudy-90"
+                  >Please do not add or delete table column in the template form
+                  otherwise it'll be failed</span
+                >
+              </div>
+
+              <button
+                type="submit"
+                class="ml-auto font-bold btn btn-sm btn-yellow"
+                disabled
+                id="uploadBtnEditData"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast  -->
+    <div
+      id="myToast"
+      class="fixed hidden bottom-0 w-full md:px-8 my-4 px-2 md:mx-4 z-[99999] text-white toast"
+    >
+      <div
+        class="flex items-center w-full px-4 py-4 rounded-lg item-center bg-green-20 gap-x-3 toast-variant"
+      >
+        <div class="flex items-center gap-x-3">
+          <img
+            src="../dist/icons/check-green-rounded.svg"
+            class="toast-icon"
+            alt="check-green"
+          />
+          <span class="text-base text-cloudy-110 toast-text"
+            >Your data is succesfully updated!</span
+          >
+        </div>
+        <div class="ml-auto text-base text-cloudy-110 whitespace-nowrap">
+          Close in <span class="toast-time">3s</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Jquery  -->
+    <script src="../plugins/jquery.min.js"></script>
+    <!-- Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <!-- Popper  -->
+    <script src="../plugins/popper.min.js"></script>
+    <!-- Moment  -->
+    <script src="../plugins/moment/js/moment.js"></script>
+    <!-- Highcharts  -->
+    <script src="../plugins/highcharts/js/highcharts.js"></script>
+    <script src="../plugins/highcharts/js/exporting.js"></script>
+    <script src="../plugins/highcharts/js/export-data.js"></script>
+    <script src="../plugins/highcharts/js/accessibility.js"></script>
+    <!-- Datatables  -->
+    <script src="../plugins/datatable/js/dataTables.min.js"></script>
+    <!-- Main js  -->
+    <script src="../dist/js/main.js"></script>
+    <!-- DFRS js  -->
+    <script src="../dist/js/dfrs.js"></script>
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Table and Breadcrumb</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+      .breadcrumb {
+        list-style: none;
+        display: flex;
+      }
+      .breadcrumb li {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .breadcrumb li:not(:last-child)::after {
+        content: ">";
+        margin-left: 10px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+      tr.selected {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="breadcrumb">
+      <li data-level="all" data-name="All Data">All Data</li>
+    </ul>
+
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Machine Model</th>
+          <th>YTD</th>
+          <th>MTD</th>
+          <th>GP Plan</th>
+          <th>GP Trans</th>
+          <th>GP Actual</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Initial table content will be populated by jQuery -->
+      </tbody>
+    </table>
+
+    <script>
+      $(document).ready(function () {
+        // Data structure
+        var data = [
+          {
+            id: 1,
+            machine_model: "All 320 + 323",
+            ytd: "88.4 M",
+            mtd: "10.8 M",
+            gp_plan: "8.0%",
+            gp_trans: "8.0%",
+            gp_actual: "8.0%",
+            date: "01-01-2023",
+            details: [
+              {
+                id: 1,
+                machine_model: "All 313",
+                ytd: "88.4 M",
+                mtd: "10.8 M",
+                gp_plan: "8.0%",
+                gp_trans: "8.0%",
+                gp_actual: "8.0%",
+                date: "02-01-2023",
+              },
+              {
+                id: 1,
+                machine_model: "30.5-307.5",
+                ytd: "88.4 M",
+                mtd: "10.8 M",
+                gp_plan: "8.0%",
+                gp_trans: "8.0%",
+                gp_actual: "8.0%",
+                date: "03-01-2023",
+              },
+            ],
+          },
+          {
+            id: 2,
+            machine_model: "All 313",
+            ytd: "88.4 M",
+            mtd: "10.8 M",
+            gp_plan: "8.0%",
+            gp_trans: "8.0%",
+            gp_actual: "8.0%",
+            date: "02-01-2023",
+          },
+        ];
+
+        // Function to populate table
+        function populateTable(dataArray) {
+          var content = dataArray
+            .map(function (item) {
+              return `<tr data-details='${JSON.stringify(item.details || [])}'>
+                      <td>${item.machine_model}</td>
+                      <td>${item.ytd}</td>
+                      <td>${item.mtd}</td>
+                      <td>${item.gp_plan}</td>
+                      <td>${item.gp_trans}</td>
+                      <td>${item.gp_actual}</td>
+                      <td>${item.date}</td>
+                  </tr>`;
+            })
+            .join("");
+          $("#data-table tbody").html(content);
+        }
+
+        // Function to update breadcrumb
+        function updateBreadcrumb(levels) {
+          var breadcrumb = $(".breadcrumb");
+          breadcrumb.empty();
+          var breadcrumbMap = {};
+          levels.forEach(function (level) {
+            if (level.level === "details" && !breadcrumbMap[level.name]) {
+              breadcrumbMap[level.name] = true;
+              breadcrumb.append(
+                `<li data-level="${level.level}" data-index="${level.index}">${level.name}</li>`
+              );
+            } else if (level.level !== "details") {
+              breadcrumb.append(
+                `<li data-level="${level.level}" data-index="${level.index}">${level.name}</li>`
+              );
+            }
+          });
+        }
+
+        // Initial table population
+        populateTable(data);
+
+        // Table row click event
+        $("#data-table").on("click", "tr", function () {
+          // Remove previously selected row highlight
+          $("#data-table tr").removeClass("selected");
+
+          // Highlight the selected row
+          $(this).addClass("selected");
+
+          var details = $(this).data("details");
+          var machine_model = $(this).find("td").first().text();
+          var breadcrumbLevels = $(".breadcrumb li")
+            .map(function () {
+              return {
+                level: $(this).data("level"),
+                index: $(this).data("index"),
+                name: $(this).text(),
+              };
+            })
+            .get();
+          if (details && details.length > 0) {
+            breadcrumbLevels.push({
+              level: "details",
+              index: null,
+              name: machine_model,
+            });
+          }
+          updateBreadcrumb(breadcrumbLevels);
+
+          if (details && details.length > 0) {
+            populateTable(details);
+          }
+        });
+
+        // Breadcrumb click event
+        $(".breadcrumb").on("click", "li", function () {
+          var level = $(this).data("level");
+          var index = $(this).data("index");
+          var breadcrumbLevels = $(".breadcrumb li")
+            .map(function () {
+              return {
+                level: $(this).data("level"),
+                index: $(this).data("index"),
+                name: $(this).text(),
+              };
+            })
+            .get();
+          var clickedIndex = breadcrumbLevels.findIndex(function (b) {
+            return b.level === level && b.index === index;
+          });
+          breadcrumbLevels = breadcrumbLevels.slice(0, clickedIndex + 1);
+          updateBreadcrumb(breadcrumbLevels);
+
+          if (level === "all") {
+            populateTable(data);
+          } else {
+            var parentData = breadcrumbLevels
+              .slice(1, -1)
+              .reduce(function (acc, b) {
+                return acc.find(function (item) {
+                  return item.machine_model === b.name;
+                }).details;
+              }, data);
+            populateTable(parentData.find(function (item) {}).details);
+            populateTable(
+              parentData.find(function (item) {
+                return (
+                  item.machine_model ===
+                  breadcrumbLevels[breadcrumbLevels.length - 1].name
+                );
+              }).details || parentData
+            );
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
