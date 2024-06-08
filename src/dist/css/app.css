@@ -1029,16 +1029,16 @@ video {
   margin-top: 10rem;
 }
 
+.mt-8 {
+  margin-top: 2rem;
+}
+
 .mt-\[67px\] {
   margin-top: 67px;
 }
 
 .mt-auto {
   margin-top: auto;
-}
-
-.mt-8 {
-  margin-top: 2rem;
 }
 
 .block {
@@ -1910,6 +1910,11 @@ video {
   background-color: rgb(189 234 190 / var(--tw-bg-opacity));
 }
 
+.bg-orange-10 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(250 243 238 / var(--tw-bg-opacity));
+}
+
 .bg-orange-70 {
   --tw-bg-opacity: 1;
   background-color: rgb(244 131 51 / var(--tw-bg-opacity));
@@ -1952,11 +1957,6 @@ video {
 .bg-yellow-80 {
   --tw-bg-opacity: 1;
   background-color: rgb(253 186 18 / var(--tw-bg-opacity));
-}
-
-.bg-orange-10 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 243 238 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-40 {
@@ -2315,6 +2315,11 @@ video {
   color: rgb(75 82 98 / var(--tw-text-opacity));
 }
 
+.text-orange-80 {
+  --tw-text-opacity: 1;
+  color: rgb(242 109 15 / var(--tw-text-opacity));
+}
+
 .text-secondary-90 {
   --tw-text-opacity: 1;
   color: rgb(16 24 31 / var(--tw-text-opacity));
@@ -2332,11 +2337,6 @@ video {
 .text-yellow-90 {
   --tw-text-opacity: 1;
   color: rgb(206 142 0 / var(--tw-text-opacity));
-}
-
-.text-orange-80 {
-  --tw-text-opacity: 1;
-  color: rgb(242 109 15 / var(--tw-text-opacity));
 }
 
 .underline {
@@ -2637,6 +2637,19 @@ select.custom-arrow-select:not([size]) {
   background-color: rgb(246 248 251 / var(--tw-bg-opacity));
 }
 
+.flatpickr-monthSelect-month.selected,
+.flatpickr-monthSelect-month.startRange,
+.flatpickr-monthSelect-month.endRange {
+  background-color: #fdba12;
+  box-shadow: none;
+  color: #fff;
+  border-color: #fdba12;
+}
+
+.flatpickr-monthSelect-month.today {
+  border-color: #fdba12;
+}
+
 .last\:rounded-br-lg:last-child {
   border-bottom-right-radius: 0.5rem;
 }
@@ -2771,6 +2784,10 @@ select.custom-arrow-select:not([size]) {
     margin-right: 1.5rem;
   }
 
+  .md\:ms-1 {
+    margin-inline-start: 0.25rem;
+  }
+
   .md\:mt-\[91px\] {
     margin-top: 91px;
   }
@@ -2842,14 +2859,14 @@ select.custom-arrow-select:not([size]) {
     gap: 2rem;
   }
 
-  .md\:gap-x-8 {
-    -moz-column-gap: 2rem;
-         column-gap: 2rem;
-  }
-
   .md\:gap-x-3 {
     -moz-column-gap: 0.75rem;
          column-gap: 0.75rem;
+  }
+
+  .md\:gap-x-8 {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
   }
 
   .md\:space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -2902,13 +2919,13 @@ select.custom-arrow-select:not([size]) {
     padding-top: 175px;
   }
 
+  .md\:text-\[32px\] {
+    font-size: 32px;
+  }
+
   .md\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
-  }
-
-  .md\:text-\[32px\] {
-    font-size: 32px;
   }
 }
 

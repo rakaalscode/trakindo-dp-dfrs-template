@@ -1,7 +1,7 @@
 $(function () {
   let ppModelMachineChartDetailTable = "../dist/data/machine-detail.json";
-  let ppModelMachineDataTable = "../dist/data/machine-data-list.json";
-  let ppModelEngineDataTable = "../dist/data/pp-engine-data-list.json";
+  let psIndustryPartDataTable = "../dist/data/ps-part-data-list.json";
+  let psIndustryServiceDataTable = "../dist/data/ps-service-data-list.json";
 
   let loadingTable = `
   <div
@@ -42,40 +42,34 @@ $(function () {
     altInput: true,
   });
 
-  // ===== PP MODEL MACHINE DATA =====
-  // PP MODEL MACHINE SERIES DATA
-  let ppModelMachineCategories = [
-    "Jan 24",
-    "Feb 24",
-    "Mar 24",
-    "Apr 24",
-    "Mei 24",
+  // ===== PC INDUSTRY DATA =====
+  // PC INDUSTRY PART SERIES DATA
+  let psIndustryPartCategories = [
     "Jun 24",
+    "Jul 24",
+    "Aug 24",
+    "Sep 24",
+    "Oct 24",
+    "Nov 24",
   ];
-  let ppModelMachineSeries = [
+  let psIndustryPartSeries = [
     {
       name: "Total YTD",
-      data: [11.0, 14.0, 9.0, 14.0, 13.0, 16.0],
+      data: [0.3, 0.4, 0.2, 0.5, 0.4, 0.6],
       stack: "ytd",
       color: "#FDBA12",
     },
     {
       name: "Total MTD",
-      data: [2.0, 2.0, 2.0, 2.0, 2.0, 3.0],
+      data: [0.2, 0.2, 0.2, 0.2, 0.2, 0.3],
       stack: "mtd",
       color: "#1480D8",
     },
     {
-      name: "Exclude Impairment",
-      data: [0, 0, 0, 0, 0, 3.0],
+      name: "Exclude Pex",
+      data: [0.1, 0.2, 0.1, 0.3, 0.2, 0.1],
       stack: "mtd",
       color: "#F26D0F",
-    },
-    {
-      name: "Exclude TECO",
-      data: [8.0, 12.0, 11.5, 11.0, 8.0, 15.0],
-      stack: "mtd",
-      color: "#2C313A",
     },
     {
       name: "Budget GP",
@@ -84,109 +78,107 @@ $(function () {
       legendSymbol: "rectangle",
     },
   ];
-  let ppModelMachineYtd = "88.73M";
-  let ppModelMachineMtd = "10.95M";
-  let ppModelMachineGpPlan = "8.6%";
-  let ppModelMachineGpTrans = "8.6%";
-  let ppModelMachineBudget = "7";
+  let psIndustryPartYtd = "323.48M";
+  let psIndustryPartMtd = "23.7M";
+  let psIndustryPartBudget = "0.3";
 
-  // PP MODEL MACHINE CHART TABLE DATA
-  let ppModelMachineChartTable = [
+  // PC INDUSTRY PART CHART TABLE DATA
+  let psIndustryPartChartTable = [
     {
       id: 1,
-      machine_model: "All 320 + 323",
+      industry: "Construction Industry (CI)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "01-01-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Construction",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 2,
+          industry: "Forestry",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 3,
+          industry: "Agriculture",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
     {
       id: 2,
-      machine_model: "All 313",
+      industry: "Power System (E&T)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "02-01-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Electric Power",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 2,
+          industry: "Marine",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 3,
+          industry: "Oli & Gas",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 4,
+          industry: "Power Generation",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 5,
+          industry: "Industrial",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
     {
       id: 3,
-      machine_model: "30.5-307.5",
+      industry: "Mining (RI)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "03-01-2023",
-    },
-    {
-      id: 4,
-      machine_model: "CS10GC",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "04-01-2023",
-    },
-    {
-      id: 5,
-      machine_model: "All 120",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "05-01-2023",
-    },
-    {
-      id: 6,
-      machine_model: "All D6",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "06-01-2023",
-    },
-    {
-      id: 7,
-      machine_model: "745",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-2-2023",
-    },
-    {
-      id: 8,
-      machine_model: "773",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "02-03-2023",
-    },
-    {
-      id: 9,
-      machine_model: "777",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "03-03-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Mining",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
   ];
 
   // ===== PP MODEL ENGINE DATA =====
-  // PP MODEL ENGINE SERIES DATA
-  let ppModelEngineCategories = [
+  // PC INDUSTRY SERVICE SERIES DATA
+  let psIndustryServiceCategories = [
     "Jun 24",
     "Jul 24",
     "Aug 24",
@@ -195,30 +187,24 @@ $(function () {
     "Nov 24",
   ];
 
-  let ppModelEngineSeries = [
+  let psIndustryServiceSeries = [
     {
       name: "Total YTD",
-      data: [14.0, 13.0, 7.0, 10.0, 13.0, 0],
+      data: [0.3, 0.4, 0.2, 0.5, 0.4, 0.6],
       stack: "ytd",
       color: "#FDBA12",
     },
     {
       name: "Total MTD",
-      data: [10.0, 9.0, 0.4, 16.0, 33.0, 2.0],
+      data: [0.2, 0.2, 0.2, 0.2, 0.2, 0.3],
       stack: "mtd",
       color: "#1480D8",
     },
     {
-      name: "Exclude Impairment",
-      data: [0, 0, 0, 0, 0, 3.0],
+      name: "Exclude Pex",
+      data: [0.1, 0.2, 0.1, 0.3, 0.2, 0.1],
       stack: "mtd",
       color: "#F26D0F",
-    },
-    {
-      name: "Exclude TECO",
-      data: [8.0, 12.0, 11.5, 11.0, 8.0, 15.0],
-      stack: "mtd",
-      color: "#2C313A",
     },
     {
       name: "Budget GP",
@@ -227,189 +213,101 @@ $(function () {
       legendSymbol: "rectangle",
     },
   ];
-  let ppModelEngineYtd = "0.27M";
-  let ppModelEngineMtd = "8.45M";
-  let ppModelEngineGpPlan = "6.4%";
-  let ppModelEngineGpTrans = "6.6%";
-  let ppModelEngineBudget = "9";
+  let psIndustryServiceYtd = "38.58M";
+  let psIndustryServiceMtd = "3.28M";
+  let psIndustryServiceBudget = "0.3";
 
-  // PP MODEL ENGINE CHART TABLE DATA
-  let ppModelEngineChartTable = [
+  // PS INDUSTRY CHART TABLE DATA
+  let psIndustryServiceChartTable = [
     {
       id: 1,
-      machine_model: "C15-400",
+      industry: "Construction Industry (CI)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "01-01-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Construction",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 2,
+          industry: "Forestry",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 3,
+          industry: "Agriculture",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
     {
       id: 2,
-      machine_model: "C27-800 + *875",
+      industry: "Power System (E&T)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "02-01-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Electric Power",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 2,
+          industry: "Marine",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 3,
+          industry: "Oli & Gas",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 4,
+          industry: "Power Generation",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+        {
+          id: 5,
+          industry: "Industrial",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
     {
       id: 3,
-      machine_model: "C32*",
+      industry: "Mining (RI)",
       ytd: "88.4 M",
       mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
       gp_actual: "8.0%",
-      date: "03-01-2023",
-    },
-  ];
-
-  // PP PC ALL MACHINE CHART TABLE DATA
-  let ppPcAllMachineChartTable = [
-    {
-      id: 1,
-      machine_model: "1010",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-01-2023",
-    },
-    {
-      id: 2,
-      machine_model: "10100001",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "02-01-2023",
-    },
-    {
-      id: 3,
-      machine_model: "10100002",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "03-01-2023",
-    },
-    {
-      id: 4,
-      machine_model: "10100003",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "04-01-2023",
-    },
-    {
-      id: 5,
-      machine_model: "10100004",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "05-01-2023",
-    },
-    {
-      id: 6,
-      machine_model: "10100005",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "06-01-2023",
-    },
-    {
-      id: 7,
-      machine_model: "10100006",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-2-2023",
-    },
-  ];
-
-  // PP PC FORKLIFT CHART TABLE DATA
-  let ppPcForkLiftChartTable = [
-    {
-      id: 1,
-      machine_model: "10100004",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-01-2023",
-    },
-  ];
-
-  // PP PC ENGINE CHART TABLE DATA
-  let ppPcAllEngineChartTable = [
-    {
-      id: 1,
-      machine_model: "1010",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-01-2023",
-    },
-    {
-      id: 2,
-      machine_model: "10100001",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "02-01-2023",
-    },
-    {
-      id: 3,
-      machine_model: "10100002",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "03-01-2023",
-    },
-    {
-      id: 4,
-      machine_model: "10100003",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "04-01-2023",
-    },
-  ];
-
-  // PP PC ENGINE PROJECT CHART TABLE DATA
-  let ppPcEngineProjectChartTable = [
-    {
-      id: 1,
-      machine_model: "10201001",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "01-01-2023",
+      details: [
+        {
+          id: 1,
+          industry: "Mining",
+          ytd: "88.4 M",
+          mtd: "10.8 M",
+          gp_actual: "8.0%",
+        },
+      ],
     },
   ];
 
@@ -430,7 +328,7 @@ $(function () {
     xAxis: {
       lineWidth: 1,
       lineColor: "#CFD3DB",
-      categories: ["Jan 24", "Feb 24", "Mar 24", "Apr 24", "Mei 24", "Jun 24"],
+      categories: ["Jun 24", "Jul 24", "Aug 24", "Sep 24", "Oct 24", "Nov 24"],
       labels: {
         style: {
           color: "#5E677B",
@@ -441,6 +339,7 @@ $(function () {
     yAxis: {
       allowDecimals: true,
       min: 0,
+      max: 4,
       title: {
         text: "",
       },
@@ -452,11 +351,11 @@ $(function () {
           color: "#5E677B",
           fontSize: "14px",
         },
-        format: "{value} %",
+        // format: "{value} %",
       },
       plotLines: [
         {
-          value: 7,
+          value: 0.3,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -491,27 +390,21 @@ $(function () {
     series: [
       {
         name: "Total YTD",
-        data: [11.0, 14.0, 9.0, 14.0, 13.0, 16.0],
+        data: [0.3, 0.4, 0.2, 0.5, 0.4, 0.6],
         stack: "ytd",
         color: "#FDBA12",
       },
       {
         name: "Total MTD",
-        data: [2.0, 2.0, 2.0, 2.0, 2.0, 3.0],
+        data: [0.2, 0.2, 0.2, 0.2, 0.2, 0.3],
         stack: "mtd",
         color: "#1480D8",
       },
       {
-        name: "Exclude Impairment",
-        data: [0, 0, 0, 0, 0, 3.0],
+        name: "Exclude PEX",
+        data: [0.1, 0.2, 0.1, 0.3, 0.2, 0.1],
         stack: "mtd",
         color: "#F26D0F",
-      },
-      {
-        name: "Exclude TECO",
-        data: [8.0, 12.0, 11.5, 11.0, 8.0, 15.0],
-        stack: "mtd",
-        color: "#2C313A",
       },
       {
         name: "Budget GP",
@@ -542,9 +435,9 @@ $(function () {
 
   let selectedChartTable = [
     {
-      label: "Machine GP %",
-      rowData: ["Machine GP", "88.73M", "10.95M", "8.6%", "8.6%"],
-      data: ppModelMachineChartTable,
+      label: "Parts GP %",
+      rowData: ["Parts GP %", "323.48M", "23.7M"],
+      data: psIndustryPartChartTable,
     },
   ];
 
@@ -602,7 +495,6 @@ $(function () {
       selectedChartTable.splice(level + 1);
       breadcrumb(selectedChartTable);
     }
-
     $("#mYtd").text(selectedChartTable[level]["rowData"][1]);
     $("#mMtd").text(selectedChartTable[level]["rowData"][2]);
     $("#mGpPlan").text(selectedChartTable[level]["rowData"][3]);
@@ -630,21 +522,21 @@ $(function () {
     const countUndefinedData = selectedChartTable.filter(
       (item) => item.data === null
     ).length;
-
+    console.log(rowData);
     if (!countUndefinedData > 0) {
       selectedChartTable.push({
         label: rowData[0],
-        rowData: rowData,
+        rowData: rowData.splice(0, 1),
         data: details.length > 0 ? details : null,
       });
     } else {
       selectedChartTable[selectedChartTable.length - 1] = {
         label: rowData[0],
-        rowData: rowData,
+        rowData: rowData.splice(0, 1),
         data: null,
       };
     }
-    
+
     if (countUndefinedData < 2) {
       breadcrumb(selectedChartTable);
     }
@@ -658,8 +550,6 @@ $(function () {
 
     $("#mYtd").text(rowData[1]);
     $("#mMtd").text(rowData[2]);
-    $("#mGpPlan").text(rowData[3]);
-    $("#mGpTrans").text(rowData[4]);
     $("#datatable-list-title").text(`${rowData[0]} GP Data List`);
   }
 
@@ -674,8 +564,6 @@ $(function () {
 
     let totYtd = 0;
     let totMtd = 0;
-    let totGpPlan = 0;
-    let totGpTrans = 0;
     let totGpActual = 0;
 
     loading.append(loadingTable);
@@ -694,17 +582,13 @@ $(function () {
             )
             .text(text);
 
-        const colMachine = createCell(v.machine_model).addClass("pr-4 pl-6");
+        const colRow = createCell(v.industry).addClass("pr-4 pl-6");
         const colYtd = createCell(v.ytd);
         const colMtd = createCell(v.mtd);
-        const colGpPlan = createCell(v.gp_plan);
-        const colGpTrans = createCell(v.gp_trans);
         const colGpActual = createCell(v.gp_actual);
 
         totYtd += parseFloat(v.ytd);
         totMtd += parseFloat(v.mtd);
-        totGpPlan += parseFloat(v.gp_plan);
-        totGpTrans += parseFloat(v.gp_trans);
         totGpActual += parseFloat(v.gp_actual);
 
         const colAction = $("<td>").addClass(
@@ -715,15 +599,7 @@ $(function () {
           .addClass("h-4 w-4 rounded-full whitespace-nowrap");
         colAction.append(image);
 
-        row.append(
-          colMachine,
-          colYtd,
-          colMtd,
-          colGpPlan,
-          colGpTrans,
-          colGpActual,
-          colAction
-        );
+        row.append(colRow, colYtd, colMtd, colGpActual, colAction);
         row.click(handleRowClick);
         chartBodyTable.append(row);
       });
@@ -742,20 +618,10 @@ $(function () {
       const colTotal = createCellFot("Total").addClass("pr-4 pl-6");
       const colFYtd = createCellFot(totYtd.toFixed(1) + " M");
       const colFMtd = createCellFot(totMtd.toFixed(1) + " M");
-      const colFGpPlan = createCellFot(totGpPlan.toFixed(1) + " %");
-      const colFGpTrans = createCellFot(totGpTrans.toFixed(1) + " %");
       const colFGpActual = createCellFot(totGpActual.toFixed(1) + " %");
       const colFAction = createCellFot("");
 
-      rowFot.append(
-        colTotal,
-        colFYtd,
-        colFMtd,
-        colFGpPlan,
-        colFGpTrans,
-        colFGpActual,
-        colFAction
-      );
+      rowFot.append(colTotal, colFYtd, colFMtd, colFGpActual, colFAction);
 
       chartFooterTable.append(rowFot);
       loading.empty();
@@ -864,7 +730,7 @@ $(function () {
   var DataTableListLoading = $("#datatable-loading");
   var DataTableList = $("#datatable-list").DataTable({
     ajax: {
-      url: ppModelMachineDataTable, // Replace with the path to your JSON file
+      url: psIndustryPartDataTable, // Replace with the path to your JSON file
       dataSrc: "",
       beforeSend: function () {
         DataTableListLoading.append(loadingTable); // Show spinner before sending AJAX request
@@ -884,7 +750,6 @@ $(function () {
       { data: "profit_center_name" },
       { data: "profit_center_class" },
       { data: "payer_no" },
-      { data: "player_business_area" },
     ],
     columnDefs: [
       {
@@ -935,7 +800,7 @@ $(function () {
     DataTableList.search($(this).val()).draw();
   });
 
-  loadChartTable(ppModelMachineChartTable);
+  loadChartTable(psIndustryPartChartTable);
   loadChartDetailTable(ppModelMachineChartDetailTable);
 
   // ===== Start toggleEdit =====
@@ -960,89 +825,32 @@ $(function () {
     $(this).addClass("btn-secondary").removeClass("btn-white");
   });
 
-  // handle catBy
-  $(".cat-by").click(function () {
-    $(".cat-by").removeClass("btn-secondary").addClass("btn-white");
-    $(this).addClass("btn-secondary").removeClass("btn-white");
-
-    let catBy = $(this).attr("cat-by");
-    $(".sub-cat").removeClass("active");
-    if (catBy == "model") {
-      $(".pp-model").toggleClass("hidden flex");
-      $(".pp-pc").toggleClass("hidden flex");
-      $(".pp-model").find(".sub-cat").first().addClass("active");
-
-      defaultModelMachine();
-      // detail table
-      let filterDetail = $(".detail-filter-btn"),
-        total = $(".detail-total-btn"),
-        revenue = $(".detail-revenue-lc-btn"),
-        eTeco = $(".detail-exclude-teco-btn");
-
-      filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-      total.removeClass("hidden btn-white").addClass("btn-secondary");
-      revenue.removeClass("hidden");
-      eTeco.removeClass("hidden");
-    }
-    if (catBy == "pc") {
-      $(".pp-model").toggleClass("hidden flex");
-      $(".pp-pc").toggleClass("hidden flex");
-      $(".pp-pc").find(".sub-cat").first().addClass("active");
-
-      defaultPcMachine();
-      // detail table
-      let filterDetail = $(".detail-filter-btn"),
-        total = $(".detail-total-btn"),
-        eTeco = $(".detail-exclude-teco-btn"),
-        eImpairment = $(".detail-exclude-impairment-btn");
-
-      filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-      total.removeClass("hidden btn-white").addClass("btn-secondary");
-      eTeco.removeClass("hidden");
-      eImpairment.removeClass("hidden");
-    }
-  });
-
   // handle subcat
   $(".sub-cat").click(function () {
     $(".sub-cat").removeClass("active");
     $(this).addClass("active");
 
     let sub = $(this).attr("sub");
-    if (sub == "machine") {
-      defaultModelMachine();
+    if (sub == "parts") {
+      defaultIndustryPart();
     }
-    if (sub == "engine") {
-      defaultModelEngine();
-    }
-    if (sub == "allMachine") {
-      defaultPcMachine();
-    }
-    if (sub == "allEngine") {
-      defaultPcEngine();
-    }
-    if (sub == "forklift") {
-      defaultPcForklift();
-    }
-    if (sub == "engineProject") {
-      defaultPcProject();
+    if (sub == "services") {
+      defaultIndustryServices();
     }
   });
 
   // DEFAULT FUNCTION SET DATA
-  function defaultModelMachine() {
+  function defaultIndustryPart() {
     $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelMachineYtd);
-    $("#mMtd").text(ppModelMachineMtd);
-    $("#mGpPlan").text(ppModelMachineGpPlan);
-    $("#mGpTrans").text(ppModelMachineGpTrans);
-    $("#mBudgetGp").text(`${ppModelMachineBudget}%`);
-    $("#datatable-list-title").text("Machine GP Data List");
-    $("#row-chart-title").text("Machine Model");
+    $("#mYtd").text(psIndustryPartYtd);
+    $("#mMtd").text(psIndustryPartMtd);
+    $("#mBudgetGp").text(`${psIndustryPartBudget}%`);
+    $("#datatable-list-title").text("Parts GP Data List");
+    $("#row-chart-title").text("Industry");
     ChartBar.yAxis[0].update({
       plotLines: [
         {
-          value: ppModelMachineBudget,
+          value: psIndustryPartBudget,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -1052,49 +860,42 @@ $(function () {
 
     selectedChartTable = [
       {
-        label: "Machine GP %",
-        rowData: ["88.73M", "10.95M", "8.6%", "8.6%"],
-        data: ppModelMachineChartTable,
+        label: "Parts GP %",
+        rowData: ["323.48M", "23.7M"],
+        data: psIndustryPartChartTable,
       },
     ];
     breadcrumb(selectedChartTable);
 
-    ChartBar.xAxis[0].setCategories(ppModelMachineCategories);
-    ChartBar.series[0].setData(ppModelMachineSeries[0].data);
-    ChartBar.series[1].setData(ppModelMachineSeries[1].data);
-    ChartBar.series[2].setData(ppModelMachineSeries[2].data);
-    ChartBar.series[3].setData(ppModelMachineSeries[3].data);
-    ChartBar.series[3].setVisible(true);
-    ChartBar.series[3].update({ showInLegend: true });
+    ChartBar.xAxis[0].setCategories(psIndustryPartCategories);
+    ChartBar.series[0].setData(psIndustryPartSeries[0].data);
+    ChartBar.series[1].setData(psIndustryPartSeries[1].data);
+    ChartBar.series[2].setData(psIndustryPartSeries[2].data);
 
     // detail table
     let filterDetail = $(".detail-filter-btn"),
       total = $(".detail-total-btn"),
-      revenue = $(".detail-revenue-lc-btn"),
-      eTeco = $(".detail-exclude-teco-btn");
+      ePex = $(".detail-exclude-pex-btn");
 
     filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
     total.removeClass("hidden btn-white").addClass("btn-secondary");
-    revenue.removeClass("hidden");
-    eTeco.removeClass("hidden");
+    ePex.removeClass("hidden");
 
-    loadChartTable(ppModelMachineChartTable);
-    DataTableList.ajax.url(ppModelMachineDataTable).load();
+    loadChartTable(psIndustryPartChartTable);
+    DataTableList.ajax.url(psIndustryPartDataTable).load();
   }
 
-  function defaultModelEngine() {
+  function defaultIndustryServices() {
     $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelEngineYtd);
-    $("#mMtd").text(ppModelEngineMtd);
-    $("#mGpPlan").text(ppModelEngineGpPlan);
-    $("#mGpTrans").text(ppModelEngineGpTrans);
-    $("#mBudgetGp").text(`${ppModelEngineBudget}%`);
-    $("#datatable-list-title").text("Engine GP Data List");
-    $("#row-chart-title").text("Machine Model");
+    $("#mYtd").text(psIndustryServiceYtd);
+    $("#mMtd").text(psIndustryServiceMtd);
+    $("#mBudgetGp").text(`${psIndustryServiceBudget}%`);
+    $("#datatable-list-title").text("Service GP Data List");
+    $("#row-chart-title").text("Industry");
     ChartBar.yAxis[0].update({
       plotLines: [
         {
-          value: ppModelEngineBudget,
+          value: psIndustryServiceBudget,
           color: "#3B9D3F",
           width: 4,
           zIndex: 4,
@@ -1104,20 +905,17 @@ $(function () {
 
     selectedChartTable = [
       {
-        label: "Engine GP %",
-        rowData: ["0.27M", "8.45M", "6.4%", "6.6%"],
-        data: ppModelEngineChartTable,
+        label: "Services GP %",
+        rowData: ["38.58M", "3.28M"],
+        data: psIndustryServiceCategories,
       },
     ];
     breadcrumb(selectedChartTable);
 
-    ChartBar.xAxis[0].setCategories(ppModelEngineCategories);
-    ChartBar.series[0].setData(ppModelEngineSeries[0].data);
-    ChartBar.series[1].setData(ppModelEngineSeries[1].data);
-    ChartBar.series[2].setData(ppModelEngineSeries[2].data);
-    ChartBar.series[3].setData(ppModelEngineSeries[3].data);
-    ChartBar.series[3].setVisible(false);
-    ChartBar.series[3].update({ showInLegend: false });
+    ChartBar.xAxis[0].setCategories(psIndustryServiceCategories);
+    ChartBar.series[0].setData(psIndustryServiceSeries[0].data);
+    ChartBar.series[1].setData(psIndustryServiceSeries[1].data);
+    ChartBar.series[2].setData(psIndustryServiceSeries[2].data);
 
     // detail table
     let filterDetail = $(".detail-filter-btn"),
@@ -1128,215 +926,10 @@ $(function () {
     total.removeClass("hidden btn-white").addClass("btn-secondary");
     eImpairment.removeClass("hidden");
 
-    loadChartTable(ppModelEngineChartTable);
-    DataTableList.ajax.url(ppModelEngineDataTable).load();
+    loadChartTable(psIndustryServiceChartTable);
+    DataTableList.ajax.url(psIndustryServiceDataTable).load();
   }
 
-  function defaultPcMachine() {
-    $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelMachineYtd);
-    $("#mMtd").text(ppModelMachineMtd);
-    $("#mGpPlan").text(ppModelMachineGpPlan);
-    $("#mGpTrans").text(ppModelMachineGpTrans);
-    $("#mBudgetGp").text(`${ppModelMachineBudget}%`);
-    $("#datatable-list-title").text("All Machine GP Data List");
-    $("#row-chart-title").text("Profit Center");
-    ChartBar.yAxis[0].update({
-      plotLines: [
-        {
-          value: ppModelMachineBudget,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-
-    selectedChartTable = [
-      {
-        label: "All Machine GP %",
-        rowData: ["88.73M", "10.95M", "8.6%", "8.6%"],
-        data: ppPcAllMachineChartTable,
-      },
-    ];
-    breadcrumb(selectedChartTable);
-
-    ChartBar.xAxis[0].setCategories(ppModelMachineCategories);
-    ChartBar.series[0].setData(ppModelMachineSeries[0].data);
-    ChartBar.series[1].setData(ppModelMachineSeries[1].data);
-    ChartBar.series[2].setData(ppModelMachineSeries[2].data);
-    ChartBar.series[3].setData(ppModelMachineSeries[3].data);
-    ChartBar.series[3].setVisible(true);
-    ChartBar.series[3].update({ showInLegend: true });
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eTeco = $(".detail-exclude-teco-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eTeco.removeClass("hidden");
-    eImpairment.removeClass("hidden");
-
-    loadChartTable(ppPcAllMachineChartTable);
-    DataTableList.ajax.url(ppModelMachineDataTable).load();
-  }
-
-  function defaultPcForklift() {
-    $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelMachineYtd);
-    $("#mMtd").text(ppModelMachineMtd);
-    $("#mGpPlan").text(ppModelMachineGpPlan);
-    $("#mGpTrans").text(ppModelMachineGpTrans);
-    $("#mBudgetGp").text(`${ppModelMachineBudget}%`);
-    $("#datatable-list-title").text("Forklift GP Data List");
-    $("#row-chart-title").text("Profit Center");
-    ChartBar.yAxis[0].update({
-      plotLines: [
-        {
-          value: ppModelMachineBudget,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-
-    selectedChartTable = [
-      {
-        label: "Forklift GP %",
-        rowData: ["88.73M", "10.95M", "8.6%", "8.6%"],
-        data: ppPcForkLiftChartTable,
-      },
-    ];
-    breadcrumb(selectedChartTable);
-
-    ChartBar.xAxis[0].setCategories(ppModelMachineCategories);
-    ChartBar.series[0].setData(ppModelMachineSeries[0].data);
-    ChartBar.series[1].setData(ppModelMachineSeries[1].data);
-    ChartBar.series[2].setData(ppModelMachineSeries[2].data);
-    ChartBar.series[3].setData(ppModelMachineSeries[3].data);
-    ChartBar.series[3].setVisible(true);
-    ChartBar.series[3].update({ showInLegend: true });
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      revenue = $(".detail-revenue-lc-btn"),
-      eTeco = $(".detail-exclude-teco-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    revenue.removeClass("hidden");
-    eTeco.removeClass("hidden");
-
-    loadChartTable(ppPcForkLiftChartTable);
-    DataTableList.ajax.url(ppModelMachineDataTable).load();
-  }
-
-  function defaultPcEngine() {
-    $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelEngineYtd);
-    $("#mMtd").text(ppModelEngineMtd);
-    $("#mGpPlan").text(ppModelEngineGpPlan);
-    $("#mGpTrans").text(ppModelEngineGpTrans);
-    $("#mBudgetGp").text(`${ppModelEngineBudget}%`);
-    $("#datatable-list-title").text("All Engine GP Data List");
-    $("#row-chart-title").text("Profit Center");
-    ChartBar.yAxis[0].update({
-      plotLines: [
-        {
-          value: ppModelEngineBudget,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-
-    selectedChartTable = [
-      {
-        label: "All Engine GP %",
-        rowData: ["0.27M", "8.45M", "6.4%", "6.6%"],
-        data: ppPcAllEngineChartTable,
-      },
-    ];
-    breadcrumb(selectedChartTable);
-
-    ChartBar.xAxis[0].setCategories(ppModelEngineCategories);
-    ChartBar.series[0].setData(ppModelEngineSeries[0].data);
-    ChartBar.series[1].setData(ppModelEngineSeries[1].data);
-    ChartBar.series[2].setData(ppModelEngineSeries[2].data);
-    ChartBar.series[3].setData(ppModelEngineSeries[3].data);
-    ChartBar.series[3].setVisible(true);
-    ChartBar.series[3].update({ showInLegend: true });
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eTeco = $(".detail-exclude-teco-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eTeco.removeClass("hidden");
-    eImpairment.removeClass("hidden");
-
-    loadChartTable(ppPcAllEngineChartTable);
-    DataTableList.ajax.url(ppModelEngineDataTable).load();
-  }
-
-  function defaultPcProject() {
-    $(".chart-row-table").removeClass("bg-yellow-10");
-    $("#mYtd").text(ppModelEngineYtd);
-    $("#mMtd").text(ppModelEngineMtd);
-    $("#mGpPlan").text(ppModelEngineGpPlan);
-    $("#mGpTrans").text(ppModelEngineGpTrans);
-    $("#mBudgetGp").text(`${ppModelEngineBudget}%`);
-    $("#datatable-list-title").text("All Engine GP Data List");
-    $("#row-chart-title").text("Profit Center");
-    ChartBar.yAxis[0].update({
-      plotLines: [
-        {
-          value: ppModelEngineBudget,
-          color: "#3B9D3F",
-          width: 4,
-          zIndex: 4,
-        },
-      ],
-    });
-
-    selectedChartTable = [
-      {
-        label: "Engine Project GP %",
-        rowData: ["0.27M", "8.45M", "6.4%", "6.6%"],
-        data: ppPcEngineProjectChartTable,
-      },
-    ];
-    breadcrumb(selectedChartTable);
-
-    ChartBar.xAxis[0].setCategories(ppModelEngineCategories);
-    ChartBar.series[0].setData(ppModelEngineSeries[0].data);
-    ChartBar.series[1].setData(ppModelEngineSeries[1].data);
-    ChartBar.series[2].setData(ppModelEngineSeries[2].data);
-    ChartBar.series[3].setData(ppModelEngineSeries[3].data);
-    ChartBar.series[3].setVisible(true);
-    ChartBar.series[3].update({ showInLegend: true });
-
-    // detail table
-    let filterDetail = $(".detail-filter-btn"),
-      total = $(".detail-total-btn"),
-      eImpairment = $(".detail-exclude-impairment-btn");
-
-    filterDetail.addClass("hidden btn-white").removeClass("btn-secondary");
-    total.removeClass("hidden btn-white").addClass("btn-secondary");
-    eImpairment.removeClass("hidden");
-
-    loadChartTable(ppPcEngineProjectChartTable);
-    DataTableList.ajax.url(ppModelEngineDataTable).load();
-  }
   // DROPZONE
   // ===== Dropzone =====
   let $dropzoneLabel = $(".dropzone");

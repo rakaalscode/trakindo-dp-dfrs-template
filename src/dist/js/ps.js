@@ -398,8 +398,8 @@ $(function () {
                   "px-3 py-4 font-normal whitespace-nowrap text-secondary-90 font-sm"
                 )
                 .text(text);
-
-            const colMachine = createCell(v.industry).addClass(
+                console.log(data);
+            const colRow = createCell(v.industry).addClass(
               "pr-4 pl-6"
             );
             const colYtd = createCell(v.ytd);
@@ -417,7 +417,7 @@ $(function () {
             colAction.append(image);
 
             row.append(
-              colMachine,
+              colRow,
               colYtd,
               colMtd,
               colAction

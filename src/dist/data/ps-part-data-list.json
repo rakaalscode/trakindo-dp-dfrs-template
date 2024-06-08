@@ -1,6 +1,42 @@
 [
-  { "id": 1, "company_code": "2000", "customer_no": "1030818", "customer_name": "TZE SAN MANAGEMENT SERVICES PTE LTD", "profit_center": "10300001", "profit_center_name": "Parts CAT", "profit_center_class": "P0026716", "payer_no": "Not Assigned"},
-  { "id": 2, "company_code": "1000", "customer_no": "1003584", "customer_name": "PT. INDONESIA BULK TERMINAL", "profit_center": "10300001", "profit_center_name": "Parts CAT", "profit_center_class": "P0026716", "payer_no": "Not Assigned"},
-  { "id": 3, "company_code": "1000", "customer_no": "1010904", "customer_name": "PT. BARUNA DIRGA DHARMA", "profit_center": "10300001", "profit_center_name": "Parts CAT", "profit_center_class": "P0026716", "payer_no": "Not Assigned"},
-  { "id": 4, "company_code": "1000", "customer_no": "1005740", "customer_name": "PT. SUMBERDAYA SEWATAMA", "profit_center": "10300001", "profit_center_name": "Parts CAT", "profit_center_class": "P0026716", "payer_no": "Not Assigned"}
+  {
+    "id": 1,
+    "company_code": "2000",
+    "customer_no": "1030818",
+    "customer_name": "TZE SAN MANAGEMENT SERVICES PTE LTD",
+    "profit_center": "10300001",
+    "profit_center_name": "Parts CAT",
+    "profit_center_class": "P0026716",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 2,
+    "company_code": "1000",
+    "customer_no": "1003584",
+    "customer_name": "PT. INDONESIA BULK TERMINAL",
+    "profit_center": "10300001",
+    "profit_center_name": "Parts CAT",
+    "profit_center_class": "P0026716",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 3,
+    "company_code": "1000",
+    "customer_no": "1010904",
+    "customer_name": "PT. BARUNA DIRGA DHARMA",
+    "profit_center": "10300001",
+    "profit_center_name": "Parts CAT",
+    "profit_center_class": "P0026716",
+    "payer_no": "Not Assigned"
+  },
+  {
+    "id": 4,
+    "company_code": "1000",
+    "customer_no": "1005740",
+    "customer_name": "PT. SUMBERDAYA SEWATAMA",
+    "profit_center": "10300001",
+    "profit_center_name": "Parts CAT",
+    "profit_center_class": "P0026716",
+    "payer_no": "Not Assigned"
+  }
 ]

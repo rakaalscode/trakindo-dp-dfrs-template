@@ -1,6 +1,42 @@
 [
-  { "id": 1, "machine_model": "1010", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "01-01-2023" },
-  { "id": 2, "machine_model": "10100001", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "02-01-2023" },
-  { "id": 3, "machine_model": "10100002", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "03-01-2023" },
-  { "id": 4, "machine_model": "10100003", "ytd": "88.4 M", "mtd": "10.8 M", "gp_plan": "8.0%", "gp_trans": "8.0%", "gp_actual": "8.0%", "date": "04-01-2023" }
+  {
+    "id": 1,
+    "machine_model": "1010",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "01-01-2023"
+  },
+  {
+    "id": 2,
+    "machine_model": "10100001",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "02-01-2023"
+  },
+  {
+    "id": 3,
+    "machine_model": "10100002",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "03-01-2023"
+  },
+  {
+    "id": 4,
+    "machine_model": "10100003",
+    "ytd": "88.4 M",
+    "mtd": "10.8 M",
+    "gp_plan": "8.0%",
+    "gp_trans": "8.0%",
+    "gp_actual": "8.0%",
+    "date": "04-01-2023"
+  }
 ]

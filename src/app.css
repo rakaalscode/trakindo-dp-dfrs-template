@@ -131,11 +131,22 @@ select.custom-arrow-select:not([size]) {
   print-color-adjust: exact;
 }
 .body-warning {
-  @apply  border-orange-80 bg-orange-20;
+  @apply border-orange-80 bg-orange-20;
 }
 .body-yellow {
   @apply bg-yellow-0;
 }
 .body-cloudy {
   @apply bg-cloudy-10;
+}
+.flatpickr-monthSelect-month.selected,
+.flatpickr-monthSelect-month.startRange,
+.flatpickr-monthSelect-month.endRange {
+  background-color: #fdba12;
+  box-shadow: none;
+  color: #fff;
+  border-color: #fdba12;
+}
+.flatpickr-monthSelect-month.today {
+  border-color: #fdba12;
 }
