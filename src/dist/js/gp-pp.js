@@ -162,26 +162,26 @@ $(function () {
       gp_actual: "8.0%",
       date: "01-2-2023",
     },
-    {
-      id: 8,
-      machine_model: "773",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "02-03-2023",
-    },
-    {
-      id: 9,
-      machine_model: "777",
-      ytd: "88.4 M",
-      mtd: "10.8 M",
-      gp_plan: "8.0%",
-      gp_trans: "8.0%",
-      gp_actual: "8.0%",
-      date: "03-03-2023",
-    },
+    // {
+    //   id: 8,
+    //   machine_model: "773",
+    //   ytd: "88.4 M",
+    //   mtd: "10.8 M",
+    //   gp_plan: "8.0%",
+    //   gp_trans: "8.0%",
+    //   gp_actual: "8.0%",
+    //   date: "02-03-2023",
+    // },
+    // {
+    //   id: 9,
+    //   machine_model: "777",
+    //   ytd: "88.4 M",
+    //   mtd: "10.8 M",
+    //   gp_plan: "8.0%",
+    //   gp_trans: "8.0%",
+    //   gp_actual: "8.0%",
+    //   date: "03-03-2023",
+    // },
   ];
 
   // ===== PP MODEL ENGINE DATA =====
@@ -644,7 +644,7 @@ $(function () {
         data: null,
       };
     }
-    
+
     if (countUndefinedData < 2) {
       breadcrumb(selectedChartTable);
     }
@@ -668,9 +668,11 @@ $(function () {
     let loading = $("#chart-loading-table");
     let chartBodyTable = $("#chart-body-table");
     let chartFooterTable = $("#chart-footer-table");
+    let chartFooterTableMd = $("#chart-footer-table-md");
 
     chartBodyTable.empty();
     chartFooterTable.empty();
+    chartFooterTableMd.empty();
 
     let totYtd = 0;
     let totMtd = 0;
@@ -758,6 +760,35 @@ $(function () {
       );
 
       chartFooterTable.append(rowFot);
+
+      const createCellFotExt = (text) => $("<div>").text(text);
+
+      const colTotalMd =
+        createCellFotExt("Total").addClass("w-auto md:w-[24%]");
+      const colFYtdMd = createCellFotExt(totYtd.toFixed(1) + " M").addClass(
+        "w-auto md:w-[13%]"
+      );
+      const colFMtdMd = createCellFotExt(totMtd.toFixed(1) + " M").addClass(
+        "w-auto md:w-[12%]"
+      );
+      const colFGpPlanMd = createCellFotExt(
+        totGpPlan.toFixed(1) + " %"
+      ).addClass("w-auto md:w-[14%]");
+      const colFGpTransMd = createCellFotExt(
+        totGpTrans.toFixed(1) + " %"
+      ).addClass("w-auto md:w-[16%]");
+      const colFGpActualMd = createCellFotExt(
+        totGpActual.toFixed(1) + " %"
+      ).addClass("w-auto md:w-[11%]");
+
+      chartFooterTableMd.append(
+        colTotalMd,
+        colFYtdMd,
+        colFMtdMd,
+        colFGpPlanMd,
+        colFGpTransMd,
+        colFGpActualMd
+      );
       loading.empty();
     }, 300);
   }

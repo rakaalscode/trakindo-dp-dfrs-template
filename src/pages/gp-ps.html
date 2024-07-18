@@ -562,9 +562,10 @@
                 </div>
               </div>
               <!-- TABLE CONTENT  -->
-              <div class="flex flex-col w-full md:w-1/2">
+              <div class="relative flex flex-col w-full md:w-1/2">
+                <div id="chart-loading-table"></div>
                 <div
-                  class="relative z-20 min-h-[600px] max-h-[600px] overflow-y-auto border border-b-0 border-cloudy-40"
+                  class="relative z-20 md:min-h-[542px] max-h-[542px] overflow-y-auto border border-b-0 border-cloudy-40"
                 >
                   <div id="chart-loading-table"></div>
                   <div class="relative h-full overflow-x-auto">
@@ -577,41 +578,47 @@
                         <tr>
                           <th
                             scope="col"
-                            class="px-3 py-4 pt-6 pl-6 whitespace-nowrap"
+                            class="px-3 py-4 pt-6 pl-6 w-[30%] whitespace-nowrap"
                             id="row-chart-title"
                           >
                             Industry
                           </th>
                           <th
                             scope="col"
-                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                            class="px-3 py-4 pt-6 w-[10%] whitespace-nowrap"
                           >
                             YTD
                           </th>
                           <th
                             scope="col"
-                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                            class="px-3 py-4 pt-6 w-[10%] whitespace-nowrap"
                           >
                             MTD
                           </th>
                           <th
                             scope="col"
-                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                            class="px-3 py-4 pt-6 w-[10%] whitespace-nowrap"
                           >
                             GP Actual
                           </th>
                           <th
                             scope="col"
-                            class="px-3 py-4 pt-6 whitespace-nowrap"
+                            class="px-3 py-4 pt-6 w-[5%] whitespace-nowrap"
                           >
                             &nbsp;
                           </th>
                         </tr>
                       </thead>
                       <tbody id="chart-body-table"></tbody>
-                      <tfoot id="chart-footer-table"></tfoot>
+                      <tfoot class="md:hidden" id="chart-footer-table"></tfoot>
                     </table>
                   </div>
+                </div>
+                <div class="hidden md:flex">
+                  <div
+                    class="flex items-center w-full px-6 text-base font-semibold capitalize border rounded-br-lg h-14 border-cloudy-40 text-secondary-90 bg-cloudy-0"
+                    id="chart-footer-table-md"
+                  ></div>
                 </div>
               </div>
             </div>

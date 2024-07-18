@@ -558,9 +558,11 @@ $(function () {
     let loading = $("#chart-loading-table");
     let chartBodyTable = $("#chart-body-table");
     let chartFooterTable = $("#chart-footer-table");
+    let chartFooterTableMd = $("#chart-footer-table-md");
 
     chartBodyTable.empty();
     chartFooterTable.empty();
+    chartFooterTableMd.empty();
 
     let totYtd = 0;
     let totMtd = 0;
@@ -624,6 +626,26 @@ $(function () {
       rowFot.append(colTotal, colFYtd, colFMtd, colFGpActual, colFAction);
 
       chartFooterTable.append(rowFot);
+
+      const createCellFotExt = (text) => $("<div>").text(text);
+
+      const colTotalMd = createCellFotExt("Total").addClass("w-[46%]");
+      const colFYtdMd = createCellFotExt(totYtd.toFixed(1) + " M").addClass(
+        "w-[16%]"
+      );
+      const colFMtdMd = createCellFotExt(totMtd.toFixed(1) + " M").addClass(
+        "w-[16%]"
+      );
+      const colFGpActualMd = createCellFotExt(
+        totGpActual.toFixed(1) + " %"
+      ).addClass("w-[16%]");
+
+      chartFooterTableMd.append(
+        colTotalMd,
+        colFYtdMd,
+        colFMtdMd,
+        colFGpActualMd
+      );
       loading.empty();
     }, 300);
   }

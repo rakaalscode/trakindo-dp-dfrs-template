@@ -1165,6 +1165,10 @@ video {
   height: 100vh;
 }
 
+.h-14 {
+  height: 3.5rem;
+}
+
 .max-h-\[300px\] {
   max-height: 300px;
 }
@@ -1249,12 +1253,40 @@ video {
   width: 75%;
 }
 
+.w-\[10\%\] {
+  width: 10%;
+}
+
 .w-\[108px\] {
   width: 108px;
 }
 
+.w-\[11\%\] {
+  width: 11%;
+}
+
+.w-\[12\%\] {
+  width: 12%;
+}
+
 .w-\[122px\] {
   width: 122px;
+}
+
+.w-\[13\%\] {
+  width: 13%;
+}
+
+.w-\[14\%\] {
+  width: 14%;
+}
+
+.w-\[15\%\] {
+  width: 15%;
+}
+
+.w-\[16\%\] {
+  width: 16%;
 }
 
 .w-\[165px\] {
@@ -1289,6 +1321,10 @@ video {
   width: 20px;
 }
 
+.w-\[24\%\] {
+  width: 24%;
+}
+
 .w-\[24px\] {
   width: 24px;
 }
@@ -1297,12 +1333,24 @@ video {
   width: 288px;
 }
 
+.w-\[30\%\] {
+  width: 30%;
+}
+
 .w-\[38px\] {
   width: 38px;
 }
 
+.w-\[42\%\] {
+  width: 42%;
+}
+
 .w-\[483px\] {
   width: 483px;
+}
+
+.w-\[5\%\] {
+  width: 5%;
 }
 
 .w-\[60\%\] {
@@ -1315,6 +1363,30 @@ video {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[100\%\] {
+  width: 100%;
+}
+
+.w-\[50\%\] {
+  width: 50%;
+}
+
+.w-\[45\%\] {
+  width: 45%;
+}
+
+.w-\[47\%\] {
+  width: 47%;
+}
+
+.w-\[17\%\] {
+  width: 17%;
+}
+
+.w-\[46\%\] {
+  width: 46%;
 }
 
 .min-w-\[100px\] {
@@ -1546,6 +1618,11 @@ video {
 
 .gap-y-3 {
   row-gap: 0.75rem;
+}
+
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
 
 .space-x-1 > :not([hidden]) ~ :not([hidden]) {
@@ -2069,6 +2146,11 @@ video {
 .py-\[8px\] {
   padding-top: 8px;
   padding-bottom: 8px;
+}
+
+.py-9 {
+  padding-top: 2.25rem;
+  padding-bottom: 2.25rem;
 }
 
 .pb-0 {
@@ -2800,8 +2882,20 @@ select.custom-arrow-select:not([size]) {
     display: flex;
   }
 
+  .md\:hidden {
+    display: none;
+  }
+
   .md\:h-\[42px\] {
     height: 42px;
+  }
+
+  .md\:min-h-\[600px\] {
+    min-height: 600px;
+  }
+
+  .md\:min-h-\[542px\] {
+    min-height: 542px;
   }
 
   .md\:w-1\/2 {
@@ -2816,8 +2910,32 @@ select.custom-arrow-select:not([size]) {
     width: 75%;
   }
 
+  .md\:w-\[11\%\] {
+    width: 11%;
+  }
+
+  .md\:w-\[12\%\] {
+    width: 12%;
+  }
+
+  .md\:w-\[13\%\] {
+    width: 13%;
+  }
+
+  .md\:w-\[14\%\] {
+    width: 14%;
+  }
+
+  .md\:w-\[16\%\] {
+    width: 16%;
+  }
+
   .md\:w-\[165px\] {
     width: 165px;
+  }
+
+  .md\:w-\[24\%\] {
+    width: 24%;
   }
 
   .md\:w-\[416px\] {
@@ -2826,6 +2944,10 @@ select.custom-arrow-select:not([size]) {
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-\[5\%\] {
+    width: 5%;
   }
 
   .md\:-translate-x-0 {
