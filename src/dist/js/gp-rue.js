@@ -1085,7 +1085,20 @@ $(function () {
     $("#uploadBtnEditData").attr("disabled", true);
   });
 
+  $dropzoneLabel.on("dragover", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).addClass("dragover");
+  });
+
+  $dropzoneLabel.on("dragleave", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).removeClass("dragover");
+  });
+
   $dropzoneLabel.on("drop", function (e) {
+    console.log("drop");
     e.preventDefault();
     e.stopPropagation();
     $(this).removeClass("dragover");
